@@ -73,7 +73,7 @@ Time frames are also key in the development cycle.  You have limited time to cod
 #### MVP
 | Component | Priority | Estimated Time | Actual Time |
 | --- | :---: |  :---: | :---: | 
-| Hamburger | H | 1hr | hr |
+| Hamburger | LOW | 1hr | hr |
 | Project Previews | H | 3hr | hr |
 | Regular Nav | H | 1hr | hr |  
 | Adding Form | H | 1.5hr|  hr | 
