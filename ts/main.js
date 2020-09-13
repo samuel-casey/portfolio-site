@@ -1,6 +1,5 @@
-const $dropdownMenu = $('main ul#dropdownMenu');
-
-$('i.fas.fa-bars').click(() => {
+var $dropdownMenu = $('main ul#dropdownMenu');
+$('i.fas.fa-bars').click(function () {
 	console.log('clicked Hamburger');
 	if ($dropdownMenu.css('opacity') === '0') {
 		console.log('hidden');
