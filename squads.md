@@ -1,0 +1,39 @@
+### Joe 
+- Frieda
+- Allisyn 
+- Adeola
+- Gourav 
+- Jaime 
+- Sampreet
+- Tyler 
+
+### Alex
+- Kim 
+- Jesse
+- Riana 
+- Woodrow 
+- Hannah
+- Sean 
+- Sara 
+
+### Stack
+- Leah 
+- Bojan 
+- Quinton 
+- Meena 
+- Stasys 
+- Tonimarie 
+- Jake 
+- Lien 
+- Marialaina 
+
+### Kenny
+- Sam 
+- Kilah
+- Chase
+- Frederick
+- Zack
+- Esteban 
+- Zane 
+- Shayan 
+- Erik 
