@@ -191,8 +191,27 @@ main {
 		}
 	}
 
-	// article#blogsContainer {
-	// }
+	article#blogsContainer {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 0.5rem;
+
+		div.blogPost {
+			background-color: $not-white;
+			width: 95%;
+			align-self: center;
+		}
+
+		p.blogTitle {
+			color: $font-primary;
+		}
+
+		div.blogTag {
+			background-color: red;
+			width: fit-content;
+			padding: 0.25rem;
+		}
+	}
 
 	article#contactContainer {
 		background-color: $not-white;
@@ -203,6 +222,7 @@ main {
 			text-align: center;
 			font-style: italic;
 			font-weight: bold;
+			padding-top: 1rem;
 		}
 
 		form {
@@ -210,6 +230,8 @@ main {
 			flex-direction: column;
 			padding: 1rem;
 			line-height: 1.5rem;
+			padding-top: 0;
+			padding-bottom: 0;
 		}
 
 		label {
@@ -337,7 +359,7 @@ div#dropdownContainer {
 		margin: 0;
 		display: none;
 		position: relative;
-		// top: $header-height;
+		z-index: 2;
 		border-radius: 0 0 0 15px;
 
 		li.hamburgerItem {

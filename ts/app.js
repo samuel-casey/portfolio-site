@@ -26,3 +26,7 @@ if ($('.smart-scroll').length > 0) {
 else {
     $hamburgerButton.css('display', 'none');
 }
+/// SUBMIT CONTACT FORM
+$('article#contactContainer form').on('click', function (event) {
+    event.preventDefault();
+});
