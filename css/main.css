@@ -68,6 +68,12 @@ header nav {
 	justify-content: space-between;
 }
 
+.btn.btn-primary {
+	background-color: var(--sudbury-green);
+	border: none;
+	box-shadow: 2px 2px var(--newton-blue) 25%;
+}
+
 main ul#dropdownMenu {
 	list-style: none;
 	display: flex;
