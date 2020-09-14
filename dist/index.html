@@ -20,26 +20,28 @@
 	<script src="/main.ed404b2d.js"></script><script src="/media.527fce62.js"></script></head>
 	<body>
 		<header>
-			<nav>
-				<div id="logoContainer">
-					<img id="bitmojiImg" src="/bitmoji.32f1bc5c.png" alt="BITMOJI">
+			<nav class="navbar smart-scroll">
+				<div id="headerLogoContainer">
+					<img class="bitmoji" src="/bitmoji.32f1bc5c.png" alt="BITMOJI">
 					<p>Sam Casey</p>
 				</div>
 				<div id="hamburgerContainer">
 					<i class="fas fa-bars"></i>
 				</div>
 			</nav>
+			<div id="dropdownContainer">
+				<ul id="dropdownMenu">
+					<li class="hamburgerItem"><a href="#aboutContainer">About</a></li>
+					<li class="hamburgerItem">
+						<a href="#projectsContainer">Projects</a>
+					</li>
+					<li class="hamburgerItem"><a href="#blogsContainer">Blogs</a></li>
+					<li class="hamburgerItem"><a href="#contactContainer">Contact</a></li>
+				</ul>
+			</div>
 		</header>
 		<main>
 			<article id="aboutContainer">
-				<div id="dropdownContainer">
-					<ul id="dropdownMenu">
-						<li class="hamburgerItem"><a href="#">About</a></li>
-						<li class="hamburgerItem"><a href="#">Projects</a></li>
-						<li class="hamburgerItem"><a href="#">Writing</a></li>
-						<li class="hamburgerItem"><a href="#">Contact</a></li>
-					</ul>
-				</div>
 				<div class="headshotContainer">
 					<img src="/Headshot_150x150.424aafdc.png" alt="headshot">
 				</div>
@@ -151,8 +153,23 @@
 			</article>
 
 			<!-- <button class="btn btn-primary">BUTTON</button> -->
-			<article id="projectContainer">
+			<article id="projectsContainer">
 				<h2>Projects</h2>
+				<div class="card">
+					<img class="card-img-top" src="/tidesProjBootstrapCard.3835f947.png" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">
+							Some quick example text to build on the card title and make up the
+							bulk of the card's content.
+						</p>
+						<div class="card-body-btns">
+							<a href="#" class="btn btn-primary">Code</a>
+							<a href="#" class="btn btn-primary">Link</a>
+							<a href="#" class="btn btn-primary">Info</a>
+						</div>
+					</div>
+				</div>
 				<div class="card">
 					<img class="card-img-top" src="/tidesProjBootstrapCard.3835f947.png" alt="Card image cap">
 					<div class="card-body">
@@ -171,37 +188,37 @@
 				</div>
 			</article>
 			<article id="blogsContainer"><hr class="green"></article>
-			<article id="contactContainer"></article>
+			<article id="contactContainer">
+				<p>
+					Please reach out if you’re interested in working together or setting
+					up time to chat!
+				</p>
+				<form>
+					<div class="form-group">
+						<label for="exampleFormControlInput1">Name</label>
+						<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+					</div>
+					<div class="form-group">
+						<label for="exampleFormControlInput1">Email address</label>
+						<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+					</div>
+					<div class="form-group">
+						<label for="exampleFormControlTextarea1">Example textarea</label>
+						<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+					</div>
+					<button class="btn btn-primary">Submit</button>
+				</form>
+			</article>
 			<i id="scrollArrow" class="fas fa-angle-down bounce"></i>
 		</main>
+		<footer>
+			<div id="footerLogoContainer">
+				<img class="bitmoji" src="/bitmoji.32f1bc5c.png" alt="BITMOJI">
+				<p>5samcasey@gmail.com</p>
+			</div>
+			<nav id="footerNav"></nav>
+			<div id="footerLinks"></div>
+		</footer>
 		<script src="/app.72bdb1ae.js"></script>
 	</body>
 </html>
-
-<!-- <div>
-	<i class="fab fa-github-square"></i>
-	<i class="fab fa-twitter-square"></i>
-	<i class="fab fa-linkedin"></i>\
-
-	<i class="fas fa-caret-down"></i>
-	<i class="fas fa-paper-plane"></i>
-	<i class="fas fa-angle-left"></i>
-	<i class="fas fa-angle-right"></i>
-
-	<i class="fab fa-react"></i>
-	<i class="fab fa-node"></i>
-	typescript
-
-	postgres
-
-	<i class="fab fa-python"></i>
-	<i class="fas fa-file-code"></i>
-
-	<i class="fab fa-html5"></i>
-	<i class="fab fa-css3-alt"></i>
-	mongodb
-
-	firebase
-
-	ruby on rails
-</div> -->

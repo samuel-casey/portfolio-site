@@ -140,13 +140,39 @@ main article#aboutContainer div#socialMediaIcons i {
   color: #567d9f;
   font-size: 2rem;
 }
-
-article#projectContainer {
+main article#projectsContainer {
   grid-area: projects;
+  display: grid;
+  grid-gap: 1rem;
 }
-article#projectContainer h2 {
+main article#projectsContainer h2 {
   color: #567d9f;
   font-size: 1.5rem;
+}
+main article#contactContainer {
+  background-color: #f5f5f5;
+}
+main article#contactContainer p {
+  color: #22577a;
+  font-size: 1.25rem;
+  text-align: center;
+  font-style: italic;
+  font-weight: bold;
+}
+main article#contactContainer form {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  line-height: 1.5rem;
+}
+main article#contactContainer label {
+  color: #77bbb1;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+main article#contactContainer button {
+  align-self: center;
+  margin: 1rem;
 }
 
 i.fas.fa-bars {
@@ -160,14 +186,33 @@ i.fas.fa-bars {
   height: fit-content;
 }
 
-div#logoContainer {
+div#headerLogoContainer {
   display: flex;
   align-items: center;
+  display: flex;
+  font-size: 1.5rem;
+  padding: 0.5em 1em;
 }
-
-div#logoContainer p {
+div#headerLogoContainer p {
   margin: 0;
   font-weight: bold;
+}
+
+div#footerLogoContainer {
+  display: flex;
+  padding: 0.5em 1em;
+  background-color: #22577a;
+  align-items: center;
+}
+div#footerLogoContainer p {
+  font-size: 1rem;
+  color: #77bbb1;
+  margin: 0;
+  font-weight: normal;
+}
+
+div.card-body {
+  margin-bottom: 1rem;
 }
 
 div.card-body-btns {
@@ -179,14 +224,39 @@ div.card-body-btns a {
   box-shadow: 2px 2px rgba(119, 187, 177, 0.5);
 }
 
+header {
+  margin-bottom: 1rem;
+  height: 5rem;
+}
 header nav {
   color: #77bbb1;
-  height: fit-content;
   background-color: #22577a;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 100vw;
+  top: 0;
+  margin-bottom: 1em;
 }
+
+nav.smart-scroll {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+nav.scrolled-down {
+  transform: translateY(-100%);
+  transition: all 0.3s ease-in-out;
+}
+
+nav.scrolled-up {
+  transform: translateY(0);
+  transition: all 0.3s ease-in-out;
+}
+
 .btn.btn-primary {
   background-color: #567d9f;
   border: none;
@@ -195,13 +265,13 @@ header nav {
   font-weight: bold;
 }
 
-main div#dropdownContainer {
+div#dropdownContainer {
   max-width: 100px;
   width: fit-content;
   position: fixed;
   right: 0;
 }
-main ul#dropdownMenu {
+div#dropdownContainer ul#dropdownMenu {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -212,17 +282,18 @@ main ul#dropdownMenu {
   padding: 1em;
   margin: 0;
   display: none;
+  position: relative;
   border-radius: 0 0 0 15px;
 }
-main ul#dropdownMenu li.hamburgerItem {
+div#dropdownContainer ul#dropdownMenu li.hamburgerItem {
   padding: 0.25em 0 0 0;
   margin: 0;
   font-weight: bold;
 }
-main ul#dropdownMenu li.hamburgerItem a:hover {
+div#dropdownContainer ul#dropdownMenu li.hamburgerItem a:hover {
   color: #77bbb1;
 }
-main ul#dropdownMenu li.hamburgerItem:last-of-type {
+div#dropdownContainer ul#dropdownMenu li.hamburgerItem:last-of-type {
   padding-bottom: 0;
 }
 
@@ -243,13 +314,7 @@ i.fas.fa-angle-left {
   opacity: 0.5;
 }
 
-#logoContainer {
-  display: flex;
-  font-size: 1.5rem;
-  padding: 0.5em 1em;
-}
-
-img#bitmojiImg {
+img.bitmoji {
   width: 40px;
   height: 40px;
 }
