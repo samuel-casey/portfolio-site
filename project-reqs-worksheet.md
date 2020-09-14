@@ -9,7 +9,7 @@
 | Day 1 | Core Application Structure (HTML, CSS, etc.) | Incomplete |
 | Day 2 | Basic JS                                     | Incomplete |
 | Day 3 | Fancy CSS (carousel, section expansion btns) | Incomplete |
-| Day 4 | Firebase hosting                             | Incomplete |
+| Day 4 | Firebase hosting, DB, etc.                   | Incomplete |
 | Day 5 | Final Touches                                | Incomplete |
 | Day 6 | Present                                      | Incomplete |
 
