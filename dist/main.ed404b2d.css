@@ -219,19 +219,6 @@ div#headerLogoContainer p {
   font-weight: bold;
 }
 
-div#footerLogoContainer {
-  display: flex;
-  padding: 0.5em 1em;
-  background-color: #22577a;
-  align-items: center;
-}
-div#footerLogoContainer p {
-  font-size: 1rem;
-  color: #77bbb1;
-  margin: 0;
-  font-weight: normal;
-}
-
 div.card-body {
   margin-bottom: 1rem;
 }
@@ -276,6 +263,58 @@ nav.scrolled-down {
 nav.scrolled-up {
   transform: translateY(0);
   transition: all 0.3s ease-in-out;
+}
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+footer {
+  background-color: #22577a;
+  position: absolute;
+  bottom: 1;
+  width: 100vw;
+}
+footer div#footerLogoContainer {
+  display: flex;
+  padding: 0.5em 1em;
+  justify-content: center;
+  align-items: center;
+}
+footer div#footerLogoContainer p {
+  font-size: 1rem;
+  color: #77bbb1;
+  margin: 0;
+  font-weight: normal;
+}
+footer nav#footerNav {
+  padding-left: 1rem;
+}
+footer nav#footerNav p {
+  color: #77bbb1;
+  font-weight: bold;
+}
+footer nav#footerNav ul {
+  list-style: none;
+  padding: 0;
+}
+footer nav#footerNav ul li {
+  color: #f5f5f5;
+}
+footer div#footerLinks {
+  padding-left: 1rem;
+}
+footer div#footerLinks p {
+  color: #77bbb1;
+  font-weight: bold;
+}
+footer div#footerLinks ul {
+  list-style: none;
+  padding: 0;
+}
+footer div#footerLinks ul li {
+  color: #f5f5f5;
 }
 
 .btn.btn-primary {

@@ -271,20 +271,6 @@ div#headerLogoContainer {
 	}
 }
 
-div#footerLogoContainer {
-	display: flex;
-	padding: 0.5em 1em;
-	background-color: $navy;
-	align-items: center;
-
-	p {
-		font-size: 1rem;
-		color: $sudbury-green;
-		margin: 0;
-		font-weight: normal;
-	}
-}
-
 div.card-body {
 	margin-bottom: 1rem;
 }
@@ -330,7 +316,64 @@ nav.scrolled-up {
 	transition: all 0.3s ease-in-out;
 }
 
+.container {
+	display: flex;
+	justify-content: space-evenly;
+}
+
 footer {
+	background-color: $navy;
+	position: absolute;
+	bottom: 1;
+	width: 100vw;
+
+	div#footerLogoContainer {
+		display: flex;
+		padding: 0.5em 1em;
+		justify-content: center;
+		align-items: center;
+
+		p {
+			font-size: 1rem;
+			color: $sudbury-green;
+			margin: 0;
+			font-weight: normal;
+		}
+	}
+
+	nav#footerNav {
+		padding-left: 1rem;
+		p {
+			color: $sudbury-green;
+			font-weight: bold;
+		}
+
+		ul {
+			list-style: none;
+			padding: 0;
+
+			li {
+				color: $not-white;
+			}
+		}
+	}
+
+	div#footerLinks {
+		padding-left: 1rem;
+		p {
+			color: $sudbury-green;
+			font-weight: bold;
+		}
+
+		ul {
+			list-style: none;
+			padding: 0;
+
+			li {
+				color: $not-white;
+			}
+		}
+	}
 }
 
 .btn.btn-primary {
