@@ -73,19 +73,51 @@ const writingSheetAsJSON = `https://spreadsheets.google.com/feeds/list/${writing
 
 Fetch projects
 
+```
+
+```
+
 Render projects
+
+```
+
+```
 
 Fetch writing
 
+```
+
+```
+
 Render writing
+
+```
+
+```
 
 Toggle about card
 
+```
+
+```
+
 Expand project section
+
+```
+
+```
 
 Expand writing section
 
+```
+
+```
+
 Send email/capture email
+
+```
+
+```
 
 #### MVP
 
