@@ -1,3 +1,3 @@
 # portfolio-site-v2
 
-Portfolio site refresh
+Portfolio site refresh.
