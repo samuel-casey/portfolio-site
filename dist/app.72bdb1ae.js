@@ -117,15 +117,57 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../ts/app.js":[function(require,module,exports) {
-/////////////////////////////////////////////////////////////
+})({"../ts/contentClasses.js":[function(require,module,exports) {
+"use strict";
+
+exports.__esModule = true;
+exports.ProjectCard = exports.BlogPost = void 0;
+
+var BlogPost =
+/** @class */
+function () {
+  function BlogPost(title, tag, url) {
+    this.title = title;
+    this.tag = tag;
+    this.url = url;
+  }
+
+  return BlogPost;
+}();
+
+exports.BlogPost = BlogPost;
+
+var ProjectCard =
+/** @class */
+function () {
+  function ProjectCard(title, image, description, techStack, url) {
+    this.title = title;
+    this.image = image;
+    this.description = description;
+    this.techStack = techStack;
+    this.url = url;
+  }
+
+  return ProjectCard;
+}();
+
+exports.ProjectCard = ProjectCard;
+},{}],"../ts/app.js":[function(require,module,exports) {
+"use strict"; /////////////////////////////////////////////////////////////
 /////////////////////////// DATA ////////////////////////////
 /////////////////////////////////////////////////////////////
+
+exports.__esModule = true;
+
+var contentClasses_1 = require("./contentClasses");
+
 var sheetId = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
 var projectsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/1/public/values?alt=json";
-var blogsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/2/public/values?alt=json"; // const apiUrl: string = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values`;
-
-https: $(document).ready(function () {
+var blogsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/2/public/values?alt=json";
+$(document).ready(function () {
+  console.log(contentClasses_1.BlogPost, contentClasses_1.ProjectCard);
+  var $projectCardsArr = $('.card');
+  console.log($projectCardsArr);
   var sheetsURLs = {
     projects: projectsAsJSON,
     blogs: blogsAsJSON
@@ -171,15 +213,10 @@ https: $(document).ready(function () {
           };
           projectObjects.push(projectObj);
         }
-      }
+      } // console.log('before return - ', projectObjects, blogObjects);
 
-      return {
-        projects: projectObjects,
-        blogs: blogObjects
-      };
-    }).then(function (contentObjects) {
-      console.log(contentObjects);
-      $('body').append($('<p>').text(contentObjects.projects[0].title));
+
+      return populateContentArrays(projectObjects, blogObjects);
     })["catch"](function (error) {
       console.log(error);
     });
@@ -189,7 +226,24 @@ https: $(document).ready(function () {
   for (var i in sheetsURLs) {
     _loop_1(i);
   }
-}); // let projects = data.feed.entry.map((project) => {
+});
+
+var populateContentArrays = function populateContentArrays(projectsArr, blogsArr) {
+  for (var _i = 0, projectsArr_1 = projectsArr; _i < projectsArr_1.length; _i++) {
+    var project = projectsArr_1[_i]; // const $card = ;
+  }
+};
+/* renderContent(content) {
+    LOOP THRU contentObjects.projects
+    LOOP THRU contentObjects.blogs
+    LOOP THRU blogsArray
+        FOR EACH blog
+            DECLARE new Blog
+    
+}
+
+*/
+// let projects = data.feed.entry.map((project) => {
 // 	// here we return a new object with keys names of our own choosing and the needed values
 // 	return {
 // 		title: project.gsx$title.$t,
@@ -246,7 +300,7 @@ function logData(projects) {
 } // function logBlogs(blogs) {
 // 	return blogs;
 // }
-},{}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./contentClasses":"../ts/contentClasses.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;

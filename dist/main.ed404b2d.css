@@ -355,6 +355,10 @@ footer div#footerLinks ul li {
   font-weight: bold;
 }
 
+.navbar {
+  padding: 0;
+}
+
 div#dropdownContainer {
   max-width: 100px;
   width: fit-content;

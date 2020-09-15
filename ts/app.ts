@@ -2,13 +2,17 @@
 /////////////////////////// DATA ////////////////////////////
 /////////////////////////////////////////////////////////////
 
+import { BlogPost, ProjectCard } from './contentClasses';
+
 const sheetId: string = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
 const projectsAsJSON: string = `https://spreadsheets.google.com/feeds/list/${sheetId}/1/public/values?alt=json`;
 const blogsAsJSON: string = `https://spreadsheets.google.com/feeds/list/${sheetId}/2/public/values?alt=json`;
 
-// const apiUrl: string = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values`;
+$(document).ready(() => {
+	console.log(BlogPost, ProjectCard);
+	const $projectCardsArr = $('.card');
+	console.log($projectCardsArr);
 
-https: $(document).ready(() => {
 	const sheetsURLs = {
 		projects: projectsAsJSON,
 		blogs: blogsAsJSON,
@@ -57,21 +61,33 @@ https: $(document).ready(() => {
 						projectObjects.push(projectObj);
 					}
 				}
-				return { projects: projectObjects, blogs: blogObjects };
+				// console.log('before return - ', projectObjects, blogObjects);
+				return populateContentArrays(projectObjects, blogObjects);
 			})
-			.then((contentObjects) => {
-				console.log(contentObjects);
-				$('body').append($('<p>').text(contentObjects.projects[0].title));
-			})
+			// .then((contentObjects) => {
+			// 	console.log(contentObjects);
+			// 	$('body').append(
+			// 		$(
+			// 			"<img src='https://res.cloudinary.com/scimgcloud/image/upload/v1600183447/portfolio-v2/tic-tac-bananas-resized_qhgykg.png' alt='tic-tac-bananas' />"
+			// 		)
+			// 	);
+			// 	$('body').append(
+			// 		$(
+			// 			"<img src='https://res.cloudinary.com/scimgcloud/image/upload/v1600183437/portfolio-v2/tides-vis-resized_mqduwk.png' alt='tides-vis' />"
+			// 		)
+			// 	);
+			// })
 			.catch((error) => {
 				console.log(error);
 			});
 	}
 });
 
-class blogPost {
-	constructor(title, tag, url);
-}
+const populateContentArrays = function (projectsArr, blogsArr) {
+	for (let project of projectsArr) {
+		// const $card = ;
+	}
+};
 
 /* renderContent(content) {
 	LOOP THRU contentObjects.projects
