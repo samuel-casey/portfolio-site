@@ -164,75 +164,65 @@ var contentClasses_1 = require("./contentClasses");
 var sheetId = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
 var projectsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/1/public/values?alt=json";
 var blogsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/2/public/values?alt=json";
+var $projectCardsArr = $('.card');
 $(document).ready(function () {
   console.log(contentClasses_1.BlogPost, contentClasses_1.ProjectCard);
-  var $projectCardsArr = $('.card');
-  console.log($projectCardsArr);
   var sheetsURLs = {
     projects: projectsAsJSON,
     blogs: blogsAsJSON
-  };
-  var workbookData = {}; // for (let i in sheetsURLs) {
-  // 	console.log(sheetsURLs[i]);
-  // }
-  ///////// GET PROJECT DATA ///////////
+  }; // const workbookData: { [k: string]: any } = {};
+
+  var workbookData = [{}];
+  var testArr = [{}];
+  testArr.push({
+    test: 'test'
+  });
+  console.log('top testARr = ', testArr[1]); ///////// GET PROJECT DATA ///////////
 
   var projectObjects = [];
   var blogObjects = [];
+  var contentArraysObj = {};
+  var projCards = [];
+  var blogPosts = []; // let workbookData;
+  // loop through URLS for projects and blogs sheets and do an AJAX request for each
 
-  var _loop_1 = function _loop_1(i) {
+  for (var i in sheetsURLs) {
     $.ajax({
       url: sheetsURLs[i]
     }).then(function (sheetData) {
-      workbookData[i] = sheetData;
+      // create a new property for the object workbookData named 'projects' or 'blogs', and assign the current sheet's data to that property
+      workbookData.push({
+        sheetData: sheetData
+      });
       return workbookData;
-    }).then(function (workbookData) {
-      var dataForPage = {};
-      dataForPage[i] = workbookData[i].feed.entry;
-
-      for (var _i = 0, _a = dataForPage[i]; _i < _a.length; _i++) {
-        var contentItem = _a[_i];
-        var contentType = contentItem.gsx$contenttype.$t;
-
-        if (contentType === 'blog') {
-          var blogObj = {
-            type: contentItem.gsx$contenttype.$t,
-            title: contentItem.gsx$title.$t,
-            tags: contentItem.gsx$tags.$t,
-            url: contentItem.gsx$tags.$t
-          };
-          blogObjects.push(blogObj);
-        } else if (contentType === 'project') {
-          var projectObj = {
-            type: contentItem.gsx$contenttype.$t,
-            title: contentItem.gsx$title.$t,
-            image: contentItem.gsx$image.$t,
-            techStack: contentItem.gsx$techstack.$t,
-            description: contentItem.gsx$description.$t,
-            url: contentItem.gsx$url.$t
-          };
-          projectObjects.push(projectObj);
-        }
-      } // console.log('before return - ', projectObjects, blogObjects);
-
-
-      return populateContentArrays(projectObjects, blogObjects);
     })["catch"](function (error) {
       console.log(error);
     });
-  }; // loop through URLS for projects and blogs and do an AJAX request for
-
-
-  for (var i in sheetsURLs) {
-    _loop_1(i);
   }
+
+  console.log('workbookData', workbookData);
+  console.log('wbData.blogs', workbookData[2]); // testArr.push({ c: 'c' });
+  // console.log('testArray', testArr[1]);
+
+  var renderBlogPosts = function renderBlogPosts(blogsToRender) {
+    console.log(blogsToRender);
+    console.log('AAAA');
+
+    for (var _i = 0, blogsToRender_1 = blogsToRender; _i < blogsToRender_1.length; _i++) {
+      var blog = blogsToRender_1[_i];
+      console.log(blog.title);
+    }
+  }; // console.log(projCards, blogPosts);
+  // renderBlogPosts(blogPosts);
+  // const populateContentArrays = function (contentObjects) {
+  // 	console.log(contentObjects);
+  // 	for (let idx = 0; idx < $projectCardsArr.length; idx++) {
+  // 		console.log($projectCardsArr.eq(idx));
+  // 	}
+  // };
+  // populateContentArrays(contentArraysObj);
+
 });
-
-var populateContentArrays = function populateContentArrays(projectsArr, blogsArr) {
-  for (var _i = 0, projectsArr_1 = projectsArr; _i < projectsArr_1.length; _i++) {
-    var project = projectsArr_1[_i]; // const $card = ;
-  }
-};
 /* renderContent(content) {
     LOOP THRU contentObjects.projects
     LOOP THRU contentObjects.blogs
@@ -243,22 +233,9 @@ var populateContentArrays = function populateContentArrays(projectsArr, blogsArr
 }
 
 */
-// let projects = data.feed.entry.map((project) => {
-// 	// here we return a new object with keys names of our own choosing and the needed values
-// 	return {
-// 		title: project.gsx$title.$t,
-// 		image: project.gsx$image.$t,
-// 		techStack: project.gsx$techstack.$t,
-// 		description: project.gsx$description.$t,
-// 		url: project.gsx$url.$t,
-// 	};
-// });
-// //  pass the data to the app function
-// // return logData(projects);
 /////////////////////////////////////////////////////////////
 /////////////////// DOM MANIPULATION ////////////////////////
 /////////////////////////////////////////////////////////////
-
 
 var $dropdownMenu = $('header ul#dropdownMenu');
 var $hamburgerButton = $('i.fas.fa-bars');
@@ -328,7 +305,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61664" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60302" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
