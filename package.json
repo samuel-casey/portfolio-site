@@ -4,6 +4,7 @@
   },
   "dependencies": {
     "@types/jquery": "^3.5.1",
-    "bootstrap": "^4.5.2"
+    "bootstrap": "^4.5.2",
+    "jquery": "^3.5.1"
   }
 }

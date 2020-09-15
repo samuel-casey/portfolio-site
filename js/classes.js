@@ -1,7 +1,7 @@
 class BlogPost {
-	title: string;
-	tag: string;
-	url: string;
+	// title: string;
+	// tag: string;
+	// url: string;
 	constructor(title, tag, url) {
 		this.title = title;
 		this.tag = tag;
@@ -10,11 +10,11 @@ class BlogPost {
 }
 
 class ProjectCard {
-	title: string;
-	image: string;
-	description: string;
-	techStack: string;
-	url: string;
+	// title: string;
+	// image: string;
+	// description: string;
+	// techStack: string;
+	// url: string;
 	constructor(title, image, description, techStack, url) {
 		this.title = title;
 		this.image = image;
