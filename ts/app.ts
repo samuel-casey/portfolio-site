@@ -9,7 +9,7 @@ $hamburgerButton.on('click', () => {
 
 // scroll down hamburger go away
 $dropdownMenu.on('click', function () {
-	console.log('clicked the burglah burgah');
+	$dropdownMenu.slideToggle(500);
 });
 
 //Found this function here: bootstrap-menu.com/detail-smart-hide.html
@@ -18,23 +18,21 @@ $dropdownMenu.on('click', function () {
 // add padding top to show content behind navbar
 https: $('body').css('padding-top', $('.navbar').outerHeight() + 'px');
 
+const $navbar = $('.smart-scroll');
+
 // detect scroll top or down
-if ($('.smart-scroll').length > 0) {
+if ($navbar.length > 0) {
 	// check if element exists
 	let last_scroll_top: number = 0;
 	$(window).on('scroll', function () {
 		let scroll_top = $(this).scrollTop();
 		if (scroll_top < last_scroll_top) {
-			$('.smart-scroll').removeClass('scrolled-down').addClass('scrolled-up');
+			$navbar.removeClass('scrolled-down').addClass('scrolled-up');
 		} else {
-			$('.smart-scroll').removeClass('scrolled-up').addClass('scrolled-down');
-			$dropdownMenu.addClass('scrolled-down');
-			console.log($dropdownMenu);
+			$navbar.removeClass('scrolled-up').addClass('scrolled-down');
 		}
 		last_scroll_top = scroll_top;
 	});
-} else {
-	$hamburgerButton.css('display', 'none');
 }
 
 /// SUBMIT CONTACT FORM

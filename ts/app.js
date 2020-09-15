@@ -7,7 +7,6 @@ $hamburgerButton.on('click', function () {
 // scroll down hamburger go away
 $dropdownMenu.on('click', function () {
     console.log('clicked the burglah burgah');
-    $dropdownMenu.slideToggle(50);
 });
 //Found this function here: bootstrap-menu.com/detail-smart-hide.html
 // the way it works is by checking for the navbar's height
