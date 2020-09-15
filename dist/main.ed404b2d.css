@@ -45,7 +45,7 @@ main hr.gray {
 }
 main hr.green {
   align-self: center;
-  width: 70vw;
+  width: 80vw;
   border-top: 1px dashed rgba(119, 187, 177, 0.5);
   margin: 1rem auto;
 }
@@ -145,30 +145,37 @@ main article#projectsContainer {
   display: grid;
   grid-gap: 1rem;
 }
-main article#projectsContainer h2 {
+main h2.sectionHeading {
   color: #567d9f;
   font-size: 1.5rem;
 }
 main article#blogsContainer {
-  display: flex;
+  display: grid;
   flex-direction: column;
   margin-bottom: 0.5rem;
+  grid-gap: 0.5rem;
 }
-main article#blogsContainer div.blogPost {
+main article#blogsContainer a.blogPost {
   background-color: #f5f5f5;
   width: 95%;
   align-self: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  align-items: center;
+  font-size: 1.25rem;
+  border-radius: 0.5rem;
 }
 main article#blogsContainer p.blogTitle {
   color: #163950;
+  margin: 0;
 }
 main article#blogsContainer div.blogTag {
-  background-color: red;
+  background-color: #77bbb1;
   width: fit-content;
   padding: 0.25rem;
-}
-main article#contactContainer {
-  background-color: #f5f5f5;
+  border-radius: 15%;
+  font-size: 1rem;
 }
 main article#contactContainer p {
   color: #22577a;
@@ -179,12 +186,14 @@ main article#contactContainer p {
   padding-top: 1rem;
 }
 main article#contactContainer form {
+  background-color: #f5f5f5;
   display: flex;
   flex-direction: column;
   padding: 1rem;
   line-height: 1.5rem;
   padding-top: 0;
   padding-bottom: 0;
+  border-radius: 0.5rem;
 }
 main article#contactContainer label {
   color: #77bbb1;
@@ -276,6 +285,9 @@ footer {
   bottom: 1;
   width: 100vw;
 }
+footer a:hover {
+  color: #77bbb1;
+}
 footer div#footerLogoContainer {
   display: flex;
   padding: 0.5em 1em;
@@ -292,7 +304,7 @@ footer nav#footerNav {
   padding-left: 1rem;
 }
 footer nav#footerNav p {
-  color: #77bbb1;
+  color: #7ba5c9;
   font-weight: bold;
 }
 footer nav#footerNav ul {
@@ -306,7 +318,7 @@ footer div#footerLinks {
   padding-left: 1rem;
 }
 footer div#footerLinks p {
-  color: #77bbb1;
+  color: #7ba5c9;
   font-weight: bold;
 }
 footer div#footerLinks ul {
