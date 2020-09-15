@@ -123,6 +123,11 @@ var $dropdownMenu = $('header ul#dropdownMenu');
 var $hamburgerButton = $('i.fas.fa-bars');
 $hamburgerButton.on('click', function () {
   $dropdownMenu.slideToggle(500);
+}); // scroll down hamburger go away
+
+$dropdownMenu.on('click', function () {
+  console.log('clicked the burglah burgah');
+  $dropdownMenu.slideToggle(50);
 }); //Found this function here: bootstrap-menu.com/detail-smart-hide.html
 // the way it works is by checking for the navbar's height
 // add padding top to show content behind navbar

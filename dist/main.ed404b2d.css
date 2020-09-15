@@ -176,6 +176,7 @@ main article#blogsContainer div.blogTag {
   padding: 0.25rem;
   border-radius: 15%;
   font-size: 1rem;
+  color: white;
 }
 main article#contactContainer p {
   color: #22577a;
@@ -277,6 +278,21 @@ nav.scrolled-up {
 .container {
   display: flex;
   justify-content: space-evenly;
+}
+
+div.moreContent {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  margin: 0.5rem 0 0 0;
+}
+div.moreContent p {
+  margin: 0 0.25rem 0 0;
+  color: #77bbb1;
+}
+div.moreContent i.fas.fa-angle-down {
+  color: #22577a;
 }
 
 footer {
