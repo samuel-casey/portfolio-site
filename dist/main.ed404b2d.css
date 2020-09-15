@@ -229,6 +229,12 @@ div#headerLogoContainer p {
   font-weight: bold;
 }
 
+div.card {
+  color: #163950;
+  background-color: #f5f5f5;
+  z-index: -1;
+}
+
 div.card-body {
   margin-bottom: 1rem;
 }
@@ -371,7 +377,6 @@ div#dropdownContainer ul#dropdownMenu {
   margin: 0;
   display: none;
   position: relative;
-  z-index: 2;
   border-radius: 0 0 0 15px;
 }
 div#dropdownContainer ul#dropdownMenu li.hamburgerItem {

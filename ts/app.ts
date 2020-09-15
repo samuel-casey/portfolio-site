@@ -10,7 +10,6 @@ $hamburgerButton.on('click', () => {
 // scroll down hamburger go away
 $dropdownMenu.on('click', function () {
 	console.log('clicked the burglah burgah');
-	$dropdownMenu.slideToggle(50);
 });
 
 //Found this function here: bootstrap-menu.com/detail-smart-hide.html
@@ -29,6 +28,8 @@ if ($('.smart-scroll').length > 0) {
 			$('.smart-scroll').removeClass('scrolled-down').addClass('scrolled-up');
 		} else {
 			$('.smart-scroll').removeClass('scrolled-up').addClass('scrolled-down');
+			$dropdownMenu.addClass('scrolled-down');
+			console.log($dropdownMenu);
 		}
 		last_scroll_top = scroll_top;
 	});

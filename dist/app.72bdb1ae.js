@@ -145,6 +145,8 @@ if ($('.smart-scroll').length > 0) {
       $('.smart-scroll').removeClass('scrolled-down').addClass('scrolled-up');
     } else {
       $('.smart-scroll').removeClass('scrolled-up').addClass('scrolled-down');
+      $dropdownMenu.addClass('scrolled-down');
+      console.log($dropdownMenu);
     }
 
     last_scroll_top_1 = scroll_top;

@@ -24,6 +24,8 @@ if ($('.smart-scroll').length > 0) {
         }
         else {
             $('.smart-scroll').removeClass('scrolled-up').addClass('scrolled-down');
+            $dropdownMenu.addClass('scrolled-down');
+            console.log($dropdownMenu);
         }
         last_scroll_top_1 = scroll_top;
     });

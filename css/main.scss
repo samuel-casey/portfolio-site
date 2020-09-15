@@ -283,6 +283,12 @@ div#headerLogoContainer {
 	}
 }
 
+div.card {
+	color: $font-primary;
+	background-color: $not-white;
+	z-index: -1;
+}
+
 div.card-body {
 	margin-bottom: 1rem;
 }
@@ -319,10 +325,12 @@ nav.smart-scroll {
 	left: 0;
 	z-index: 1030;
 }
+
 nav.scrolled-down {
 	transform: translateY(-100%);
 	transition: all 0.3s ease-in-out;
 }
+
 nav.scrolled-up {
 	transform: translateY(0);
 	transition: all 0.3s ease-in-out;
@@ -435,7 +443,6 @@ div#dropdownContainer {
 		margin: 0;
 		display: none;
 		position: relative;
-		z-index: 2;
 		border-radius: 0 0 0 15px;
 
 		li.hamburgerItem {
