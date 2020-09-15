@@ -15,12 +15,14 @@ class ProjectCard {
 	// description: string;
 	// techStack: string;
 	// url: string;
-	constructor(title, image, description, techStack, url) {
+	constructor(title, image, description, techStack, siteUrl, repoUrl, infoUrl) {
 		this.title = title;
 		this.image = image;
 		this.description = description;
 		this.techStack = techStack;
-		this.url = url;
+		this.siteUrl = siteUrl;
+		this.repoUrl = repoUrl;
+		this.infoUrl = infoUrl;
 	}
 }
 

@@ -1,3 +1,4 @@
+import { STATUS_CODES } from 'http';
 import { get } from 'jquery';
 import { BlogPost, ProjectCard } from './classes';
 
@@ -5,12 +6,11 @@ const sheetId = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
 const projectsAsJSON = `https://spreadsheets.google.com/feeds/list/${sheetId}/1/public/values?alt=json`;
 const blogsAsJSON = `https://spreadsheets.google.com/feeds/list/${sheetId}/2/public/values?alt=json`;
 const $projectCardsArr = $('.card');
+const $blogsArr = $('.blogPost');
+// const $cardTitle = $projectCardsArr.eq(0).find('h5.card-title');
 
 $(document).ready(() => {
 	console.log('main.js');
-	console.log($projectCardsArr);
-	console.log($projectCardsArr.eq(0)[0]);
-	console.log($projectCardsArr.eq(1)[0]);
 
 	const sheetsURLs = {
 		projects: projectsAsJSON,
@@ -28,7 +28,9 @@ $(document).ready(() => {
 						image: item.gsx$image.$t,
 						techStack: item.gsx$techstack.$t,
 						description: item.gsx$description.$t,
-						url: item.gsx$url.$t,
+						siteUrl: item.gsx$siteurl.$t,
+						repoUrl: item.gsx$repourl.$t,
+						infoUrl: item.gsx$infourl.$t,
 					};
 				});
 			} else if (data.feed.title.$t === 'Blogs') {
@@ -37,7 +39,7 @@ $(document).ready(() => {
 						type: item.gsx$contenttype.$t,
 						title: item.gsx$title.$t,
 						tags: item.gsx$tags.$t,
-						url: item.gsx$tags.$t,
+						url: item.gsx$url.$t,
 					};
 				});
 			}
@@ -62,8 +64,20 @@ function logData(rows) {
 function renderData(data) {
 	if (data[0].type === 'blog') {
 		data.forEach((row) => {
-			const newPost = new BlogPost(row.title, row.tag, row.url);
-			console.log(newPost);
+			const newPost = new BlogPost(row.title, row.tags, row.url);
+
+			const $blogPost = $blogsArr.eq(data.indexOf(row));
+			const $blogTitle = $blogPost.find('p.blogTitle');
+			const $blogTag = $blogPost.find('.blogTag');
+
+			console.log(newPost.url);
+			console.log($blogPost.attr('href'));
+			$blogPost.attr('href', newPost.url);
+			console.log($blogPost.attr('href'));
+			$blogTitle.text(newPost.title);
+			$blogTag.text(newPost.tag);
+			$blogTag.addClass(newPost.tag);
+
 			return newPost;
 		});
 	} else {
@@ -73,9 +87,30 @@ function renderData(data) {
 				row.image,
 				row.description,
 				row.techStack,
-				row.url
+				row.siteUrl,
+				row.repoUrl,
+				row.infoUrl
 			);
-			console.log(newCard);
+			const $card = $projectCardsArr.eq(data.indexOf(row));
+			const $cardImg = $card.find('img');
+			const $cardTitle = $card.find('h5.card-title');
+			const $cardTechStack = $card.find('p.techStack');
+			const $cardDescription = $card.find('p.card-text');
+			const $cardRepoLink = $card.find("a:contains('Code')");
+			// .eq(data.indexOf(row));
+			const $cardSiteLink = $card.find("a:contains('Link')");
+			// .eq(data.indexOf(row));
+			const $cardInfoLink = $card.find("a:contains('Info')");
+			// .eq(data.indexOf(row));
+
+			$cardImg.attr('src', newCard.image);
+			$cardTitle.text(newCard.title);
+			$cardTechStack.text(newCard.techStack);
+			$cardDescription.text(newCard.description);
+			$cardRepoLink.attr('href', newCard.repoUrl);
+			$cardSiteLink.attr('href', newCard.siteUrl);
+			$cardInfoLink.attr('href', newCard.infoUrl);
+
 			return newCard;
 		});
 	}
@@ -87,6 +122,10 @@ function renderData(data) {
 
 const $dropdownMenu = $('header ul#dropdownMenu');
 const $hamburgerButton = $('i.fas.fa-bars');
+
+//////// SHOW MORE PROJECTS
+
+/////// SHOW MORE BLOGS
 
 $hamburgerButton.on('click', () => {
 	$dropdownMenu.slideToggle(500);

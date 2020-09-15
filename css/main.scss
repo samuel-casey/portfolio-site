@@ -41,6 +41,19 @@ main {
 	justify-content: center;
 	word-wrap: break-word;
 
+	.hidden {
+		display: none !important;
+	}
+
+	.visible {
+		display: block;
+	}
+
+	p.techStack {
+		color: $sudbury-green;
+		font-style: italic;
+	}
+
 	i#scrollArrow {
 		position: fixed;
 		bottom: 5px;
@@ -212,12 +225,19 @@ main {
 		}
 
 		div.blogTag {
-			background-color: $sudbury-green;
 			width: fit-content;
 			padding: 0.25rem;
 			border-radius: 15%;
 			font-size: 1rem;
-			color: white;
+			color: $not-white;
+		}
+
+		.crypto {
+			background-color: $sudbury-green;
+		}
+
+		.code {
+			background-color: $newton-blue;
 		}
 	}
 
@@ -458,11 +478,6 @@ div#dropdownContainer {
 		li.hamburgerItem:last-of-type {
 			padding-bottom: 0;
 		}
-	}
-}
-
-main {
-	i.socialMedia {
 	}
 }
 

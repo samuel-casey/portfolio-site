@@ -27,6 +27,16 @@ main {
   justify-content: center;
   word-wrap: break-word;
 }
+main .hidden {
+  display: none !important;
+}
+main .visible {
+  display: block;
+}
+main p.techStack {
+  color: #77bbb1;
+  font-style: italic;
+}
 main i#scrollArrow {
   position: fixed;
   bottom: 5px;
@@ -168,12 +178,17 @@ main article#blogsContainer p.blogTitle {
   margin: 0;
 }
 main article#blogsContainer div.blogTag {
-  background-color: #77bbb1;
   width: fit-content;
   padding: 0.25rem;
   border-radius: 15%;
   font-size: 1rem;
-  color: white;
+  color: #f5f5f5;
+}
+main article#blogsContainer .crypto {
+  background-color: #77bbb1;
+}
+main article#blogsContainer .code {
+  background-color: #567d9f;
 }
 main article#contactContainer p {
   color: #22577a;
