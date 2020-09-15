@@ -1,53 +1,106 @@
+/////////////////////////////////////////////////////////////
+/////////////////////////// DATA ////////////////////////////
+/////////////////////////////////////////////////////////////
+
 const sheetId: string = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
+const projectsAsJSON: string = `https://spreadsheets.google.com/feeds/list/${sheetId}/1/public/values?alt=json`;
+const blogsAsJSON: string = `https://spreadsheets.google.com/feeds/list/${sheetId}/2/public/values?alt=json`;
 
-const sheetAsJSON: string = `https://spreadsheets.google.com/feeds/list/${sheetId}/od6/public/values?alt=json`;
+// const apiUrl: string = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values`;
 
-$(document).ready(() => {
-	console.log('ready!');
-	$.ajax({ url: sheetAsJSON })
-		.then((data) => {
-			// data.feed.entry is the array that contains our objects so we can use .map()
-			// to iterate over the array
-			console.log(data.feed.entry);
+https: $(document).ready(() => {
+	const sheetsURLs = {
+		projects: projectsAsJSON,
+		blogs: blogsAsJSON,
+	};
 
-			let projects = data.feed.entry.map((project) => {
-				// here we return a new object with keys names of our own choosing and the needed values
-				return {
-					title: project.gsx$title.$t,
-					image: project.gsx$image.$t,
-					techStack: project.gsx$techstack.$t,
-					description: project.gsx$description.$t,
-					url: project.gsx$url.$t,
-				};
+	const workbookData = {};
+
+	// for (let i in sheetsURLs) {
+	// 	console.log(sheetsURLs[i]);
+	// }
+
+	///////// GET PROJECT DATA ///////////
+	let projectObjects: object[] = [];
+	let blogObjects: object[] = [];
+
+	// loop through URLS for projects and blogs and do an AJAX request for
+	for (let i in sheetsURLs) {
+		$.ajax({ url: sheetsURLs[i] })
+			.then((sheetData) => {
+				workbookData[i] = sheetData;
+				return workbookData;
+			})
+			.then((workbookData) => {
+				const dataForPage = {};
+				dataForPage[i] = workbookData[i].feed.entry;
+				for (let contentItem of dataForPage[i]) {
+					let contentType: string = contentItem.gsx$contenttype.$t;
+
+					if (contentType === 'blog') {
+						let blogObj = {
+							type: contentItem.gsx$contenttype.$t,
+							title: contentItem.gsx$title.$t,
+							tags: contentItem.gsx$tags.$t,
+							url: contentItem.gsx$tags.$t,
+						};
+						blogObjects.push(blogObj);
+					} else if (contentType === 'project') {
+						let projectObj = {
+							type: contentItem.gsx$contenttype.$t,
+							title: contentItem.gsx$title.$t,
+							image: contentItem.gsx$image.$t,
+							techStack: contentItem.gsx$techstack.$t,
+							description: contentItem.gsx$description.$t,
+							url: contentItem.gsx$url.$t,
+						};
+						projectObjects.push(projectObj);
+					}
+				}
+				return { projects: projectObjects, blogs: blogObjects };
+			})
+			.then((contentObjects) => {
+				console.log(contentObjects);
+				$('body').append($('<p>').text(contentObjects.projects[0].title));
+			})
+			.catch((error) => {
+				console.log(error);
 			});
-
-			let projects = data.feed.entry.map((project) => {
-				// here we return a new object with keys names of our own choosing and the needed values
-				return {
-					title: project.gsx$title.$t,
-					image: project.gsx$image.$t,
-					techStack: project.gsx$techstack.$t,
-					description: project.gsx$description.$t,
-					url: project.gsx$url.$t,
-				};
-			});
-
-			//  pass the data to the app function
-			return logData(projects);
-		})
-		// .then((projects) => {
-		// 	for (let i in projects) {
-		// 		console.log(`project${i}`, projects[i]);
-		// 		$(`#title${i}`).text(`TITLE: ${projects[i].title}`);
-		// 		$(`#img${i}`).text(`IMG: ${projects[i].image}`);
-		// 		$(`#description${i}`).text(`DESCRIPTION: ${projects[i].description}`);
-		// 		$(`#url${i}`).text(`URL: ${projects[i].url}`);
-		// 	}
-		// })
-		.catch((error) => {
-			console.log(error);
-		});
+	}
 });
+
+class blogPost {
+	constructor(title, tag, url);
+}
+
+/* renderContent(content) {
+	LOOP THRU contentObjects.projects
+	LOOP THRU contentObjects.blogs
+	LOOP THRU blogsArray
+		FOR EACH blog
+			DECLARE new Blog
+	
+}
+
+*/
+
+// let projects = data.feed.entry.map((project) => {
+// 	// here we return a new object with keys names of our own choosing and the needed values
+// 	return {
+// 		title: project.gsx$title.$t,
+// 		image: project.gsx$image.$t,
+// 		techStack: project.gsx$techstack.$t,
+// 		description: project.gsx$description.$t,
+// 		url: project.gsx$url.$t,
+// 	};
+// });
+
+// //  pass the data to the app function
+// // return logData(projects);
+
+/////////////////////////////////////////////////////////////
+/////////////////// DOM MANIPULATION ////////////////////////
+/////////////////////////////////////////////////////////////
 
 const $dropdownMenu = $('header ul#dropdownMenu');
 const $hamburgerButton = $('i.fas.fa-bars');
@@ -86,10 +139,10 @@ $('article#contactContainer form').on('click', (event) => {
 });
 
 /// FUNCTIONS
-function logData(projects, blogs) {
+function logData(projects) {
 	console.log('app - projects', projects);
-	console.log('app - blog', blogs);
-	return [projects, blogs];
+	// console.log('app - blog', blogs);
+	return projects;
 	// the rest of your app goes here
 }
 

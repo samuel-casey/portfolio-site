@@ -118,32 +118,94 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"../ts/app.js":[function(require,module,exports) {
+/////////////////////////////////////////////////////////////
+/////////////////////////// DATA ////////////////////////////
+/////////////////////////////////////////////////////////////
 var sheetId = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
-var sheetAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/od6/public/values?alt=json";
-$(document).ready(function () {
-  console.log('ready!');
-  $.ajax({
-    url: sheetAsJSON
-  }).then(function (data) {
-    // data.feed.entry is the array that contains our objects so we can use .map()
-    // to iterate over the array
-    console.log(data.feed.entry);
-    var projects = data.feed.entry.map(function (project) {
-      // here we return a new object with keys names of our own choosing and the needed values
-      return {
-        title: project.gsx$title.$t,
-        image: project.gsx$image.$t,
-        techStack: project.gsx$techstack.$t,
-        description: project.gsx$description.$t,
-        url: project.gsx$url.$t
-      };
-    }); //  pass the data to the app function
+var projectsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/1/public/values?alt=json";
+var blogsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/2/public/values?alt=json"; // const apiUrl: string = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values`;
 
-    return logProjects(projects);
-  })["catch"](function (error) {
-    console.log(error);
-  });
-});
+https: $(document).ready(function () {
+  var sheetsURLs = {
+    projects: projectsAsJSON,
+    blogs: blogsAsJSON
+  };
+  var workbookData = {}; // for (let i in sheetsURLs) {
+  // 	console.log(sheetsURLs[i]);
+  // }
+  ///////// GET PROJECT DATA ///////////
+
+  var projectObjects = [];
+  var blogObjects = [];
+
+  var _loop_1 = function _loop_1(i) {
+    $.ajax({
+      url: sheetsURLs[i]
+    }).then(function (sheetData) {
+      workbookData[i] = sheetData;
+      return workbookData;
+    }).then(function (workbookData) {
+      var dataForPage = {};
+      dataForPage[i] = workbookData[i].feed.entry;
+
+      for (var _i = 0, _a = dataForPage[i]; _i < _a.length; _i++) {
+        var contentItem = _a[_i];
+        var contentType = contentItem.gsx$contenttype.$t;
+
+        if (contentType === 'blog') {
+          var blogObj = {
+            type: contentItem.gsx$contenttype.$t,
+            title: contentItem.gsx$title.$t,
+            tags: contentItem.gsx$tags.$t,
+            url: contentItem.gsx$tags.$t
+          };
+          blogObjects.push(blogObj);
+        } else if (contentType === 'project') {
+          var projectObj = {
+            type: contentItem.gsx$contenttype.$t,
+            title: contentItem.gsx$title.$t,
+            image: contentItem.gsx$image.$t,
+            techStack: contentItem.gsx$techstack.$t,
+            description: contentItem.gsx$description.$t,
+            url: contentItem.gsx$url.$t
+          };
+          projectObjects.push(projectObj);
+        }
+      }
+
+      return {
+        projects: projectObjects,
+        blogs: blogObjects
+      };
+    }).then(function (contentObjects) {
+      console.log(contentObjects);
+      $('body').append($('<p>').text(contentObjects.projects[0].title));
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  }; // loop through URLS for projects and blogs and do an AJAX request for
+
+
+  for (var i in sheetsURLs) {
+    _loop_1(i);
+  }
+}); // let projects = data.feed.entry.map((project) => {
+// 	// here we return a new object with keys names of our own choosing and the needed values
+// 	return {
+// 		title: project.gsx$title.$t,
+// 		image: project.gsx$image.$t,
+// 		techStack: project.gsx$techstack.$t,
+// 		description: project.gsx$description.$t,
+// 		url: project.gsx$url.$t,
+// 	};
+// });
+// //  pass the data to the app function
+// // return logData(projects);
+/////////////////////////////////////////////////////////////
+/////////////////// DOM MANIPULATION ////////////////////////
+/////////////////////////////////////////////////////////////
+
+
 var $dropdownMenu = $('header ul#dropdownMenu');
 var $hamburgerButton = $('i.fas.fa-bars');
 $hamburgerButton.on('click', function () {
@@ -177,10 +239,13 @@ $('article#contactContainer form').on('click', function (event) {
   event.preventDefault();
 }); /// FUNCTIONS
 
-function logProjects(projects) {
-  console.log('app - projects', projects);
+function logData(projects) {
+  console.log('app - projects', projects); // console.log('app - blog', blogs);
+
   return projects; // the rest of your app goes here
-}
+} // function logBlogs(blogs) {
+// 	return blogs;
+// }
 },{}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -209,7 +274,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50427" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61664" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
