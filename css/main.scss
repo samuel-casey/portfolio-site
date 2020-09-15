@@ -12,7 +12,7 @@ $navy: #22577a;
 $newton-blue: #567d9f;
 $newton-blue-light: #7ba5c9;
 $sudbury-green: #77bbb1;
-$header-height: 5rem;
+$header-height: auto;
 
 body {
 	width: 100vw;
@@ -40,10 +40,6 @@ main {
 	margin: 5%;
 	justify-content: center;
 	word-wrap: break-word;
-
-	span.glyphicon.glyphicon-chevron-down {
-		color: blue;
-	}
 
 	i#scrollArrow {
 		position: fixed;
@@ -286,7 +282,6 @@ div#headerLogoContainer {
 div.card {
 	color: $font-primary;
 	background-color: $not-white;
-	z-index: -1;
 }
 
 div.card-body {
@@ -429,7 +424,6 @@ div#dropdownContainer {
 	max-width: 100px;
 	width: fit-content;
 	position: fixed;
-	right: 0;
 
 	ul#dropdownMenu {
 		list-style: none;
@@ -439,10 +433,12 @@ div#dropdownContainer {
 		background-color: $newton-blue;
 		color: $not-white;
 		transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+		top: 100%;
+		right: 0;
 		padding: 1em;
-		margin: 0;
+		margin: $header-height 0 0 0;
 		display: none;
-		position: relative;
+		position: fixed;
 		border-radius: 0 0 0 15px;
 
 		li.hamburgerItem {
