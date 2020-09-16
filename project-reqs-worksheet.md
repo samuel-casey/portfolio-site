@@ -6,8 +6,8 @@
 | ----- | -------------------------------------------- | ---------- |
 | Day 1 | Project Description                          | Complete   |
 | Day 1 | Wireframes / Priority Matrix / Timeline      | Complete   |
-| Day 1 | Core Application Structure (HTML, CSS, etc.) | Incomplete |
-| Day 2 | Basic JS                                     | Incomplete |
+| Day 1 | Core Application Structure (HTML, CSS, etc.) | Complete   |
+| Day 2 | Basic JS                                     | Complete   |
 | Day 3 | Fancy CSS (carousel, section expansion btns) | Incomplete |
 | Day 4 | Firebase hosting, DB, etc.                   | Incomplete |
 | Day 5 | Final Touches                                | Incomplete |
