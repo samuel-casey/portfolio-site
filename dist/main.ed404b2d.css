@@ -22,10 +22,11 @@ a:hover {
 
 main {
   display: grid;
-  grid-template-areas: "about" "projects" "writing" "contact";
+  grid-template-areas: "about" "projects" "blogs" "contact";
   margin: 5%;
   justify-content: center;
   word-wrap: break-word;
+  justify-self: center;
 }
 main .hidden {
   display: none !important;
@@ -115,7 +116,8 @@ main article#aboutContainer div.headshotContainer {
   margin-top: 1rem;
 }
 main article#aboutContainer div.headshotContainer img {
-  border-radius: 50%;
+  width: 150px;
+  border-radius: 150%;
 }
 main article#aboutContainer h1 {
   font-size: 1.5rem;
@@ -161,6 +163,7 @@ main h2.sectionHeading {
   font-size: 1.5rem;
 }
 main article#blogsContainer {
+  grid-area: blogs;
   display: grid;
   flex-direction: column;
   margin-bottom: 0.5rem;
@@ -193,6 +196,9 @@ main article#blogsContainer .crypto {
 }
 main article#blogsContainer .code {
   background-color: #567d9f;
+}
+main article#contactContainer {
+  grid-area: contact;
 }
 main article#contactContainer p {
   color: #22577a;
@@ -376,6 +382,7 @@ footer div#footerLinks ul li {
 
 .navbar {
   padding: 0;
+  width: 100vw;
 }
 
 div#dropdownContainer {

@@ -1,2 +1,74 @@
+@media only screen and (min-width: 768px) {
+  header nav div#hamburgerContainer {
+    display: none;
+  }
+  header nav div#dropdownContainer,
+header nav ul#dropdownMenu {
+    width: 450px;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-evenly;
+    top: 0% !important;
+    background-color: #22577a !important;
+  }
+
+  main {
+    width: 100vw;
+  }
+  main article#aboutContainer {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "heading headshot" "moreAbout tech";
+  }
+  main article#aboutContainer .headshotContainer {
+    grid-area: headshot;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+  }
+  main article#aboutContainer .headshotContainer img {
+    width: 235px !important;
+    margin-bottom: 2rem;
+  }
+  main article#aboutContainer #aboutMe {
+    display: flex;
+    flex-direction: column;
+    grid-area: heading;
+    align-items: center;
+  }
+  main article#aboutContainer #aboutMe h1,
+main article#aboutContainer #aboutMe h2 {
+    line-height: 2.5rem;
+    width: 100%;
+    justify-self: center;
+  }
+  main article#aboutContainer #moreAboutMe {
+    grid-area: moreAbout;
+    justify-content: center;
+  }
+  main article#aboutContainer #socialMediaIcons {
+    grid-area: headshot;
+    align-self: flex-end !important;
+    justify-self: center;
+  }
+  main article#aboutContainer #technologies {
+    grid-area: tech;
+    grid-template-areas: "header header header" "first first first" "second second second" "third third third" "fourth fourth fourth" !important;
+    width: 80%;
+    justify-self: center;
+  }
+  main article#aboutContainer #technologies div.techLogo.sass {
+    grid-row: 4 !important;
+  }
+  main article#aboutContainer #technologies div.techLogo.js {
+    grid-column: 2 !important;
+  }
+  main article#projectsContainer {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+}
 
 /*# sourceMappingURL=/media.527fce62.css.map */
