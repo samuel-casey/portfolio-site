@@ -43,10 +43,14 @@ main {
 
 	.hidden {
 		display: none !important;
+		transition: display 3000ms;
+		transition-timing-function: ease-in-out;
 	}
 
 	.visible {
-		display: block;
+		display: flex;
+		transition: display 3000ms;
+		transition-timing-function: ease-in-out;
 	}
 
 	p.techStack {

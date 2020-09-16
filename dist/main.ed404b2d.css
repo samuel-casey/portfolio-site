@@ -29,9 +29,13 @@ main {
 }
 main .hidden {
   display: none !important;
+  transition: display 3000ms;
+  transition-timing-function: ease-in-out;
 }
 main .visible {
-  display: block;
+  display: flex;
+  transition: display 3000ms;
+  transition-timing-function: ease-in-out;
 }
 main p.techStack {
   color: #77bbb1;

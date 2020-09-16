@@ -122,10 +122,29 @@ function renderData(data) {
 
 const $dropdownMenu = $('header ul#dropdownMenu');
 const $hamburgerButton = $('i.fas.fa-bars');
+const $hiddenProjects = $('div.card.hidden');
+const $hiddenBlogs = $('a.blogPost.hidden');
+const $showMoreProjects = $('#moreProjects');
+const $showMoreBlogs = $('#moreBlogs');
+
+console.log($hiddenProjects);
 
 //////// SHOW MORE PROJECTS
+$showMoreProjects.on('click', () => {
+	for (let proj in $hiddenProjects) {
+		$hiddenProjects.eq(proj).removeClass('hidden').addClass('visible');
+	}
+});
 
 /////// SHOW MORE BLOGS
+
+$showMoreBlogs.on('click', () => {
+	for (let proj in $hiddenBlogs) {
+		$hiddenBlogs.eq(proj).removeClass('hidden').addClass('visible');
+	}
+});
+
+/////// TOGGLE HAMBURGER MENU
 
 $hamburgerButton.on('click', () => {
 	$dropdownMenu.slideToggle(500);

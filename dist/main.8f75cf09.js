@@ -19034,8 +19034,24 @@ function renderData(data) {
 
 
 var $dropdownMenu = $('header ul#dropdownMenu');
-var $hamburgerButton = $('i.fas.fa-bars'); //////// SHOW MORE PROJECTS
-/////// SHOW MORE BLOGS
+var $hamburgerButton = $('i.fas.fa-bars');
+var $hiddenProjects = $('div.card.hidden');
+var $hiddenBlogs = $('a.blogPost.hidden');
+var $showMoreProjects = $('#moreProjects');
+var $showMoreBlogs = $('#moreBlogs');
+console.log($hiddenProjects); //////// SHOW MORE PROJECTS
+
+$showMoreProjects.on('click', function () {
+  for (var proj in $hiddenProjects) {
+    $hiddenProjects.eq(proj).removeClass('hidden').addClass('visible');
+  }
+}); /////// SHOW MORE BLOGS
+
+$showMoreBlogs.on('click', function () {
+  for (var proj in $hiddenBlogs) {
+    $hiddenBlogs.eq(proj).removeClass('hidden').addClass('visible');
+  }
+}); /////// TOGGLE HAMBURGER MENU
 
 $hamburgerButton.on('click', function () {
   $dropdownMenu.slideToggle(500);
