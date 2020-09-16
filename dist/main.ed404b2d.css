@@ -321,7 +321,6 @@ nav.scrolled-up {
 }
 
 div.moreContent {
-  width: fit-content;
   display: flex;
   align-items: center;
   justify-self: center;
