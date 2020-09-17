@@ -11,15 +11,9 @@ const $projectCardsArr = $('.card');
 const $blogsArr = $('.blogPost');
 
 ////////// LOAD DATA FROM GOOGLE SHEETS WHEN DOCUMENT READY
+
+
 $(document).ready(() => {
-	// var docWidth = document.documentElement.offsetWidth;
-
-	// [].forEach.call(document.querySelectorAll('*'), function (el) {
-	// 	if (el.offsetWidth > docWidth) {
-	// 		console.log(el);
-	// 	}
-	// });
-
 	const sheetsURLs = {
 		projects: projectsAsJSON,
 		blogs: blogsAsJSON,

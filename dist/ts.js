@@ -117,152 +117,74 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../ts/contentClasses.js":[function(require,module,exports) {
-"use strict";
+})({"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
 
-exports.__esModule = true;
-exports.ProjectCard = exports.BlogPost = void 0;
-
-var BlogPost =
-/** @class */
-function () {
-  function BlogPost(title, tag, url, hide) {
-    this.title = title;
-    this.tag = tag;
-    this.url = url;
-    this.hide = hide;
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
   }
 
-  BlogPost.prototype.createNewBlogPostElement = function () {
-    // 	// create elements of blog post
-    var $blogPost = $('<a>').addClass('blogPost').attr('target', 'blank');
-    var $blogTitle = $('<p>').addClass('blogTitle');
-    var $blogTag = $('<div>').addClass('blogTag'); // 	// combine elements of new blog post together
+  return bundleURL;
+}
 
-    $blogPost.append($blogTitle).append($blogTag); // 	// add data to new blog post
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
 
-    $blogPost.attr('src', this.url);
-    $blogTitle.text(this.title);
-    $blogTag.text(this.tag).addClass(this.tag); // 	// add a class of hidden if value of 'hide' passed to instance in main.js === true
-
-    this.hide === true ? $blogPost.addClass('hidden') : null; // find blogs container on page
-
-    var $blogsContainer = $('div.blogElements'); // 	// append new blog post to page
-
-    $blogsContainer.append($blogPost);
-    console.log($blogsContainer);
-  };
-
-  return BlogPost;
-}();
-
-exports.BlogPost = BlogPost;
-
-var ProjectCard =
-/** @class */
-function () {
-  function ProjectCard(title, image, description, techStack, siteUrl, repoUrl, infoUrl, hide) {
-    this.title = title;
-    this.image = image;
-    this.description = description;
-    this.techStack = techStack;
-    this.siteUrl = siteUrl;
-    this.repoUrl = repoUrl;
-    this.infoUrl = infoUrl;
-    this.hide = hide;
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
   }
 
-  ProjectCard.prototype.createNewProjectCardElement = function () {
-    // create elements of project card
-    var $newCardContainer = $('<div>').addClass('card');
-    var $cardImg = $('<img>').addClass('card-img-top');
-    var $cardBody = $('<div>').addClass('card-body');
-    var $cardTitle = $('<h5>').addClass('card-title');
-    var $cardTechStack = $('<p>').addClass('techStack');
-    var $cardText = $('<p>').addClass('card-text');
-    var $cardBodyBtns = $('<div>').addClass('card-body-btns');
-    var $codeAnchor = $('<a>').addClass('btn btn-primary').text('Code');
-    var $linkAnchor = $('<a>').addClass('btn btn-primary').text('Link');
-    var $infoAnchor = $('<a>').addClass('btn btn-primary').text('Info'); // combine elements of project card together
+  return '/';
+}
 
-    $newCardContainer.append($cardImg).append($cardBody);
-    $cardBody.append($cardTitle);
-    $cardBody.append($cardTechStack).append($cardText);
-    $cardBody.append($cardBodyBtns);
-    $cardBodyBtns.append($codeAnchor).append($linkAnchor).append($infoAnchor); // add data to newly created card
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
 
-    $cardImg.attr('src', this.image);
-    $cardTitle.text(this.title);
-    $cardTechStack.text(this.techStack);
-    $cardText.text(this.description);
-    $codeAnchor.attr('href', this.repoUrl).attr('target', 'blank');
-    $linkAnchor.attr('href', this.siteUrl).attr('target', 'blank');
-    $infoAnchor.attr('href', this.infoUrl).attr('target', 'blank'); // add a class of hidden if value of 'hide' passed to instance in main.js === true
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
 
-    this.hide === true ? $newCardContainer.addClass('hidden') : null; // find location on page to append newly created card
+function updateLink(link) {
+  var newLink = link.cloneNode();
 
-    var $cardsContainer = $('article#projectsContainer').find('div.cardsContainer'); // append newly created card to proper location
-
-    $cardsContainer.append($newCardContainer);
+  newLink.onload = function () {
+    link.remove();
   };
 
-  return ProjectCard;
-}();
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
 
-exports.ProjectCard = ProjectCard;
-},{}],"../ts/app.js":[function(require,module,exports) {
-"use strict";
+var cssTimeout = null;
 
-exports.__esModule = true;
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
 
-var contentClasses_1 = require("./contentClasses");
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
 
-var sheetId = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
-var projectsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/1/public/values?alt=json";
-var blogsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/2/public/values?alt=json";
-var sheetsURLs = {
-  projects: string = projectsAsJSON,
-  blogs: string = blogsAsJSON
-};
-$(document).ready(function () {
-  console.log(sheetsURLs);
-  var newBlogPost = new contentClasses_1.BlogPost('I kinda understand interfaces better now', 'tag', 'https://google.com', false);
-  newBlogPost.createNewBlogPostElement();
-  var newProjectCard = new contentClasses_1.ProjectCard('example', '#', 'example description', 'TYPESCRIPT BABY!!!', '#', '#', '#', false);
-  newProjectCard.createNewProjectCardElement(); ///////// GET PROJECT DATA ///////////
-  //////// RENDER PAGE ELEMENTS ////////
-}); /////////////////////////////////////////////////////////////
-/////////////////// DOM MANIPULATION ////////////////////////
-/////////////////////////////////////////////////////////////
-
-var $dropdownMenu = $('header ul#dropdownMenu');
-var $hamburgerButton = $('i.fas.fa-bars');
-$hamburgerButton.on('click', function () {
-  $dropdownMenu.slideToggle(500);
-}); //Found this function here: bootstrap-menu.com/detail-smart-hide.html
-// the way it works is by checking for the navbar's height
-// add padding top to show content behind navbar
-
-https: $('body').css('padding-top', $('.navbar').outerHeight() + 'px');
-
-var $navbar = $('.smart-scroll'); // detect scroll top or down
-
-if ($navbar.length > 0) {
-  // check if element exists
-  var last_scroll_top_1 = 0;
-  $(window).on('scroll', function () {
-    var scroll_top = $(this).scrollTop();
-
-    if (scroll_top < last_scroll_top_1) {
-      $navbar.removeClass('scrolled-down').addClass('scrolled-up');
-    } else {
-      $navbar.removeClass('scrolled-up').addClass('scrolled-down');
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
     }
 
-    last_scroll_top_1 = scroll_top;
-  });
-} /// SUBMIT CONTACT FORM
-},{"./contentClasses":"../ts/contentClasses.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -466,5 +388,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","../ts/app.js"], null)
-//# sourceMappingURL=/app.72bdb1ae.js.map
+},{}]},{},["../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+//# sourceMappingURL=/ts.js.map
