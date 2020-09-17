@@ -35,7 +35,7 @@ class BlogPost {
 		// 	// append new blog post to page
 		$blogsContainer.append($blogPost);
 
-		console.log($blogsContainer);
+		// console.log($blogsContainer);
 	}
 }
 

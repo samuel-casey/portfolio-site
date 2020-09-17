@@ -242,6 +242,12 @@ $(document).ready(function () {
     projects: projectsAsJSON,
     blogs: blogsAsJSON
   };
+  var docWidth = document.documentElement.offsetWidth;
+  [].forEach.call(document.querySelectorAll('*'), function (el) {
+    if (el.offsetWidth > docWidth) {
+      console.log(el);
+    }
+  });
   getDataFromSheet(sheetsURLs.projects).then(function (projectData) {
     return renderData(projectData);
   }).then(function () {

@@ -12,12 +12,19 @@ const $blogsArr = $('.blogPost');
 
 ////////// LOAD DATA FROM GOOGLE SHEETS WHEN DOCUMENT READY
 
-
 $(document).ready(() => {
 	const sheetsURLs = {
 		projects: projectsAsJSON,
 		blogs: blogsAsJSON,
 	};
+
+	var docWidth = document.documentElement.offsetWidth;
+
+	[].forEach.call(document.querySelectorAll('*'), function (el) {
+		if (el.offsetWidth > docWidth) {
+			console.log(el);
+		}
+	});
 
 	getDataFromSheet(sheetsURLs.projects)
 		.then((projectData) => {
