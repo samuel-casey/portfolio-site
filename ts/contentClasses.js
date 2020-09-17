@@ -27,7 +27,7 @@ var BlogPost = /** @class */ (function () {
         var $blogsContainer = $('div.blogElements');
         // 	// append new blog post to page
         $blogsContainer.append($blogPost);
-        console.log($blogsContainer);
+        // console.log($blogsContainer);
     };
     return BlogPost;
 }());

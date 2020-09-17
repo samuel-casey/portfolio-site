@@ -110,11 +110,6 @@ if ($navbar.length > 0) {
 // FUNCTIONS TO FETCH DATA FROM GOOGLE SHEETS AND RENDER NEW PAGE ELEMENTS BASED ON THE DATA RETRIEVED //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// function logData(data) {
-// 	console.log(`app - ${data[0].type}`, data);
-// 	return data;
-// }
-
 function getDataFromSheet(sheet) {
 	return $.ajax({ url: sheet }).then((data) => {
 		let rowItems;
