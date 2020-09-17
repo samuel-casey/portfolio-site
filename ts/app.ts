@@ -35,23 +35,22 @@ $(document).ready(() => {
 					$hiddenProj.removeClass('hidden').addClass('visible');
 				}
 			});
+		});
 
-			getDataFromSheet(sheetsURLs.blogs)
-				.then((blogs): void => {
-					console.log('blogs', blogs);
-					return renderData(blogs);
-				})
-				.then((): void => {
-					const $hiddenBlogs: JQuery = $('a.blogPost.hidden');
+	getDataFromSheet(sheetsURLs.blogs)
+		.then((blogs): void => {
+			return renderData(blogs);
+		})
+		.then((): void => {
+			const $hiddenBlogs: JQuery = $('a.blogPost.hidden');
 
-					$showMoreBlogs.on('click', (): void => {
-						for (let i = 0; i < $hiddenProjects.length; i++) {
-							const $hiddenBlog = $hiddenBlogs.eq(i);
+			$showMoreBlogs.on('click', (): void => {
+				for (let i = 0; i < $hiddenBlogs.length; i++) {
+					const $hiddenBlog = $hiddenBlogs.eq(i);
 
-							$hiddenBlog.removeClass('hidden').addClass('visible');
-						}
-					});
-				});
+					$hiddenBlog.removeClass('hidden').addClass('visible');
+				}
+			});
 		});
 });
 

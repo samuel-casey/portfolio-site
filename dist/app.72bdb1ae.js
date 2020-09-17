@@ -241,17 +241,16 @@ $(document).ready(function () {
         $hiddenProj.removeClass('hidden').addClass('visible');
       }
     });
-    getDataFromSheet(sheetsURLs.blogs).then(function (blogs) {
-      console.log('blogs', blogs);
-      return renderData(blogs);
-    }).then(function () {
-      var $hiddenBlogs = $('a.blogPost.hidden');
-      $showMoreBlogs.on('click', function () {
-        for (var i = 0; i < $hiddenProjects.length; i++) {
-          var $hiddenBlog = $hiddenBlogs.eq(i);
-          $hiddenBlog.removeClass('hidden').addClass('visible');
-        }
-      });
+  });
+  getDataFromSheet(sheetsURLs.blogs).then(function (blogs) {
+    return renderData(blogs);
+  }).then(function () {
+    var $hiddenBlogs = $('a.blogPost.hidden');
+    $showMoreBlogs.on('click', function () {
+      for (var i = 0; i < $hiddenBlogs.length; i++) {
+        var $hiddenBlog = $hiddenBlogs.eq(i);
+        $hiddenBlog.removeClass('hidden').addClass('visible');
+      }
     });
   });
 }); //////// RENDER PAGE ELEMENTS ////////
