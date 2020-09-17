@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 // ====== IMPORT CLASSES & INTERFACES ====== //
-var contentClasses_1 = require("./contentClasses");
+var classes_1 = require("./classes");
 var sheetId = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
 var projectsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/1/public/values?alt=json";
 var blogsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/2/public/values?alt=json";
@@ -84,10 +84,10 @@ function renderData(data) {
         data.forEach(function (row, index) {
             var newCard;
             if (index < NUM_VISIBLE_PROJECTS_ON_LOAD) {
-                newCard = new contentClasses_1.ProjectCard(row.title, row.image, row.description, row.techStack, row.siteUrl, row.repoUrl, row.infoUrl, false);
+                newCard = new classes_1.ProjectCard(row.title, row.image, row.description, row.techStack, row.siteUrl, row.repoUrl, row.infoUrl, false);
             }
             else {
-                newCard = new contentClasses_1.ProjectCard(row.title, row.image, row.description, row.techStack, row.siteUrl, row.repoUrl, row.infoUrl, true);
+                newCard = new classes_1.ProjectCard(row.title, row.image, row.description, row.techStack, row.siteUrl, row.repoUrl, row.infoUrl, true);
             }
             newCard.createNewProjectCardElement();
             return newCard;
@@ -97,10 +97,10 @@ function renderData(data) {
         data.forEach(function (row, index) {
             var newBlogPost;
             if (index < NUM_VISIBLE_BLOGS_ON_LOAD) {
-                newBlogPost = new contentClasses_1.BlogPost(row.title, row.tags, row.url, false);
+                newBlogPost = new classes_1.BlogPost(row.title, row.tags, row.url, false);
             }
             else {
-                newBlogPost = new contentClasses_1.BlogPost(row.title, row.tags, row.url, true);
+                newBlogPost = new classes_1.BlogPost(row.title, row.tags, row.url, true);
             }
             newBlogPost.createNewBlogPostElement();
             return newBlogPost;

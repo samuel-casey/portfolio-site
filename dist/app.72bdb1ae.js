@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../ts/contentClasses.js":[function(require,module,exports) {
+})({"../ts/classes.js":[function(require,module,exports) {
 "use strict";
 
 exports.__esModule = true;
@@ -141,7 +141,6 @@ function () {
 
     $blogPost.append($blogTitle).append($blogTag); // add data to new blog post
 
-    console.log('data == ', this.url, this.title, this.tag);
     $blogPost.attr('src', this.url);
     $blogTitle.text(this.title);
     $blogTag.text(this.tag).addClass(this.tag); // add a class of hidden if value of 'hide' passed to instance in main.js === true
@@ -215,7 +214,7 @@ exports.ProjectCard = ProjectCard;
 
 exports.__esModule = true; // ====== IMPORT CLASSES & INTERFACES ====== //
 
-var contentClasses_1 = require("./contentClasses");
+var classes_1 = require("./classes");
 
 var sheetId = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
 var projectsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/1/public/values?alt=json";
@@ -298,9 +297,9 @@ function renderData(data) {
       var newCard;
 
       if (index < NUM_VISIBLE_PROJECTS_ON_LOAD) {
-        newCard = new contentClasses_1.ProjectCard(row.title, row.image, row.description, row.techStack, row.siteUrl, row.repoUrl, row.infoUrl, false);
+        newCard = new classes_1.ProjectCard(row.title, row.image, row.description, row.techStack, row.siteUrl, row.repoUrl, row.infoUrl, false);
       } else {
-        newCard = new contentClasses_1.ProjectCard(row.title, row.image, row.description, row.techStack, row.siteUrl, row.repoUrl, row.infoUrl, true);
+        newCard = new classes_1.ProjectCard(row.title, row.image, row.description, row.techStack, row.siteUrl, row.repoUrl, row.infoUrl, true);
       }
 
       newCard.createNewProjectCardElement();
@@ -313,9 +312,9 @@ function renderData(data) {
       var newBlogPost;
 
       if (index < NUM_VISIBLE_BLOGS_ON_LOAD) {
-        newBlogPost = new contentClasses_1.BlogPost(row.title, row.tags, row.url, false);
+        newBlogPost = new classes_1.BlogPost(row.title, row.tags, row.url, false);
       } else {
-        newBlogPost = new contentClasses_1.BlogPost(row.title, row.tags, row.url, true);
+        newBlogPost = new classes_1.BlogPost(row.title, row.tags, row.url, true);
       }
 
       newBlogPost.createNewBlogPostElement();
@@ -360,7 +359,7 @@ function getDataFromSheet(sheet) {
     return rows;
   });
 }
-},{"./contentClasses":"../ts/contentClasses.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./classes":"../ts/classes.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;

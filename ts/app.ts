@@ -1,5 +1,5 @@
 // ====== IMPORT CLASSES & INTERFACES ====== //
-import { BlogPost, ProjectCard } from './contentClasses';
+import { BlogPost, ProjectCard } from './classes';
 import { ProjectSheetRow, BlogSheetRow, SheetsURLs } from './interfaces';
 
 const sheetId: string = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
