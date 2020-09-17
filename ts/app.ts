@@ -1,4 +1,6 @@
+// ====== IMPORT CLASSES & INTERFACES ====== //
 import { BlogPost, ProjectCard } from './contentClasses';
+import { ProjectSheetRow, BlogSheetRow, SheetsURLs } from './interfaces';
 
 const sheetId: string = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
 const projectsAsJSON: string = `https://spreadsheets.google.com/feeds/list/${sheetId}/1/public/values?alt=json`;
@@ -7,11 +9,6 @@ const NUM_VISIBLE_PROJECTS_ON_LOAD: number = 2;
 const NUM_VISIBLE_BLOGS_ON_LOAD: number = 2;
 const $showMoreProjects: JQuery = $('#moreProjects');
 const $showMoreBlogs: JQuery = $('#moreBlogs');
-
-interface SheetsURLs {
-	projects: string;
-	blogs: string;
-}
 
 const sheetsURLs: SheetsURLs = {
 	projects: projectsAsJSON,
@@ -54,9 +51,9 @@ $(document).ready(() => {
 		});
 });
 
-/////////////////////////////////////////////////////////////
-/////////////////// DOM MANIPULATION ////////////////////////
-/////////////////////////////////////////////////////////////
+/*==============
+DOM MANIPULATION
+================*/
 
 const $dropdownMenu = $('header ul#dropdownMenu');
 const $hamburgerButton = $('i.fas.fa-bars');
@@ -93,9 +90,9 @@ if ($navbar.length > 0) {
 
 /// SUBMIT CONTACT FORM
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-// FUNCTIONS TO FETCH DATA FROM GOOGLE SHEETS AND RENDER NEW PAGE ELEMENTS BASED ON THE DATA RETRIEVED //
-////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*==================================================================================================
+FUNCTIONS TO FETCH DATA FROM GOOGLE SHEETS AND RENDER NEW PAGE ELEMENTS BASED ON THE DATA RETRIEVED 
+==================================================================================================*/
 
 // RENDER PAGE ELEMENTS
 function renderData(data: ProjectSheetRow[] | BlogSheetRow[]) {
@@ -145,26 +142,6 @@ function renderData(data: ProjectSheetRow[] | BlogSheetRow[]) {
 			return newBlogPost;
 		});
 	}
-}
-
-// template for project objects
-interface ProjectSheetRow {
-	type: string;
-	title: string;
-	image: string;
-	techStack: string;
-	description: string;
-	siteUrl: string;
-	repoUrl: string;
-	infoUrl: string;
-}
-
-// template for blog objects
-interface BlogSheetRow {
-	type: string;
-	title: string;
-	tags: string;
-	url: string;
 }
 
 // make an AJAX call to the google sheets API and return a blog or project object

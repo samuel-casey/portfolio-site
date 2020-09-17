@@ -23,7 +23,6 @@ class BlogPost {
 
 		// add data to new blog post
 
-		console.log('data == ', this.url, this.title, this.tag);
 		$blogPost.attr('src', this.url);
 		$blogTitle.text(this.title);
 		$blogTag.text(this.tag).addClass(this.tag);
