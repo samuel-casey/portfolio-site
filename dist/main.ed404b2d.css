@@ -16,6 +16,7 @@ body {
   padding: 0;
   margin: 0;
   justify-content: center;
+  color: #163950;
 }
 
 a,
@@ -77,6 +78,13 @@ main article#aboutContainer {
   line-height: 1.25rem;
   width: 99%;
 }
+main article#aboutContainer h4 {
+  font-size: 1rem;
+  grid-area: header;
+  justify-self: center;
+  font-style: normal;
+  margin-bottom: 1rem;
+}
 main article#aboutContainer div#technologies {
   display: grid;
   grid-template-areas: "header header header header" "top top top top" "middle middle middle middle" "bottom bottom bottom bottom";
@@ -131,6 +139,7 @@ main article#aboutContainer div.headshotContainer img {
 main article#aboutContainer h1 {
   font-size: 1.5rem;
   color: #22577a;
+  line-height: 2.75rem;
 }
 main article#aboutContainer h2 {
   font-weight: normal;

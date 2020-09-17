@@ -26,6 +26,7 @@ body {
 	padding: 0;
 	margin: 0;
 	justify-content: center;
+	color: $font-primary;
 }
 
 a,
@@ -97,6 +98,14 @@ main {
 		line-height: 1.25rem;
 		width: 99%;
 
+		h4 {
+			font-size: 1rem;
+			grid-area: header;
+			justify-self: center;
+			font-style: normal;
+			margin-bottom: 1rem;
+		}
+
 		div#technologies {
 			display: grid;
 			grid-template-areas:
@@ -167,6 +176,7 @@ main {
 		h1 {
 			font-size: 1.5rem;
 			color: $navy;
+			line-height: 2.75rem;
 		}
 
 		h2 {
