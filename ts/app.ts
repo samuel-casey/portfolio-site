@@ -54,7 +54,50 @@ $(document).ready(() => {
 		});
 });
 
-//////// RENDER PAGE ELEMENTS ////////
+/////////////////////////////////////////////////////////////
+/////////////////// DOM MANIPULATION ////////////////////////
+/////////////////////////////////////////////////////////////
+
+const $dropdownMenu = $('header ul#dropdownMenu');
+const $hamburgerButton = $('i.fas.fa-bars');
+
+$hamburgerButton.on('click', () => {
+	$dropdownMenu.slideToggle(500);
+});
+
+// Found this function here: bootstrap-menu.com/detail-smart-hide.html
+// it works by checking to see if the window's current height is < the window's last height
+//// if current height < last height, user scrolled up --> show navbar
+//// if current height > last height, user scrolled down --> hide navbar
+
+// detect scroll top or down
+
+const $navbar = $('.smart-scroll');
+
+// detect scroll top or down
+if ($navbar.length > 0) {
+	// check if element exists
+	let last_scroll_top: number = 0;
+	$(window).on('scroll', function () {
+		let scroll_top = $(this).scrollTop();
+		// if the current height is less than the last height, the user scrolled up and the class scrolled-up should be added
+		if (scroll_top < last_scroll_top) {
+			$navbar.removeClass('scrolled-down').addClass('scrolled-up');
+			// if the current height is greater than the last height, the user scrolled down and the class scrolled-up should be added
+		} else {
+			$navbar.removeClass('scrolled-up').addClass('scrolled-down');
+		}
+		last_scroll_top = scroll_top;
+	});
+}
+
+/// SUBMIT CONTACT FORM
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+// FUNCTIONS TO FETCH DATA FROM GOOGLE SHEETS AND RENDER NEW PAGE ELEMENTS BASED ON THE DATA RETRIEVED //
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// RENDER PAGE ELEMENTS
 function renderData(data: ProjectSheetRow[] | BlogSheetRow[]) {
 	if (data[0].type === 'project') {
 		data.forEach((row, index) => {
@@ -104,6 +147,7 @@ function renderData(data: ProjectSheetRow[] | BlogSheetRow[]) {
 	}
 }
 
+// template for project objects
 interface ProjectSheetRow {
 	type: string;
 	title: string;
@@ -115,6 +159,7 @@ interface ProjectSheetRow {
 	infoUrl: string;
 }
 
+// template for blog objects
 interface BlogSheetRow {
 	type: string;
 	title: string;
@@ -122,6 +167,7 @@ interface BlogSheetRow {
 	url: string;
 }
 
+// make an AJAX call to the google sheets API and return a blog or project object
 function getDataFromSheet(sheet: string) {
 	return $.ajax({ url: sheet }).then((data) => {
 		let rows;
@@ -154,43 +200,3 @@ function getDataFromSheet(sheet: string) {
 		return rows;
 	});
 }
-
-/////////////////////////////////////////////////////////////
-/////////////////// DOM MANIPULATION ////////////////////////
-/////////////////////////////////////////////////////////////
-
-const $dropdownMenu = $('header ul#dropdownMenu');
-const $hamburgerButton = $('i.fas.fa-bars');
-
-$hamburgerButton.on('click', () => {
-	$dropdownMenu.slideToggle(500);
-});
-
-//Found this function here: bootstrap-menu.com/detail-smart-hide.html
-// the way it works is by checking for the navbar's height
-
-// // add padding top to show content behind navbar
-// https: $('body').css('padding-top', $('.navbar').outerHeight() + 'px');
-
-const $navbar = $('.smart-scroll');
-
-// detect scroll top or down
-if ($navbar.length > 0) {
-	// check if element exists
-	let last_scroll_top: number = 0;
-	$(window).on('scroll', function () {
-		let scroll_top = $(this).scrollTop();
-		if (scroll_top < last_scroll_top) {
-			$navbar.removeClass('scrolled-down').addClass('scrolled-up');
-		} else {
-			$navbar.removeClass('scrolled-up').addClass('scrolled-down');
-		}
-		last_scroll_top = scroll_top;
-	});
-}
-
-/// SUBMIT CONTACT FORM
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-// FUNCTIONS TO FETCH DATA FROM GOOGLE SHEETS AND RENDER NEW PAGE ELEMENTS BASED ON THE DATA RETRIEVED //
-////////////////////////////////////////////////////////////////////////////////////////////////////////
