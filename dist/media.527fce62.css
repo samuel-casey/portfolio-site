@@ -95,13 +95,22 @@ main article#aboutContainer #aboutMe h2 {
     justify-self: flex-start;
   }
   main article#projectsContainer div.card {
-    max-width: 300px;
+    max-width: 400px;
   }
   main article#projectsContainer #moreProjects {
     grid-row: 3;
   }
   main article#projectsContainer hr.green {
     justify-content: center;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  :root {
+    font-size: 19px;
+  }
+
+  div.card {
+    max-width: 450px;
   }
 }
 

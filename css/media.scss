@@ -132,7 +132,7 @@ $header-height: auto;
             }
 
             div.card {
-                max-width: 300px;
+                max-width: 400px;
             }
 
             #moreProjects {
@@ -143,5 +143,15 @@ $header-height: auto;
                 justify-content: center;
             }
         }
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    :root {
+        font-size: 19px;
+    }
+
+    div.card {
+        max-width: 450px;
     }
 }
