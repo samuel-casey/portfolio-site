@@ -61,7 +61,7 @@ main i#scrollArrow {
 }
 main hr.gray {
   align-self: center;
-  width: 90vw;
+  width: 50vw;
   border-top: 1px dashed #e5e5e5;
   margin: 1rem auto;
 }
@@ -84,7 +84,6 @@ main article#aboutContainer h1 {
   color: #22577a;
 }
 main article#aboutContainer h2 {
-  font-weight: normal;
   font-size: 1.35rem;
   margin-bottom: 1em;
   line-height: 2rem;
@@ -96,9 +95,9 @@ main article#aboutContainer h2 span.headingLink {
 main article#aboutContainer h3 {
   color: #567d9f;
   font-style: italic;
-  font-weight: normal;
 }
 main article#aboutContainer h4 {
+  font-weight: normal;
   font-size: 1.25rem;
   grid-area: header;
   justify-self: center;
@@ -162,20 +161,18 @@ main article#aboutContainer div.headshotContainer {
   align-self: center;
   margin-bottom: 1rem;
   margin-top: 1rem;
+  flex-direction: column;
+  align-items: center;
 }
 main article#aboutContainer div.headshotContainer img {
   width: 150px;
   border-radius: 150%;
 }
-main article#aboutContainer div#moreAboutMe h2 {
-  font-weight: 500;
-  color: #22577a;
-  text-align: center;
-}
 main article#aboutContainer div#socialMediaIcons {
   align-self: center;
   display: flex;
   justify-content: space-evenly;
+  padding: 10px;
   width: 200px;
 }
 main article#aboutContainer div#socialMediaIcons i {
