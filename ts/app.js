@@ -5,6 +5,7 @@ var sheetId = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
 var projectsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/1/public/values?alt=json";
 var blogsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/2/public/values?alt=json";
 var NUM_VISIBLE_PROJECTS_ON_LOAD = 2;
+var NUM_VISIBLE_BLOGS_ON_LOAD = 2;
 var $showMoreProjects = $('#moreProjects');
 var $showMoreBlogs = $('#moreBlogs');
 var sheetsURLs = {
@@ -26,7 +27,20 @@ $(document).ready(function () {
                 $hiddenProj.removeClass('hidden').addClass('visible');
             }
         });
-        // getDataFromSheet(sheetsURLs.)
+        getDataFromSheet(sheetsURLs.blogs)
+            .then(function (blogs) {
+            console.log('blogs', blogs);
+            return renderData(blogs);
+        })
+            .then(function () {
+            var $hiddenBlogs = $('a.blogPost.hidden');
+            $showMoreBlogs.on('click', function () {
+                for (var i = 0; i < $hiddenProjects.length; i++) {
+                    var $hiddenBlog = $hiddenBlogs.eq(i);
+                    $hiddenBlog.removeClass('hidden').addClass('visible');
+                }
+            });
+        });
     });
 });
 //////// RENDER PAGE ELEMENTS ////////
@@ -44,6 +58,19 @@ function renderData(data) {
             return newCard;
         });
     }
+    if (data[0].type === 'blog') {
+        data.forEach(function (row, index) {
+            var newBlogPost;
+            if (index < NUM_VISIBLE_BLOGS_ON_LOAD) {
+                newBlogPost = new contentClasses_1.BlogPost(row.title, row.tags, row.url, false);
+            }
+            else {
+                newBlogPost = new contentClasses_1.BlogPost(row.title, row.tags, row.url, true);
+            }
+            newBlogPost.createNewBlogPostElement();
+            return newBlogPost;
+        });
+    }
 }
 function getDataFromSheet(sheet) {
     return $.ajax({ url: sheet }).then(function (data) {
@@ -59,6 +86,16 @@ function getDataFromSheet(sheet) {
                     siteUrl: item.gsx$siteurl.$t,
                     repoUrl: item.gsx$repourl.$t,
                     infoUrl: item.gsx$infourl.$t
+                };
+            });
+        }
+        if (data.feed.title.$t === 'Blogs') {
+            rows = data.feed.entry.map(function (item) {
+                return {
+                    type: item.gsx$contenttype.$t,
+                    title: item.gsx$title.$t,
+                    tags: item.gsx$tags.$t,
+                    url: item.gsx$url.$t
                 };
             });
         }

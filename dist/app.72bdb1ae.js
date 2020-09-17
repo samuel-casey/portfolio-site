@@ -134,22 +134,23 @@ function () {
   }
 
   BlogPost.prototype.createNewBlogPostElement = function () {
-    // 	// create elements of blog post
+    // create elements of blog post
     var $blogPost = $('<a>').addClass('blogPost').attr('target', 'blank');
     var $blogTitle = $('<p>').addClass('blogTitle');
-    var $blogTag = $('<div>').addClass('blogTag'); // 	// combine elements of new blog post together
+    var $blogTag = $('<div>').addClass('blogTag'); // combine elements of new blog post together
 
-    $blogPost.append($blogTitle).append($blogTag); // 	// add data to new blog post
+    $blogPost.append($blogTitle).append($blogTag); // add data to new blog post
 
+    console.log('data == ', this.url, this.title, this.tag);
     $blogPost.attr('src', this.url);
     $blogTitle.text(this.title);
-    $blogTag.text(this.tag).addClass(this.tag); // 	// add a class of hidden if value of 'hide' passed to instance in main.js === true
+    $blogTag.text(this.tag).addClass(this.tag); // add a class of hidden if value of 'hide' passed to instance in main.js === true
 
     this.hide === true ? $blogPost.addClass('hidden') : null; // find blogs container on page
 
-    var $blogsContainer = $('div.blogElements'); // 	// append new blog post to page
+    var $blogsContainer = $('div.blogElements'); // append new blog post to page
 
-    $blogsContainer.append($blogPost); // console.log($blogsContainer);
+    $blogsContainer.append($blogPost);
   };
 
   return BlogPost;
@@ -220,6 +221,7 @@ var sheetId = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
 var projectsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/1/public/values?alt=json";
 var blogsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/2/public/values?alt=json";
 var NUM_VISIBLE_PROJECTS_ON_LOAD = 2;
+var NUM_VISIBLE_BLOGS_ON_LOAD = 2;
 var $showMoreProjects = $('#moreProjects');
 var $showMoreBlogs = $('#moreBlogs');
 var sheetsURLs = {
@@ -238,7 +240,19 @@ $(document).ready(function () {
         var $hiddenProj = $hiddenProjects.eq(i);
         $hiddenProj.removeClass('hidden').addClass('visible');
       }
-    }); // getDataFromSheet(sheetsURLs.)
+    });
+    getDataFromSheet(sheetsURLs.blogs).then(function (blogs) {
+      console.log('blogs', blogs);
+      return renderData(blogs);
+    }).then(function () {
+      var $hiddenBlogs = $('a.blogPost.hidden');
+      $showMoreBlogs.on('click', function () {
+        for (var i = 0; i < $hiddenProjects.length; i++) {
+          var $hiddenBlog = $hiddenBlogs.eq(i);
+          $hiddenBlog.removeClass('hidden').addClass('visible');
+        }
+      });
+    });
   });
 }); //////// RENDER PAGE ELEMENTS ////////
 
@@ -255,6 +269,21 @@ function renderData(data) {
 
       newCard.createNewProjectCardElement();
       return newCard;
+    });
+  }
+
+  if (data[0].type === 'blog') {
+    data.forEach(function (row, index) {
+      var newBlogPost;
+
+      if (index < NUM_VISIBLE_BLOGS_ON_LOAD) {
+        newBlogPost = new contentClasses_1.BlogPost(row.title, row.tags, row.url, false);
+      } else {
+        newBlogPost = new contentClasses_1.BlogPost(row.title, row.tags, row.url, true);
+      }
+
+      newBlogPost.createNewBlogPostElement();
+      return newBlogPost;
     });
   }
 }
@@ -276,6 +305,17 @@ function getDataFromSheet(sheet) {
           siteUrl: item.gsx$siteurl.$t,
           repoUrl: item.gsx$repourl.$t,
           infoUrl: item.gsx$infourl.$t
+        };
+      });
+    }
+
+    if (data.feed.title.$t === 'Blogs') {
+      rows = data.feed.entry.map(function (item) {
+        return {
+          type: item.gsx$contenttype.$t,
+          title: item.gsx$title.$t,
+          tags: item.gsx$tags.$t,
+          url: item.gsx$url.$t
         };
       });
     }

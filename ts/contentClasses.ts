@@ -11,31 +11,31 @@ class BlogPost {
 	}
 
 	createNewBlogPostElement() {
-		// 	// create elements of blog post
+		// create elements of blog post
 		const $blogPost: JQuery = $('<a>')
 			.addClass('blogPost')
 			.attr('target', 'blank');
 		const $blogTitle: JQuery = $('<p>').addClass('blogTitle');
 		const $blogTag: JQuery = $('<div>').addClass('blogTag');
 
-		// 	// combine elements of new blog post together
+		// combine elements of new blog post together
 		$blogPost.append($blogTitle).append($blogTag);
 
-		// 	// add data to new blog post
+		// add data to new blog post
+
+		console.log('data == ', this.url, this.title, this.tag);
 		$blogPost.attr('src', this.url);
 		$blogTitle.text(this.title);
 		$blogTag.text(this.tag).addClass(this.tag);
 
-		// 	// add a class of hidden if value of 'hide' passed to instance in main.js === true
+		// add a class of hidden if value of 'hide' passed to instance in main.js === true
 		this.hide === true ? $blogPost.addClass('hidden') : null;
 
 		// find blogs container on page
 		const $blogsContainer: JQuery = $('div.blogElements');
 
-		// 	// append new blog post to page
+		// append new blog post to page
 		$blogsContainer.append($blogPost);
-
-		// console.log($blogsContainer);
 	}
 }
 

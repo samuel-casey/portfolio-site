@@ -9,25 +9,25 @@ var BlogPost = /** @class */ (function () {
         this.hide = hide;
     }
     BlogPost.prototype.createNewBlogPostElement = function () {
-        // 	// create elements of blog post
+        // create elements of blog post
         var $blogPost = $('<a>')
             .addClass('blogPost')
             .attr('target', 'blank');
         var $blogTitle = $('<p>').addClass('blogTitle');
         var $blogTag = $('<div>').addClass('blogTag');
-        // 	// combine elements of new blog post together
+        // combine elements of new blog post together
         $blogPost.append($blogTitle).append($blogTag);
-        // 	// add data to new blog post
+        // add data to new blog post
+        console.log('data == ', this.url, this.title, this.tag);
         $blogPost.attr('src', this.url);
         $blogTitle.text(this.title);
         $blogTag.text(this.tag).addClass(this.tag);
-        // 	// add a class of hidden if value of 'hide' passed to instance in main.js === true
+        // add a class of hidden if value of 'hide' passed to instance in main.js === true
         this.hide === true ? $blogPost.addClass('hidden') : null;
         // find blogs container on page
         var $blogsContainer = $('div.blogElements');
-        // 	// append new blog post to page
+        // append new blog post to page
         $blogsContainer.append($blogPost);
-        // console.log($blogsContainer);
     };
     return BlogPost;
 }());
