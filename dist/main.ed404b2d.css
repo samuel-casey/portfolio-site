@@ -203,6 +203,7 @@ main article#blogsContainer a.blogPost {
   align-items: center;
   font-size: 1.25rem;
   border-radius: 0.5rem;
+  margin: 0.5rem auto;
 }
 main article#blogsContainer p.blogTitle {
   color: #163950;

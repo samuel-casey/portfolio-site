@@ -238,12 +238,6 @@ var $projectCardsArr = $('.card');
 var $blogsArr = $('.blogPost'); ////////// LOAD DATA FROM GOOGLE SHEETS WHEN DOCUMENT READY
 
 $(document).ready(function () {
-  // var docWidth = document.documentElement.offsetWidth;
-  // [].forEach.call(document.querySelectorAll('*'), function (el) {
-  // 	if (el.offsetWidth > docWidth) {
-  // 		console.log(el);
-  // 	}
-  // });
   var sheetsURLs = {
     projects: projectsAsJSON,
     blogs: blogsAsJSON
@@ -426,7 +420,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50621" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56275" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

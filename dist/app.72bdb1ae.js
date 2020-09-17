@@ -219,13 +219,13 @@ var contentClasses_1 = require("./contentClasses");
 
 var sheetId = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
 var projectsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/1/public/values?alt=json";
-var blogsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/2/public/values?alt=json";
-var sheetsURLs = {
-  projects: string = projectsAsJSON,
-  blogs: string = blogsAsJSON
-};
+var blogsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/2/public/values?alt=json"; // const sheetsURLs: object = {
+// 	projects: string = projectsAsJSON,
+// 	blogs: string = blogsAsJSON,
+// };
+
 $(document).ready(function () {
-  console.log(sheetsURLs);
+  // console.log(sheetsURLs);
   var newBlogPost = new contentClasses_1.BlogPost('I kinda understand interfaces better now', 'tag', 'https://google.com', false);
   newBlogPost.createNewBlogPostElement();
   var newProjectCard = new contentClasses_1.ProjectCard('example', '#', 'example description', 'TYPESCRIPT BABY!!!', '#', '#', '#', false);

@@ -10,7 +10,7 @@ const blogsAsJSON: string = `https://spreadsheets.google.com/feeds/list/${sheetI
 // };
 
 $(document).ready(() => {
-	console.log(sheetsURLs);
+	// console.log(sheetsURLs);
 
 	const newBlogPost = new BlogPost(
 		'I kinda understand interfaces better now',
