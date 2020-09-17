@@ -207,6 +207,10 @@ $contactForm.on('submit', function (event) {
 
 	emailjs.sendForm(serviceID, templateID, this).then(
 		function (response) {
+			const name = $contactForm.find("input[name='name']").val();
+			alert(
+				`Thanks for your email, ${name}, I'll do my best to get back to you within 24 hours! \n\nBest, Sam`
+			);
 			console.log('SUCCESS!', response.status, response.text);
 		},
 		function (error) {
@@ -214,5 +218,3 @@ $contactForm.on('submit', function (event) {
 		}
 	);
 });
-
-// emailjs.sendForm('service_yvxcdkg', 'template_1z4c1oa', '#contactForm');

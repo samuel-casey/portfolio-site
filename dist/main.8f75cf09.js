@@ -391,11 +391,13 @@ $contactForm.on('submit', function (event) {
   var templateID = 'template_1z4c1oa';
   console.log(this);
   emailjs.sendForm(serviceID, templateID, this).then(function (response) {
+    var name = $contactForm.find("input[name='name']").val();
+    alert("Thanks for your email, ".concat(name, ", I'll do my best to get back to you within 24 hours! \n\nBest, Sam"));
     console.log('SUCCESS!', response.status, response.text);
   }, function (error) {
     console.log('FAILED...', error);
   });
-}); // emailjs.sendForm('service_yvxcdkg', 'template_1z4c1oa', '#contactForm');
+});
 },{"./classes":"../js/classes.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
