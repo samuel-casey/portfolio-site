@@ -32,7 +32,6 @@ $(document).ready(() => {
 		.then(() => {
 			// find cards that were appended with a class of 'hidden'
 			const $hiddenProjects = $('div.card.hidden');
-			console.log('hidden projects - ', $hiddenProjects);
 
 			// add click event to 'more projects' button to show hidden projects onClick
 			$showMoreProjects.on('click', () => {
@@ -49,7 +48,6 @@ $(document).ready(() => {
 		.then(() => {
 			// find cards that were appended with a class of 'hidden'
 			const $hiddenBlogs = $('a.blogPost.hidden');
-			console.log('hidden blogs - ', $hiddenBlogs);
 
 			// add click event to 'more projects' button to show hidden projects onClick
 			$showMoreBlogs.on('click', () => {
@@ -65,6 +63,7 @@ $(document).ready(() => {
 /////////////////////////////////////////////////////////////
 
 const $dropdownMenu = $('header ul#dropdownMenu');
+const $dropdownContainer = $('div#dropdownContainer');
 const $hamburgerButton = $('i.fas.fa-bars');
 const $hiddenBlogs = $('a.blogPost.hidden');
 const $showMoreProjects = $('#moreProjects');
@@ -72,7 +71,10 @@ const $showMoreBlogs = $('#moreBlogs');
 
 /////// TOGGLE HAMBURGER MENU
 
+let menuDown = false;
+
 $hamburgerButton.on('click', () => {
+	console.log('state before toggle - ', menuDown);
 	$dropdownMenu.slideToggle(500);
 });
 
@@ -92,9 +94,11 @@ if ($navbar.length > 0) {
 		let scroll_top = $(this).scrollTop();
 		// if the current height is less than the last height, the user scrolled up and the class scrolled-up should be added
 		if (scroll_top < last_scroll_top) {
+			console.log('<', scroll_top);
 			$navbar.removeClass('scrolled-down').addClass('scrolled-up');
 			// if the current height is greater than the last height, the user scrolled down and the class scrolled-up should be added
-		} else {
+		} else if (scroll_top > last_scroll_top) {
+			console.log('>', scroll_top);
 			$navbar.removeClass('scrolled-up').addClass('scrolled-down');
 		}
 		last_scroll_top = scroll_top;

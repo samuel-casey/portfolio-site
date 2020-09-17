@@ -252,8 +252,7 @@ $(document).ready(function () {
     return renderData(projectData);
   }).then(function () {
     // find cards that were appended with a class of 'hidden'
-    var $hiddenProjects = $('div.card.hidden');
-    console.log('hidden projects - ', $hiddenProjects); // add click event to 'more projects' button to show hidden projects onClick
+    var $hiddenProjects = $('div.card.hidden'); // add click event to 'more projects' button to show hidden projects onClick
 
     $showMoreProjects.on('click', function () {
       for (var proj in $hiddenProjects) {
@@ -265,8 +264,7 @@ $(document).ready(function () {
     return renderData(blogData);
   }).then(function () {
     // find cards that were appended with a class of 'hidden'
-    var $hiddenBlogs = $('a.blogPost.hidden');
-    console.log('hidden blogs - ', $hiddenBlogs); // add click event to 'more projects' button to show hidden projects onClick
+    var $hiddenBlogs = $('a.blogPost.hidden'); // add click event to 'more projects' button to show hidden projects onClick
 
     $showMoreBlogs.on('click', function () {
       for (var blog in $hiddenBlogs) {
@@ -279,12 +277,15 @@ $(document).ready(function () {
 /////////////////////////////////////////////////////////////
 
 var $dropdownMenu = $('header ul#dropdownMenu');
+var $dropdownContainer = $('div#dropdownContainer');
 var $hamburgerButton = $('i.fas.fa-bars');
 var $hiddenBlogs = $('a.blogPost.hidden');
 var $showMoreProjects = $('#moreProjects');
 var $showMoreBlogs = $('#moreBlogs'); /////// TOGGLE HAMBURGER MENU
 
+var menuDown = false;
 $hamburgerButton.on('click', function () {
+  console.log('state before toggle - ', menuDown);
   $dropdownMenu.slideToggle(500);
 }); // add padding top to show content behind navbar
 // $('body').css('padding-top', $('.navbar').outerHeight() + 'px');
@@ -300,8 +301,10 @@ if ($navbar.length > 0) {
     var scroll_top = $(this).scrollTop(); // if the current height is less than the last height, the user scrolled up and the class scrolled-up should be added
 
     if (scroll_top < last_scroll_top) {
+      console.log('<', scroll_top);
       $navbar.removeClass('scrolled-down').addClass('scrolled-up'); // if the current height is greater than the last height, the user scrolled down and the class scrolled-up should be added
-    } else {
+    } else if (scroll_top > last_scroll_top) {
+      console.log('>', scroll_top);
       $navbar.removeClass('scrolled-up').addClass('scrolled-down');
     }
 
@@ -411,7 +414,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62852" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50621" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
