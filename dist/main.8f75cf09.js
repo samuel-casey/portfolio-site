@@ -238,12 +238,12 @@ var $projectCardsArr = $('.card');
 var $blogsArr = $('.blogPost'); ////////// LOAD DATA FROM GOOGLE SHEETS WHEN DOCUMENT READY
 
 $(document).ready(function () {
-  var docWidth = document.documentElement.offsetWidth;
-  [].forEach.call(document.querySelectorAll('*'), function (el) {
-    if (el.offsetWidth > docWidth) {
-      console.log(el);
-    }
-  });
+  // var docWidth = document.documentElement.offsetWidth;
+  // [].forEach.call(document.querySelectorAll('*'), function (el) {
+  // 	if (el.offsetWidth > docWidth) {
+  // 		console.log(el);
+  // 	}
+  // });
   var sheetsURLs = {
     projects: projectsAsJSON,
     blogs: blogsAsJSON
@@ -301,27 +301,22 @@ if ($navbar.length > 0) {
     var scroll_top = $(this).scrollTop(); // if the current height is less than the last height, the user scrolled up and the class scrolled-up should be added
 
     if (scroll_top < last_scroll_top) {
-      console.log('<', scroll_top);
       $navbar.removeClass('scrolled-down').addClass('scrolled-up'); // if the current height is greater than the last height, the user scrolled down and the class scrolled-up should be added
     } else if (scroll_top > last_scroll_top) {
-      console.log('>', scroll_top);
       $navbar.removeClass('scrolled-up').addClass('scrolled-down');
     }
 
     last_scroll_top = scroll_top;
   });
 } /// SUBMIT CONTACT FORM ////
-
-
-$('article#contactContainer form').on('click', function (event) {
-  event.preventDefault();
-}); //////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 // FUNCTIONS TO FETCH DATA FROM GOOGLE SHEETS AND RENDER NEW PAGE ELEMENTS BASED ON THE DATA RETRIEVED //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // function logData(data) {
 // 	console.log(`app - ${data[0].type}`, data);
 // 	return data;
 // }
+
 
 function getDataFromSheet(sheet) {
   return $.ajax({
@@ -388,9 +383,19 @@ function renderData(data) {
 } ////////////// CONTACT FORM //////////////////
 
 
-var $contactForm = $('');
+var $contactForm = $('#contactForm');
 emailjs.init('user_NEvPQoryWpJOh3UHul6iB');
-emailjs.sendForm('service_yvxcdkg');
+$contactForm.on('submit', function (event) {
+  event.preventDefault();
+  var serviceID = 'service_yvxcdkg';
+  var templateID = 'template_1z4c1oa';
+  console.log(this);
+  emailjs.sendForm(serviceID, templateID, this).then(function (response) {
+    console.log('SUCCESS!', response.status, response.text);
+  }, function (error) {
+    console.log('FAILED...', error);
+  });
+}); // emailjs.sendForm('service_yvxcdkg', 'template_1z4c1oa', '#contactForm');
 },{"./classes":"../js/classes.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
