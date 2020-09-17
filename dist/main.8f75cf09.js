@@ -385,7 +385,12 @@ function renderData(data) {
       return newCard;
     });
   }
-}
+} ////////////// CONTACT FORM //////////////////
+
+
+var $contactForm = $('');
+emailjs.init('user_NEvPQoryWpJOh3UHul6iB');
+emailjs.sendForm('service_yvxcdkg');
 },{"./classes":"../js/classes.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

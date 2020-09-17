@@ -196,3 +196,11 @@ function renderData(data) {
 		});
 	}
 }
+
+////////////// CONTACT FORM //////////////////
+
+const $contactForm = $('')
+
+emailjs.init('user_NEvPQoryWpJOh3UHul6iB');
+
+emailjs.sendForm('service_yvxcdkg', );

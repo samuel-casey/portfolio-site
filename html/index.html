@@ -15,6 +15,9 @@
 			crossorigin="anonymous"
 		/>
 
+		<!-- emailJS -->
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
+
 		<!-- JS, Popper.js, and jQuery -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
@@ -295,7 +298,8 @@
 						<input
 							type="text"
 							class="form-control"
-							id="exampleFormControlInput1"
+							name="name"
+							id="name"
 							placeholder="Your name"
 						/>
 					</div>
@@ -304,7 +308,8 @@
 						<input
 							type="email"
 							class="form-control"
-							id="exampleFormControlInput1"
+							name="email"
+							id="email"
 							placeholder="name@example.com"
 						/>
 					</div>
@@ -312,7 +317,8 @@
 						<label for="Message">Message</label>
 						<textarea
 							class="form-control"
-							id="exampleFormControlTextarea1"
+							name="message"
+							id="message"
 							rows="3"
 							placeholder="Message"
 						></textarea>
