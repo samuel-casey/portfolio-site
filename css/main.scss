@@ -98,6 +98,22 @@ main {
 		line-height: 1.25rem;
 		width: 100%;
 
+		.carousel-fade {
+			background-color: red;
+
+			.carousel-item {
+				opacity: 0;
+				transition-duration: 1500ms;
+				transition-property: opacity;
+			}
+
+			.active
+				.carousel-item-next.carousel-item-left
+				.carousel-item-prev.carousel-item-right {
+				opacity: 1;
+			}
+		}
+
 		h1 {
 			font-size: 1.75rem;
 			line-height: 2rem;
