@@ -59,8 +59,8 @@ $(document).ready(() => {
 });
 
 /*==============
-			DOM MANIPULATION
-			================*/
+DOM MANIPULATION
+================*/
 
 // add padding top to show content behind navbar
 $('body').css('padding-top', $('.navbar').outerHeight() + 'px');

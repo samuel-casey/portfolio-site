@@ -152,27 +152,28 @@ SEND email to my account
 
 | Component               | Priority | Estimated Time | Actual Time |
 | ----------------------- | :------: | :------------: | :---------: |
-| Hamburger               |    H     |      1hr       |     hr      |
-| Projects Section        |    H     |      2hr       |     hr      |
-| Regular Nav             |    M     |      1hr       |     hr      |
-| Contact Form            |    H     |      2hr       |     hr      |
-| About section           |    H     |      3hr       |     hr      |
-| Working with API (tot.) |    H     |      2hr       |     hr      |
-| Media queries           |    H     |      3hr       |     hr      |
-| Social Media Icons      |    M     |      1hr       |     hr      |
-| Main CSS                |    H     |      4hr       |     hr      |
-| **Total**               | **N/A**  |   **19hrs**    |   **hrs**   |
+| Hamburger               |    H     |      1hr       |     2hr     |
+| Projects Section        |    H     |      2hr       |     1hr     |
+| Regular Nav             |    M     |      1hr       |     1hr     |
+| Contact Form            |    H     |      2hr       |     1hr     |
+| About section           |    H     |      3hr       |     3hr     |
+| Working with API (tot.) |    H     |      2hr       |     5hr     |
+| Media queries           |    H     |      3hr       |     4hr     |
+| Social Media Icons      |    M     |      1hr       |    15min    |
+| Main CSS                |    H     |      4hr       |     2hr     |
+| **Total**               | **N/A**  |   **19hrs**    |  **21hrs**  |
 
 #### PostMVP
 
 | Component            | Priority | Estimated Time | Actual Time |
 | -------------------- | :------: | :------------: | :---------: |
-| Github Pages         |    H     |      1hr       |     -hr     |
-| Firebase hosting     |    M     |      2hr       |     hr      |
-| Firebase DB          |    H     |      3hr       |     hr      |
-| Firebase upload form |    L     |      4hr       |     -hr     |
-| Medium Article       |    L     |      1hr       |     hr      |
-| **Total**            | **N/A**  |   **11hrs**    |   **hrs**   |
+| Github Pages         |    H     |      1hr       |     N/A     |
+| Refactor to TS       |    H     |      3hr       |     6hr     |
+| Firebase hosting     |    M     |      2hr       |   1.5hrs    |
+| Firebase DB          |    H     |      3hr       |     N/A     |
+| Firebase upload form |    L     |      4hr       |     N/A     |
+| Medium Article       |    L     |      1hr       |     N/A     |
+| **Total**            | **N/A**  |   **11hrs**    | **7.5hrs**  |
 
 ## Additional Libraries
 
@@ -181,13 +182,60 @@ Sass
 
 ## Code Snippet
 
-TBD
+Below is a BlogPost class that takes properties provided by the AJAX call to my google sheets workbook, and displays renders a new blog post element to the page using the method `createNewBlogPostElement()`. I'm proud of this because it's the first time I've really harnessed the power of Classes in a project, and I have it in a separate module, which makes my `app` file a lot cleaner.
+
+```
+class BlogPost {
+	title: string;
+	tag: string;
+	url: string;
+	hide: boolean;
+	constructor(title: string, tag: string, url: string, hide: boolean) {
+		this.title = title;
+		this.tag = tag;
+		this.url = url;
+		this.hide = hide;
+	}
+
+	createNewBlogPostElement() {
+		// create elements of blog post
+		const $blogPost: JQuery = $('<a>')
+			.addClass('blogPost')
+			.attr('target', 'blank');
+		const $blogTitle: JQuery = $('<p>').addClass('blogTitle');
+		const $blogTag: JQuery = $('<div>').addClass('blogTag');
+
+		// combine elements of new blog post together
+		$blogPost.append($blogTitle).append($blogTag);
+
+		// add data to new blog post
+
+		$blogPost.attr('href', this.url);
+		$blogTitle.text(this.title);
+		$blogTag.text(this.tag).addClass(this.tag);
+
+		// add a class of hidden if value of 'hide' passed to instance in main.js === true
+		this.hide === true ? $blogPost.addClass('hidden') : null;
+
+		// find blogs container on page
+		const $blogsContainer: JQuery = $('div.blogElements');
+
+		// append new blog post to page
+		$blogsContainer.append($blogPost);
+	}
+}
+```
 
 ## Issues and Resolutions
 
-TBD
+**createNewBlogPost() method works with jQuery elements assigned a type of 'object', but I get an error in the terminal: `Property 'append' does not exist on type 'object'.**`
 
-#### SAMPLE.....
+- instead of defining `jQuery` objects as `jQuery-object: object` i need to assign them a type of **`JQuery`** , which lets TypeScript know it should expect a specific type of object, a JQuery object, which is defined via an **interface**, that I imported when I ran npm install @types/jquery when I first set up the project
 
-**ERROR**: app.js:34 Uncaught SyntaxError: Unexpected identifier  
-**RESOLUTION**: Missing comma after first object in sources {} object
+**- Ran into error: TS2355: A function whose declared type is neither 'void' nor 'any' must return a value.**
+
+- Used the syntax: return {object} as SheetRow interface, instead of asserting in the function declaration that the function should should return SheetRow interface
+
+**Couldn't use 'this' to refer to the contact form in the EmailJS API call when I refactored it to TS**
+
+- Needed to use a more specific type declaration -- JQuery<HTMLFormElement>
