@@ -51,8 +51,16 @@ DOM MANIPULATION
 $('body').css('padding-top', $('.navbar').outerHeight() + 'px');
 var $dropdownMenu = $('header ul#dropdownMenu');
 var $hamburgerButton = $('i.fas.fa-bars');
+var menuState = 'up';
 $hamburgerButton.on('click', function () {
-    $dropdownMenu.slideToggle(500);
+    console.log(menuState);
+    $dropdownMenu.slideDown(500);
+    if (menuState === 'up') {
+        $dropdownMenu.slideDown(500);
+    }
+    else {
+        $dropdownMenu.slideUp(500);
+    }
 });
 // Found this function here: bootstrap-menu.com/detail-smart-hide.html
 // it works by checking to see if the window's current height is < the window's last height

@@ -421,8 +421,16 @@ DOM MANIPULATION
 $('body').css('padding-top', $('.navbar').outerHeight() + 'px');
 var $dropdownMenu = $('header ul#dropdownMenu');
 var $hamburgerButton = $('i.fas.fa-bars');
+var menuState = 'up';
 $hamburgerButton.on('click', function () {
-  $dropdownMenu.slideToggle(500);
+  console.log(menuState);
+  $dropdownMenu.slideDown(500);
+
+  if (menuState === 'up') {
+    $dropdownMenu.slideDown(500);
+  } else {
+    $dropdownMenu.slideUp(500);
+  }
 }); // Found this function here: bootstrap-menu.com/detail-smart-hide.html
 // it works by checking to see if the window's current height is < the window's last height
 //// if current height < last height, user scrolled up --> show navbar
@@ -565,7 +573,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54267" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53439" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

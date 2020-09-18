@@ -61,9 +61,16 @@ $('body').css('padding-top', $('.navbar').outerHeight() + 'px');
 
 const $dropdownMenu = $('header ul#dropdownMenu');
 const $hamburgerButton = $('i.fas.fa-bars');
+let menuState = 'up';
 
 $hamburgerButton.on('click', () => {
-	$dropdownMenu.slideToggle(500);
+	console.log(menuState);
+	$dropdownMenu.slideDown(500);
+	if (menuState === 'up') {
+		$dropdownMenu.slideDown(500);
+	} else {
+		$dropdownMenu.slideUp(500);
+	}
 });
 
 // Found this function here: bootstrap-menu.com/detail-smart-hide.html
