@@ -1,182 +1,60 @@
-/////////////////////////////////////////////////////////////
-/////////////////////////// DATA ////////////////////////////
-/////////////////////////////////////////////////////////////
-
-import { BlogPost, ProjectCard } from './contentClasses';
+// ====== IMPORT CLASSES & INTERFACES ====== //
+import { BlogPost, ProjectCard } from './classes';
+import { ProjectSheetRow, BlogSheetRow, SheetsURLs } from './interfaces';
+import emailjs from 'emailjs-com';
 
 const sheetId: string = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
 const projectsAsJSON: string = `https://spreadsheets.google.com/feeds/list/${sheetId}/1/public/values?alt=json`;
 const blogsAsJSON: string = `https://spreadsheets.google.com/feeds/list/${sheetId}/2/public/values?alt=json`;
-const $projectCardsArr = $('.card');
+const NUM_VISIBLE_PROJECTS_ON_LOAD: number = 2;
+const NUM_VISIBLE_BLOGS_ON_LOAD: number = 2;
+const $showMoreProjects: JQuery = $('#moreProjects');
+const $showMoreBlogs: JQuery = $('#moreBlogs');
 
-interface WorkbookObject {
-	blogs: object;
-	projects: object;
-}
+const sheetsURLs: SheetsURLs = {
+	projects: projectsAsJSON,
+	blogs: blogsAsJSON,
+};
 
 $(document).ready(() => {
-	console.log(BlogPost, ProjectCard);
-
-	const sheetsURLs = {
-		projects: projectsAsJSON,
-		blogs: blogsAsJSON,
-	};
-
-	// const workbookData: { [k: string]: any } = {};
-	const workbookData: [{}];
-
-	const testArr: object[] = [{}];
-
-	testArr.push({ test: 'test' });
-
-	console.log('top testArr = ', testArr[1]);
-
 	///////// GET PROJECT DATA ///////////
-	let projectObjects: object[] = [];
-	let blogObjects: object[] = [];
+	getDataFromSheet(sheetsURLs.projects)
+		.then((projects): void => {
+			return renderData(projects);
+		})
+		.then((): void => {
+			const $hiddenProjects: JQuery = $('div.card.hidden');
 
-	const contentArraysObj: { [k: string]: any } = {};
-	const projCards = [];
-	const blogPosts = [];
+			// add click event to 'more projects' button to show hidden projects onClick
+			$showMoreProjects.on('click', (): void => {
+				for (let i = 0; i < $hiddenProjects.length; i++) {
+					const $hiddenProj = $hiddenProjects.eq(i);
 
-	// let workbookData;
-
-	// loop through URLS for projects and blogs sheets and do an AJAX request for each
-	for (let i in sheetsURLs) {
-		$.ajax({ url: sheetsURLs[i] })
-			.then((sheetData) => {
-				// create a new property for the object workbookData named 'projects' or 'blogs', and assign the current sheet's data to that property
-				workbookData.push({ sheetData });
-				return workbookData;
-			})
-			// .then((workbookData) => {
-			// 	console.log(workbookData.blogs);
-			// 	// create a new object to house the data to be rendered on the page (the sheet's columns)
-			// 	const dataForPage = {};
-			// 	// create a new prop in dataForPage titled either 'projects' or 'blogs', and set its value equal to an Array of the table rows
-			// 	dataForPage[i] = workbookData[i].feed.entry;
-			// 	console.log('dataForPage', dataForPage);
-			// 	// loop through each Array item (row in the sheet), check its contentType, and create an object for each item
-			// 	for (let contentItem of dataForPage[i]) {
-			// 		let contentType: string = contentItem.gsx$contenttype.$t;
-
-			// 		// create new blogObject for each row in the Blogs sheet
-			// 		if (contentType === 'blog') {
-			// 			let blogObj = {
-			// 				type: contentItem.gsx$contenttype.$t,
-			// 				title: contentItem.gsx$title.$t,
-			// 				tags: contentItem.gsx$tags.$t,
-			// 				url: contentItem.gsx$tags.$t,
-			// 			};
-
-			// 			// push new blog object to an array of all blogObjects
-			// 			blogObjects.push(blogObj);
-			// 			console.log('blogObjects - ', blogObjects);
-
-			// 			// push blogObjects to an array called contentArrayObjs
-			// 			if (!contentArraysObj.blogs) {
-			// 				contentArraysObj.blogs = blogObjects;
-			// 			}
-
-			// 			// create new projectObject for each row in the Projects sheet
-			// 		} else if (contentType === 'project') {
-			// 			let projectObj = {
-			// 				type: contentItem.gsx$contenttype.$t,
-			// 				title: contentItem.gsx$title.$t,
-			// 				image: contentItem.gsx$image.$t,
-			// 				techStack: contentItem.gsx$techstack.$t,
-			// 				description: contentItem.gsx$description.$t,
-			// 				url: contentItem.gsx$url.$t,
-			// 			};
-
-			// 			// push new project object to an array of all projectObjects
-			// 			projectObjects.push(projectObj);
-			// 			console.log('projectObjects - ', projectObjects);
-
-			// 			// push projectObjects to an array called contentArrayObjs
-			// 			if (!contentArraysObj.projects) {
-			// 				contentArraysObj.projects = projectObjects;
-			// 			}
-			// 			console.log('cArrsObj - ', contentArraysObj);
-			// 		}
-			// 	}
-			// 	// return contentArraysObj -- which will be used to access each individual list of projects/blogs
-			// 	return contentArraysObj;
-			// })
-			// .then((contentArraysObj) => {
-			// 	const projectList = contentArraysObj.projects;
-			// 	const blogList = contentArraysObj.blogs;
-
-			// 	console.log('list -', projectList);
-			// 	console.log('list - ', blogList);
-
-			// 	// create a new instance of projectClass for each project in the projectList
-			// 	for (let projIndex in projectList) {
-			// 		const projToRender = new ProjectCard(
-			// 			projectList[projIndex].title,
-			// 			projectList[projIndex].image,
-			// 			projectList[projIndex].description,
-			// 			projectList[projIndex].techStack,
-			// 			projectList[projIndex].url
-			// 		);
-			// 		projCards.push(projToRender);
-			// 	}
-
-			// 	// create a new instance of objectClass for each project in the objectList
-			// 	for (let blogIndex in blogList) {
-			// 		const blogToRender = new BlogPost(
-			// 			blogList[blogIndex].title,
-			// 			blogList[blogIndex].tag,
-			// 			blogList[blogIndex].url
-			// 		);
-			// 		blogPosts.push(blogToRender);
-			// 	}
-			// })
-			.catch((error) => {
-				console.log(error);
+					$hiddenProj.removeClass('hidden').addClass('visible');
+				}
 			});
-	}
+		});
 
-	console.log('workbookData', workbookData);
+	getDataFromSheet(sheetsURLs.blogs)
+		.then((blogs): void => {
+			return renderData(blogs);
+		})
+		.then((): void => {
+			const $hiddenBlogs: JQuery = $('a.blogPost.hidden');
 
-	console.log('wbData.blogs', workbookData[2]);
+			$showMoreBlogs.on('click', (): void => {
+				for (let i = 0; i < $hiddenBlogs.length; i++) {
+					const $hiddenBlog = $hiddenBlogs.eq(i);
 
-	// testArr.push({ c: 'c' });
-	// console.log('testArray', testArr[1]);
-
-	const renderBlogPosts = function (blogsToRender) {
-		console.log(blogsToRender);
-		console.log('AAAA');
-		for (let blog of blogsToRender) {
-			console.log(blog.title);
-		}
-	};
-	// console.log(projCards, blogPosts);
-	// renderBlogPosts(blogPosts);
-
-	// const populateContentArrays = function (contentObjects) {
-	// 	console.log(contentObjects);
-	// 	for (let idx = 0; idx < $projectCardsArr.length; idx++) {
-	// 		console.log($projectCardsArr.eq(idx));
-	// 	}
-	// };
-	// populateContentArrays(contentArraysObj);
+					$hiddenBlog.removeClass('hidden').addClass('visible');
+				}
+			});
+		});
 });
 
-/* renderContent(content) {
-	LOOP THRU contentObjects.projects
-	LOOP THRU contentObjects.blogs
-	LOOP THRU blogsArray
-		FOR EACH blog
-			DECLARE new Blog
-	
-}
-
-*/
-
-/////////////////////////////////////////////////////////////
-/////////////////// DOM MANIPULATION ////////////////////////
-/////////////////////////////////////////////////////////////
+/*==============
+DOM MANIPULATION
+================*/
 
 const $dropdownMenu = $('header ul#dropdownMenu');
 const $hamburgerButton = $('i.fas.fa-bars');
@@ -185,11 +63,12 @@ $hamburgerButton.on('click', () => {
 	$dropdownMenu.slideToggle(500);
 });
 
-//Found this function here: bootstrap-menu.com/detail-smart-hide.html
-// the way it works is by checking for the navbar's height
+// Found this function here: bootstrap-menu.com/detail-smart-hide.html
+// it works by checking to see if the window's current height is < the window's last height
+//// if current height < last height, user scrolled up --> show navbar
+//// if current height > last height, user scrolled down --> hide navbar
 
-// add padding top to show content behind navbar
-https: $('body').css('padding-top', $('.navbar').outerHeight() + 'px');
+// detect scroll top or down
 
 const $navbar = $('.smart-scroll');
 
@@ -199,8 +78,10 @@ if ($navbar.length > 0) {
 	let last_scroll_top: number = 0;
 	$(window).on('scroll', function () {
 		let scroll_top = $(this).scrollTop();
+		// if the current height is less than the last height, the user scrolled up and the class scrolled-up should be added
 		if (scroll_top < last_scroll_top) {
 			$navbar.removeClass('scrolled-down').addClass('scrolled-up');
+			// if the current height is greater than the last height, the user scrolled down and the class scrolled-up should be added
 		} else {
 			$navbar.removeClass('scrolled-up').addClass('scrolled-down');
 		}
@@ -210,18 +91,115 @@ if ($navbar.length > 0) {
 
 /// SUBMIT CONTACT FORM
 
-$('article#contactContainer form').on('click', (event) => {
-	event.preventDefault();
-});
+/*==================================================================================================
+FUNCTIONS TO FETCH DATA FROM GOOGLE SHEETS AND RENDER NEW PAGE ELEMENTS BASED ON THE DATA RETRIEVED 
+==================================================================================================*/
 
-/// FUNCTIONS
-function logData(projects) {
-	console.log('app - projects', projects);
-	// console.log('app - blog', blogs);
-	return projects;
-	// the rest of your app goes here
+// RENDER PAGE ELEMENTS
+function renderData(data: ProjectSheetRow[] | BlogSheetRow[]) {
+	if (data[0].type === 'project') {
+		data.forEach((row, index) => {
+			let newCard;
+			if (index < NUM_VISIBLE_PROJECTS_ON_LOAD) {
+				newCard = new ProjectCard(
+					row.title,
+					row.image,
+					row.description,
+					row.techStack,
+					row.siteUrl,
+					row.repoUrl,
+					row.infoUrl,
+					false
+				);
+			} else {
+				newCard = new ProjectCard(
+					row.title,
+					row.image,
+					row.description,
+					row.techStack,
+					row.siteUrl,
+					row.repoUrl,
+					row.infoUrl,
+					true
+				);
+			}
+
+			newCard.createNewProjectCardElement();
+
+			return newCard;
+		});
+	}
+
+	if (data[0].type === 'blog') {
+		data.forEach((row, index) => {
+			let newBlogPost;
+			if (index < NUM_VISIBLE_BLOGS_ON_LOAD) {
+				newBlogPost = new BlogPost(row.title, row.tags, row.url, false);
+			} else {
+				newBlogPost = new BlogPost(row.title, row.tags, row.url, true);
+			}
+			newBlogPost.createNewBlogPostElement();
+
+			return newBlogPost;
+		});
+	}
 }
 
-// function logBlogs(blogs) {
-// 	return blogs;
-// }
+// make an AJAX call to the google sheets API and return a blog or project object
+function getDataFromSheet(sheet: string) {
+	return $.ajax({ url: sheet }).then((data) => {
+		let rows;
+
+		if (data.feed.title.$t === 'Projects') {
+			rows = data.feed.entry.map(function (item) {
+				return {
+					type: item.gsx$contenttype.$t,
+					title: item.gsx$title.$t,
+					image: item.gsx$image.$t,
+					techStack: item.gsx$techstack.$t,
+					description: item.gsx$description.$t,
+					siteUrl: item.gsx$siteurl.$t,
+					repoUrl: item.gsx$repourl.$t,
+					infoUrl: item.gsx$infourl.$t,
+				} as ProjectSheetRow;
+			});
+		}
+
+		if (data.feed.title.$t === 'Blogs') {
+			rows = data.feed.entry.map(function (item) {
+				return {
+					type: item.gsx$contenttype.$t,
+					title: item.gsx$title.$t,
+					tags: item.gsx$tags.$t,
+					url: item.gsx$url.$t,
+				} as BlogSheetRow;
+			});
+		}
+		return rows;
+	});
+}
+
+const $contactForm: JQuery<HTMLFormElement> = $('#contactForm');
+
+const serviceID: string = 'service_yvxcdkg';
+const templateID: string = 'template_1z4c1oa';
+const userID: string = 'user_NEvPQoryWpJOh3UHul6iB';
+
+emailjs.init(userID);
+
+$contactForm.on('submit', function (event) {
+	event.preventDefault();
+
+	emailjs.sendForm(serviceID, templateID, this).then(
+		function (response) {
+			const name = $contactForm.find("input[name='name']").val();
+			alert(
+				`Thanks for your email, ${name}, I'll do my best to get back to you within 24 hours! \n\nBest, Sam`
+			);
+		},
+		function (error) {
+			alert(`FAILED TO SEND EMAIL -- ${error}`);
+			console.log('FAILED TO SEND EMAIL --', error);
+		}
+	);
+});

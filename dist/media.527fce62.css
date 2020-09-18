@@ -19,9 +19,16 @@ header nav ul#dropdownMenu {
   main article#aboutContainer {
     width: 100%;
     display: grid;
-    grid-template-columns: 500px 1fr;
-    grid-template-areas: "heading headshot" "moreAbout tech";
-    grid-gap: 5px;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 2fr 1fr;
+    grid-template-areas: "headshot heading" "tech tech";
+    grid-gap: 1rem;
+  }
+  main article#aboutContainer hr.gray {
+    grid-column: 1/span 2;
+    grid-row: 1;
+    align-self: flex-end;
+    margin: 0 auto;
   }
   main article#aboutContainer .headshotContainer {
     grid-area: headshot;
@@ -31,13 +38,8 @@ header nav ul#dropdownMenu {
   }
   main article#aboutContainer .headshotContainer img {
     width: 50% !important;
-    min-width: 250px;
+    min-width: 300px;
     margin-bottom: 2rem;
-  }
-  main article#aboutContainer hr.gray {
-    grid-area: heading;
-    align-self: flex-end;
-    width: 100%;
   }
   main article#aboutContainer hr.green {
     grid-row: -1;
@@ -66,20 +68,24 @@ main article#aboutContainer #aboutMe h2 {
   }
   main article#aboutContainer #socialMediaIcons {
     grid-area: headshot;
-    align-self: flex-end !important;
+    width: 400px !important;
     justify-self: center;
+  }
+  main article#aboutContainer #socialMediaIcons i {
+    font-size: 2.5rem !important;
   }
   main article#aboutContainer #technologies {
     grid-area: tech;
-    grid-template-areas: "header header header" "first first first" "second second second" "third third third" "fourth fourth fourth" !important;
+    display: flex;
     justify-self: center;
     width: 100%;
   }
-  main article#aboutContainer #technologies div.techLogo.sass {
-    grid-row: 4 !important;
+  main article#aboutContainer #technologies i {
+    font-size: 1.5rem !important;
+    width: 1;
   }
-  main article#aboutContainer #technologies div.techLogo.js {
-    grid-column: 2 !important;
+  main article#aboutContainer #technologies p {
+    font-size: 1rem !important;
   }
   main article#projectsContainer {
     justify-content: space-around;

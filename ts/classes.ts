@@ -1,5 +1,9 @@
 class BlogPost {
-	constructor(title, tag, url, hide) {
+	title: string;
+	tag: string;
+	url: string;
+	hide: boolean;
+	constructor(title: string, tag: string, url: string, hide: boolean) {
 		this.title = title;
 		this.tag = tag;
 		this.url = url;
@@ -8,14 +12,17 @@ class BlogPost {
 
 	createNewBlogPostElement() {
 		// create elements of blog post
-		const $blogPost = $('<a>').addClass('blogPost').attr('target', 'blank');
-		const $blogTitle = $('<p>').addClass('blogTitle');
-		const $blogTag = $('<div>').addClass('blogTag');
+		const $blogPost: JQuery = $('<a>')
+			.addClass('blogPost')
+			.attr('target', 'blank');
+		const $blogTitle: JQuery = $('<p>').addClass('blogTitle');
+		const $blogTag: JQuery = $('<div>').addClass('blogTag');
 
 		// combine elements of new blog post together
 		$blogPost.append($blogTitle).append($blogTag);
 
 		// add data to new blog post
+
 		$blogPost.attr('src', this.url);
 		$blogTitle.text(this.title);
 		$blogTag.text(this.tag).addClass(this.tag);
@@ -24,7 +31,7 @@ class BlogPost {
 		this.hide === true ? $blogPost.addClass('hidden') : null;
 
 		// find blogs container on page
-		const $blogsContainer = $('div.blogElements');
+		const $blogsContainer: JQuery = $('div.blogElements');
 
 		// append new blog post to page
 		$blogsContainer.append($blogPost);
@@ -32,15 +39,24 @@ class BlogPost {
 }
 
 class ProjectCard {
+	title: string;
+	image: string;
+	description: string;
+	techStack: string;
+	siteUrl: string;
+	repoUrl: string;
+	infoUrl: string;
+	hide: boolean;
+
 	constructor(
-		title,
-		image,
-		description,
-		techStack,
-		siteUrl,
-		repoUrl,
-		infoUrl,
-		hide
+		title: string,
+		image: string,
+		description: string,
+		techStack: string,
+		siteUrl: string,
+		repoUrl: string,
+		infoUrl: string,
+		hide: boolean
 	) {
 		this.title = title;
 		this.image = image;
@@ -52,18 +68,24 @@ class ProjectCard {
 		this.hide = hide;
 	}
 
-	createNewCardElement() {
+	createNewProjectCardElement() {
 		// create elements of project card
-		const $newCardContainer = $('<div>').addClass('card');
-		const $cardImg = $('<img>').addClass('card-img-top');
-		const $cardBody = $('<div>').addClass('card-body');
-		const $cardTitle = $('<h5>').addClass('card-title');
-		const $cardTechStack = $('<p>').addClass('techStack');
-		const $cardText = $('<p>').addClass('card-text');
-		const $cardBodyBtns = $('<div>').addClass('card-body-btns');
-		const $codeAnchor = $('<a>').addClass('btn btn-primary').text('Code');
-		const $linkAnchor = $('<a>').addClass('btn btn-primary').text('Link');
-		const $infoAnchor = $('<a>').addClass('btn btn-primary').text('Info');
+		const $newCardContainer: JQuery = $('<div>').addClass('card');
+		const $cardImg: JQuery = $('<img>').addClass('card-img-top');
+		const $cardBody: JQuery = $('<div>').addClass('card-body');
+		const $cardTitle: JQuery = $('<h5>').addClass('card-title');
+		const $cardTechStack: JQuery = $('<p>').addClass('techStack');
+		const $cardText: JQuery = $('<p>').addClass('card-text');
+		const $cardBodyBtns: JQuery = $('<div>').addClass('card-body-btns');
+		const $codeAnchor: JQuery = $('<a>')
+			.addClass('btn btn-primary')
+			.text('Code');
+		const $linkAnchor: JQuery = $('<a>')
+			.addClass('btn btn-primary')
+			.text('Link');
+		const $infoAnchor: JQuery = $('<a>')
+			.addClass('btn btn-primary')
+			.text('Info');
 
 		// combine elements of project card together
 		$newCardContainer.append($cardImg).append($cardBody);
@@ -85,7 +107,7 @@ class ProjectCard {
 		this.hide === true ? $newCardContainer.addClass('hidden') : null;
 
 		// find location on page to append newly created card
-		const $cardsContainer = $('article#projectsContainer').find(
+		const $cardsContainer: JQuery = $('article#projectsContainer').find(
 			'div.cardsContainer'
 		);
 
