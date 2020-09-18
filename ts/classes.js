@@ -18,7 +18,7 @@ var BlogPost = /** @class */ (function () {
         // combine elements of new blog post together
         $blogPost.append($blogTitle).append($blogTag);
         // add data to new blog post
-        $blogPost.attr('src', this.url);
+        $blogPost.attr('href', this.url);
         $blogTitle.text(this.title);
         $blogTag.text(this.tag).addClass(this.tag);
         // add a class of hidden if value of 'hide' passed to instance in main.js === true

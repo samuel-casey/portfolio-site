@@ -141,7 +141,7 @@ function () {
 
     $blogPost.append($blogTitle).append($blogTag); // add data to new blog post
 
-    $blogPost.attr('src', this.url);
+    $blogPost.attr('href', this.url);
     $blogTitle.text(this.title);
     $blogTag.text(this.tag).addClass(this.tag); // add a class of hidden if value of 'hide' passed to instance in main.js === true
 
@@ -576,7 +576,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51632" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52684" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
