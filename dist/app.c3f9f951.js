@@ -367,12 +367,12 @@ exports.default = {
     sendForm: sendForm
 };
 
-},{"./models/EmailJSResponseStatus":"../node_modules/emailjs-com/source/models/EmailJSResponseStatus.js","./services/ui/UI":"../node_modules/emailjs-com/source/services/ui/UI.js"}],"../ts/app.js":[function(require,module,exports) {
+},{"./models/EmailJSResponseStatus":"../node_modules/emailjs-com/source/models/EmailJSResponseStatus.js","./services/ui/UI":"../node_modules/emailjs-com/source/services/ui/UI.js"}],"js/app.js":[function(require,module,exports) {
 "use strict";
 
 exports.__esModule = true; // ====== IMPORT CLASSES & INTERFACES ====== //
 
-var classes_1 = require("./classes");
+var classes_1 = require("../../ts/classes");
 
 var emailjs_com_1 = require("emailjs-com");
 
@@ -535,7 +535,7 @@ $contactForm.on('submit', function (event) {
     console.log('FAILED TO SEND EMAIL --', error);
   });
 });
-},{"./classes":"../ts/classes.js","emailjs-com":"../node_modules/emailjs-com/source/index.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../../ts/classes":"../ts/classes.js","emailjs-com":"../node_modules/emailjs-com/source/index.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -563,7 +563,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60003" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59507" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -739,5 +739,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","../ts/app.js"], null)
-//# sourceMappingURL=/app.72bdb1ae.js.map
+},{}]},{},["../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
+//# sourceMappingURL=/app.c3f9f951.js.map
