@@ -49,14 +49,14 @@ main .visible {
   transition-timing-function: ease-in-out;
 }
 main p.techStack {
-  color: #77bbb1;
+  color: #568a82;
   font-style: italic;
 }
 main i#scrollArrow {
   position: fixed;
   bottom: 5px;
   right: 1px;
-  color: #77bbb1;
+  color: #568a82;
   font-size: 0.8rem;
 }
 main hr.gray {
@@ -89,7 +89,7 @@ main article#aboutContainer h2 {
   line-height: 2rem;
 }
 main article#aboutContainer h2 span.headingLink {
-  color: #77bbb1;
+  color: #568a82;
   font-weight: bold;
 }
 main article#aboutContainer h3 {
@@ -154,7 +154,7 @@ main article#aboutContainer div#technologies div {
 }
 main article#aboutContainer div#technologies div p {
   font-size: 16px;
-  color: #77bbb1;
+  color: #568a82;
 }
 main article#aboutContainer div.headshotContainer {
   display: flex;
@@ -264,7 +264,7 @@ main article#contactContainer form {
   border-radius: 0.5rem;
 }
 main article#contactContainer label {
-  color: #77bbb1;
+  color: #568a82;
   font-weight: bold;
   margin-top: 1rem;
 }
@@ -290,6 +290,7 @@ div#headerLogoContainer {
   display: flex;
   font-size: 1.5rem;
   padding: 0.5em 1em;
+  color: #77bbb1;
 }
 div#headerLogoContainer p {
   margin: 0;
@@ -323,7 +324,7 @@ header {
   width: 100vw;
 }
 header nav {
-  color: #77bbb1;
+  color: #568a82;
   background-color: #22577a;
   display: flex;
   flex-direction: row;
@@ -363,7 +364,7 @@ div.moreContent {
 }
 div.moreContent p {
   margin: 0 0.25rem 0 0;
-  color: #77bbb1;
+  color: #568a82;
 }
 div.moreContent i.fas.fa-angle-down {
   color: #22577a;
@@ -376,7 +377,7 @@ footer {
   width: 100vw;
 }
 footer a:hover {
-  color: #77bbb1;
+  color: #7ba5c9;
 }
 footer div#footerLogoContainer {
   display: flex;
@@ -462,10 +463,6 @@ div#dropdownContainer ul#dropdownMenu li.hamburgerItem a:hover {
   color: #77bbb1;
 }
 div#dropdownContainer ul#dropdownMenu li.hamburgerItem:last-of-type {
-  padding-bottom: 0;
-}
-
-header nav ul li:last-of-type {
   padding-bottom: 0;
 }
 

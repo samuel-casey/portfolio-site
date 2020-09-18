@@ -14,7 +14,8 @@ $not-white: #f5f5f5;
 $navy: #22577a;
 $newton-blue: #567d9f;
 $newton-blue-light: #7ba5c9;
-$sudbury-green: #77bbb1;
+$sudbury-green-dark: #568a82;
+$sudbury-green-light: rgba(119, 187, 177, 1);
 $header-height: auto;
 
 html {
@@ -65,7 +66,7 @@ main {
 	}
 
 	p.techStack {
-		color: $sudbury-green;
+		color: $sudbury-green-dark;
 		font-style: italic;
 	}
 
@@ -73,7 +74,7 @@ main {
 		position: fixed;
 		bottom: 5px;
 		right: 1px;
-		color: $sudbury-green;
+		color: $sudbury-green-dark;
 		font-size: 0.8rem;
 	}
 
@@ -110,7 +111,7 @@ main {
 			line-height: 2rem;
 
 			span.headingLink {
-				color: $sudbury-green;
+				color: $sudbury-green-dark;
 				font-weight: bold;
 			}
 		}
@@ -193,7 +194,7 @@ main {
 
 				p {
 					font-size: 16px;
-					color: $sudbury-green;
+					color: $sudbury-green-dark;
 				}
 			}
 		}
@@ -290,7 +291,7 @@ main {
 		}
 
 		.crypto {
-			background-color: $sudbury-green;
+			background-color: $sudbury-green-light;
 		}
 
 		.code {
@@ -323,7 +324,7 @@ main {
 		}
 
 		label {
-			color: $sudbury-green;
+			color: $sudbury-green-dark;
 			font-weight: bold;
 			margin-top: 1rem;
 		}
@@ -352,6 +353,7 @@ div#headerLogoContainer {
 	display: flex;
 	font-size: 1.5rem;
 	padding: 0.5em 1em;
+	color: $sudbury-green-light;
 
 	p {
 		margin: 0;
@@ -386,7 +388,7 @@ header {
 	height: $header-height;
 	width: 100vw;
 	nav {
-		color: $sudbury-green;
+		color: $sudbury-green-dark;
 		background-color: $navy;
 		display: flex;
 		flex-direction: row;
@@ -427,7 +429,7 @@ div.moreContent {
 
 	p {
 		margin: 0 0.25rem 0 0;
-		color: $sudbury-green;
+		color: $sudbury-green-dark;
 	}
 
 	i.fas.fa-angle-down {
@@ -442,7 +444,7 @@ footer {
 	width: 100vw;
 
 	a:hover {
-		color: $sudbury-green;
+		color: $newton-blue-light;
 	}
 
 	div#footerLogoContainer {
@@ -453,7 +455,7 @@ footer {
 
 		p {
 			font-size: 1rem;
-			color: $sudbury-green;
+			color: $sudbury-green-light;
 			margin: 0;
 			font-weight: normal;
 		}
@@ -534,7 +536,7 @@ div#dropdownContainer {
 			font-weight: bold;
 
 			a:hover {
-				color: $sudbury-green;
+				color: $sudbury-green-light;
 			}
 		}
 
@@ -542,10 +544,6 @@ div#dropdownContainer {
 			padding-bottom: 0;
 		}
 	}
-}
-
-header nav ul li:last-of-type {
-	padding-bottom: 0;
 }
 
 div#hamburgerContainer {
