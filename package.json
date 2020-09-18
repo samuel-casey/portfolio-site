@@ -6,6 +6,7 @@
     "@types/jquery": "^3.5.1",
     "bootstrap": "^4.5.2",
     "emailjs-com": "^2.6.3",
-    "jquery": "^3.5.1"
+    "jquery": "^3.5.1",
+    "parcel-bundler": "^1.12.4"
   }
 }

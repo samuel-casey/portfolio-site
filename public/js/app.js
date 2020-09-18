@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 // ====== IMPORT CLASSES & INTERFACES ====== //
-var classes_1 = require("./classes");
+var classes_1 = require("../../ts/classes");
 var emailjs_com_1 = require("emailjs-com");
 var sheetId = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
 var projectsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/1/public/values?alt=json";
@@ -43,24 +43,12 @@ $(document).ready(function () {
             }
         });
     });
-    // if (menuDown) {
-    // 	$dropdownMenu.slideDown(500);
-    // } else {
-    // 	$dropdownMenu.slideUp(500);
-    // }
 });
 /*==============
-            DOM MANIPULATION
-            ================*/
-// add padding top to show content behind navbar
-$('body').css('padding-top', $('.navbar').outerHeight() + 'px');
-var menuDown = false;
+DOM MANIPULATION
+================*/
 var $dropdownMenu = $('header ul#dropdownMenu');
 var $hamburgerButton = $('i.fas.fa-bars');
-function menuGoDown() {
-    // console.log('menuDown- ', menuDown);
-    // menuDown = !menuDown;
-}
 $hamburgerButton.on('click', function () {
     $dropdownMenu.slideToggle(500);
 });
@@ -83,8 +71,6 @@ if ($navbar.length > 0) {
         }
         else {
             $navbar.removeClass('scrolled-up').addClass('scrolled-down');
-            // // $dropdownMenu.triggerHandler('click');
-            // console.log('tHandler');
         }
         last_scroll_top_1 = scroll_top;
     });

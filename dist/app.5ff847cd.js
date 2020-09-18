@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../ts/classes.js":[function(require,module,exports) {
+})({"ts/classes.js":[function(require,module,exports) {
 "use strict";
 
 exports.__esModule = true;
@@ -367,7 +367,7 @@ exports.default = {
     sendForm: sendForm
 };
 
-},{"./models/EmailJSResponseStatus":"../node_modules/emailjs-com/source/models/EmailJSResponseStatus.js","./services/ui/UI":"../node_modules/emailjs-com/source/services/ui/UI.js"}],"../ts/app.js":[function(require,module,exports) {
+},{"./models/EmailJSResponseStatus":"../node_modules/emailjs-com/source/models/EmailJSResponseStatus.js","./services/ui/UI":"../node_modules/emailjs-com/source/services/ui/UI.js"}],"ts/app.js":[function(require,module,exports) {
 "use strict";
 
 exports.__esModule = true; // ====== IMPORT CLASSES & INTERFACES ====== //
@@ -411,14 +411,26 @@ $(document).ready(function () {
         $hiddenBlog.removeClass('hidden').addClass('visible');
       }
     });
-  });
+  }); // if (menuDown) {
+  // 	$dropdownMenu.slideDown(500);
+  // } else {
+  // 	$dropdownMenu.slideUp(500);
+  // }
 });
 /*==============
-DOM MANIPULATION
-================*/
+            DOM MANIPULATION
+            ================*/
+// add padding top to show content behind navbar
 
+$('body').css('padding-top', $('.navbar').outerHeight() + 'px');
+var menuDown = false;
 var $dropdownMenu = $('header ul#dropdownMenu');
 var $hamburgerButton = $('i.fas.fa-bars');
+
+function menuGoDown() {// console.log('menuDown- ', menuDown);
+  // menuDown = !menuDown;
+}
+
 $hamburgerButton.on('click', function () {
   $dropdownMenu.slideToggle(500);
 }); // Found this function here: bootstrap-menu.com/detail-smart-hide.html
@@ -438,7 +450,8 @@ if ($navbar.length > 0) {
     if (scroll_top < last_scroll_top_1) {
       $navbar.removeClass('scrolled-down').addClass('scrolled-up'); // if the current height is greater than the last height, the user scrolled down and the class scrolled-up should be added
     } else {
-      $navbar.removeClass('scrolled-up').addClass('scrolled-down');
+      $navbar.removeClass('scrolled-up').addClass('scrolled-down'); // // $dropdownMenu.triggerHandler('click');
+      // console.log('tHandler');
     }
 
     last_scroll_top_1 = scroll_top;
@@ -535,7 +548,7 @@ $contactForm.on('submit', function (event) {
     console.log('FAILED TO SEND EMAIL --', error);
   });
 });
-},{"./classes":"../ts/classes.js","emailjs-com":"../node_modules/emailjs-com/source/index.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./classes":"ts/classes.js","emailjs-com":"../node_modules/emailjs-com/source/index.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -563,7 +576,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62526" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56045" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -739,5 +752,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","../ts/app.js"], null)
+},{}]},{},["../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","ts/app.js"], null)
 //# sourceMappingURL=/app.5ff847cd.js.map

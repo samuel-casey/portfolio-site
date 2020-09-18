@@ -8,152 +8,158 @@ $sudbury-green: #77bbb1;
 $header-height: auto;
 
 @media only screen and (min-width: 768px) {
-    header {
-        nav {
-            div#hamburgerContainer {
-                display: none;
-            }
+	header {
+		nav {
+			div#hamburgerContainer {
+				display: none;
+			}
 
-            div#dropdownContainer,
-            ul#dropdownMenu {
-                width: 450px;
-                display: flex !important;
-                flex-direction: row !important;
-                justify-content: space-evenly;
-                top: 0% !important;
-                background-color: $navy !important;
-            }
-        }
-    }
+			div#dropdownContainer,
+			ul#dropdownMenu {
+				width: 450px;
+				display: flex !important;
+				flex-direction: row !important;
+				justify-content: space-evenly;
+				top: 0% !important;
+				background-color: $navy !important;
+			}
+		}
+	}
 
-    main {
-        div.moreContent {
-            align-self: flex-end;
-            grid-column: 1 / -1;
-        }
+	main {
+		div.moreContent {
+			align-self: flex-end;
+			grid-column: 1 / -1;
+		}
 
-        article#aboutContainer {
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            grid-template-rows: 2fr 1fr;
-            grid-template-areas:
-                "headshot heading"
-                "tech tech";
-            grid-gap: 1rem;
+		article#aboutContainer {
+			width: 100%;
+			display: grid;
+			grid-template-columns: 1fr 2fr;
+			grid-template-rows: 2fr 1fr;
+			grid-template-areas:
+				'headshot heading'
+				'tech tech';
+			grid-gap: 1rem;
 
-            hr.gray {
-                grid-column: 1 / span 2;
-                grid-row: 1;
-                align-self: flex-end;
-                margin: 0 auto;
-            }
+			hr.gray {
+				grid-column: 1 / span 2;
+				grid-row: 1;
+				align-self: flex-end;
+				margin: 0 auto;
+			}
 
-            .headshotContainer {
-                grid-area: headshot;
-                justify-content: space-between;
-                align-items: center;
-                flex-direction: column;
+			.headshotContainer {
+				grid-area: headshot;
+				justify-content: space-between;
+				align-items: center;
+				flex-direction: column;
 
-                img {
-                    width: 50% !important;
-                    min-width: 300px;
-                    margin-bottom: 2rem;
-                }
-            }
+				img {
+					width: 50% !important;
+					min-width: 300px;
+					margin-bottom: 2rem;
+				}
+			}
 
-            hr.green {
-                grid-row: -1;
-                grid-column: 1 / span 2;
-                align-self: flex-end;
-                margin: 5px;
-                justify-self: center;
-            }
+			hr.green {
+				grid-row: -1;
+				grid-column: 1 / span 2;
+				align-self: flex-end;
+				margin: 5px;
+				justify-self: center;
+			}
 
-            #aboutMe {
-                display: flex;
-                flex-direction: column;
-                grid-area: heading;
-                justify-content: center;
+			#aboutMe {
+				display: flex;
+				flex-direction: column;
+				grid-area: heading;
+				justify-content: center;
 
-                h1,
-                h2 {
-                    line-height: 2.5rem;
-                    width: 100%;
-                    justify-self: center;
-                    align-items: center;
-                }
-            }
+				h1,
+				h2 {
+					line-height: 2.5rem;
+					width: 100%;
+					justify-self: center;
+					align-items: center;
+				}
+			}
 
-            #moreAboutMe {
-                grid-area: moreAbout;
-                justify-content: center;
-                align-items: center;
-            }
+			#moreAboutMe {
+				grid-area: moreAbout;
+				justify-content: center;
+				align-items: center;
+			}
 
-            #socialMediaIcons {
-                grid-area: headshot;
-                width: 400px !important;
-                justify-self: center;
+			#socialMediaIcons {
+				grid-area: headshot;
+				width: 400px !important;
+				justify-self: center;
 
-                i {
-                    font-size: 2.5rem !important;
-                }
-            }
+				i {
+					font-size: 2.5rem !important;
+				}
+			}
 
-            #technologies {
-                grid-area: tech;
-                display: flex;
-                justify-self: center;
-                width: 100%;
+			#technologies {
+				grid-area: tech;
+				display: flex;
+				justify-self: center;
+				width: 100%;
+				color: black;
 
-                i {
-                    font-size: 1.5rem !important;
-                    width: 1;
-                }
+				i {
+					font-size: 2rem !important;
+				}
 
-                p {
-                    font-size: 1rem !important;
-                }
-            }
-        }
+				p {
+					font-size: 1rem !important;
+				}
 
-        article#projectsContainer {
-            justify-content: space-around;
+				div.techLogo {
+					img {
+						width: 2rem;
+					}
+				}
+			}
+		}
 
-            .cardsContainer {
-                display: flex;
-                grid-row: 3;
-                flex-wrap: wrap;
-                justify-content: space-evenly;
-            }
+		article#projectsContainer {
+			justify-content: space-around;
 
-            h2 {
-                width: fit-content;
-                justify-self: flex-start;
-            }
+			.cardsContainer {
+				display: flex;
+				grid-row: 3;
+				flex-wrap: wrap;
+				justify-content: space-evenly;
+			}
 
-            div.card {
-                max-width: 400px;
-            }
+			h2 {
+				width: fit-content;
+				justify-self: flex-start;
+			}
 
-            #moreProjects {
-                grid-row: 3;
-            }
+			div.card {
+				max-width: 400px;
+			}
 
-            hr.green {
-                justify-content: center;
-            }
-        }
-    }
+			#moreProjects {
+				grid-row: 3;
+			}
+
+			hr.green {
+				justify-content: center;
+			}
+		}
+	}
 }
 
 @media only screen and (min-width: 1024px) {
-    :root {
-        font-size: 19px;
-    }
+	:root {
+		font-size: 19px;
+	}
 
-    div.card {
-        max-width: 450px;
-    }
+	div.card {
+		max-width: 450px;
+	}
 }
