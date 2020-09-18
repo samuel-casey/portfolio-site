@@ -1,86 +1,62 @@
 "use strict";
-/////////////////////////////////////////////////////////////
-/////////////////////////// DATA ////////////////////////////
-/////////////////////////////////////////////////////////////
 exports.__esModule = true;
-var contentClasses_1 = require("./contentClasses");
+// ====== IMPORT CLASSES & INTERFACES ====== //
+var classes_1 = require("./classes");
+var emailjs_com_1 = require("emailjs-com");
 var sheetId = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
 var projectsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/1/public/values?alt=json";
 var blogsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/2/public/values?alt=json";
-var $projectCardsArr = $('.card');
+var NUM_VISIBLE_PROJECTS_ON_LOAD = 2;
+var NUM_VISIBLE_BLOGS_ON_LOAD = 2;
+var $showMoreProjects = $('#moreProjects');
+var $showMoreBlogs = $('#moreBlogs');
+var sheetsURLs = {
+    projects: projectsAsJSON,
+    blogs: blogsAsJSON
+};
 $(document).ready(function () {
-    console.log(contentClasses_1.BlogPost, contentClasses_1.ProjectCard);
-    var sheetsURLs = {
-        projects: projectsAsJSON,
-        blogs: blogsAsJSON
-    };
-    // const workbookData: { [k: string]: any } = {};
-    var workbookData = [{}];
-    var testArr = [{}];
-    testArr.push({ test: 'test' });
-    console.log('top testARr = ', testArr[1]);
     ///////// GET PROJECT DATA ///////////
-    var projectObjects = [];
-    var blogObjects = [];
-    var contentArraysObj = {};
-    var projCards = [];
-    var blogPosts = [];
-    // let workbookData;
-    // loop through URLS for projects and blogs sheets and do an AJAX request for each
-    for (var i in sheetsURLs) {
-        $.ajax({ url: sheetsURLs[i] })
-            .then(function (sheetData) {
-            // create a new property for the object workbookData named 'projects' or 'blogs', and assign the current sheet's data to that property
-            workbookData.push({ sheetData: sheetData });
-            return workbookData;
-        })["catch"](function (error) {
-            console.log(error);
+    getDataFromSheet(sheetsURLs.projects)
+        .then(function (projects) {
+        return renderData(projects);
+    })
+        .then(function () {
+        var $hiddenProjects = $('div.card.hidden');
+        // add click event to 'more projects' button to show hidden projects onClick
+        $showMoreProjects.on('click', function () {
+            for (var i = 0; i < $hiddenProjects.length; i++) {
+                var $hiddenProj = $hiddenProjects.eq(i);
+                $hiddenProj.removeClass('hidden').addClass('visible');
+            }
         });
-    }
-    console.log('workbookData', workbookData);
-    console.log('wbData.blogs', workbookData[2]);
-    // testArr.push({ c: 'c' });
-    // console.log('testArray', testArr[1]);
-    var renderBlogPosts = function (blogsToRender) {
-        console.log(blogsToRender);
-        console.log('AAAA');
-        for (var _i = 0, blogsToRender_1 = blogsToRender; _i < blogsToRender_1.length; _i++) {
-            var blog = blogsToRender_1[_i];
-            console.log(blog.title);
-        }
-    };
-    // console.log(projCards, blogPosts);
-    // renderBlogPosts(blogPosts);
-    // const populateContentArrays = function (contentObjects) {
-    // 	console.log(contentObjects);
-    // 	for (let idx = 0; idx < $projectCardsArr.length; idx++) {
-    // 		console.log($projectCardsArr.eq(idx));
-    // 	}
-    // };
-    // populateContentArrays(contentArraysObj);
+    });
+    getDataFromSheet(sheetsURLs.blogs)
+        .then(function (blogs) {
+        return renderData(blogs);
+    })
+        .then(function () {
+        var $hiddenBlogs = $('a.blogPost.hidden');
+        $showMoreBlogs.on('click', function () {
+            for (var i = 0; i < $hiddenBlogs.length; i++) {
+                var $hiddenBlog = $hiddenBlogs.eq(i);
+                $hiddenBlog.removeClass('hidden').addClass('visible');
+            }
+        });
+    });
 });
-/* renderContent(content) {
-    LOOP THRU contentObjects.projects
-    LOOP THRU contentObjects.blogs
-    LOOP THRU blogsArray
-        FOR EACH blog
-            DECLARE new Blog
-    
-}
-
-*/
-/////////////////////////////////////////////////////////////
-/////////////////// DOM MANIPULATION ////////////////////////
-/////////////////////////////////////////////////////////////
+/*==============
+DOM MANIPULATION
+================*/
 var $dropdownMenu = $('header ul#dropdownMenu');
 var $hamburgerButton = $('i.fas.fa-bars');
 $hamburgerButton.on('click', function () {
     $dropdownMenu.slideToggle(500);
 });
-//Found this function here: bootstrap-menu.com/detail-smart-hide.html
-// the way it works is by checking for the navbar's height
-// add padding top to show content behind navbar
-https: $('body').css('padding-top', $('.navbar').outerHeight() + 'px');
+// Found this function here: bootstrap-menu.com/detail-smart-hide.html
+// it works by checking to see if the window's current height is < the window's last height
+//// if current height < last height, user scrolled up --> show navbar
+//// if current height > last height, user scrolled down --> hide navbar
+// detect scroll top or down
 var $navbar = $('.smart-scroll');
 // detect scroll top or down
 if ($navbar.length > 0) {
@@ -88,8 +64,10 @@ if ($navbar.length > 0) {
     var last_scroll_top_1 = 0;
     $(window).on('scroll', function () {
         var scroll_top = $(this).scrollTop();
+        // if the current height is less than the last height, the user scrolled up and the class scrolled-up should be added
         if (scroll_top < last_scroll_top_1) {
             $navbar.removeClass('scrolled-down').addClass('scrolled-up');
+            // if the current height is greater than the last height, the user scrolled down and the class scrolled-up should be added
         }
         else {
             $navbar.removeClass('scrolled-up').addClass('scrolled-down');
@@ -98,16 +76,81 @@ if ($navbar.length > 0) {
     });
 }
 /// SUBMIT CONTACT FORM
-$('article#contactContainer form').on('click', function (event) {
-    event.preventDefault();
-});
-/// FUNCTIONS
-function logData(projects) {
-    console.log('app - projects', projects);
-    // console.log('app - blog', blogs);
-    return projects;
-    // the rest of your app goes here
+/*==================================================================================================
+FUNCTIONS TO FETCH DATA FROM GOOGLE SHEETS AND RENDER NEW PAGE ELEMENTS BASED ON THE DATA RETRIEVED
+==================================================================================================*/
+// RENDER PAGE ELEMENTS
+function renderData(data) {
+    if (data[0].type === 'project') {
+        data.forEach(function (row, index) {
+            var newCard;
+            if (index < NUM_VISIBLE_PROJECTS_ON_LOAD) {
+                newCard = new classes_1.ProjectCard(row.title, row.image, row.description, row.techStack, row.siteUrl, row.repoUrl, row.infoUrl, false);
+            }
+            else {
+                newCard = new classes_1.ProjectCard(row.title, row.image, row.description, row.techStack, row.siteUrl, row.repoUrl, row.infoUrl, true);
+            }
+            newCard.createNewProjectCardElement();
+            return newCard;
+        });
+    }
+    if (data[0].type === 'blog') {
+        data.forEach(function (row, index) {
+            var newBlogPost;
+            if (index < NUM_VISIBLE_BLOGS_ON_LOAD) {
+                newBlogPost = new classes_1.BlogPost(row.title, row.tags, row.url, false);
+            }
+            else {
+                newBlogPost = new classes_1.BlogPost(row.title, row.tags, row.url, true);
+            }
+            newBlogPost.createNewBlogPostElement();
+            return newBlogPost;
+        });
+    }
 }
-// function logBlogs(blogs) {
-// 	return blogs;
-// }
+// make an AJAX call to the google sheets API and return a blog or project object
+function getDataFromSheet(sheet) {
+    return $.ajax({ url: sheet }).then(function (data) {
+        var rows;
+        if (data.feed.title.$t === 'Projects') {
+            rows = data.feed.entry.map(function (item) {
+                return {
+                    type: item.gsx$contenttype.$t,
+                    title: item.gsx$title.$t,
+                    image: item.gsx$image.$t,
+                    techStack: item.gsx$techstack.$t,
+                    description: item.gsx$description.$t,
+                    siteUrl: item.gsx$siteurl.$t,
+                    repoUrl: item.gsx$repourl.$t,
+                    infoUrl: item.gsx$infourl.$t
+                };
+            });
+        }
+        if (data.feed.title.$t === 'Blogs') {
+            rows = data.feed.entry.map(function (item) {
+                return {
+                    type: item.gsx$contenttype.$t,
+                    title: item.gsx$title.$t,
+                    tags: item.gsx$tags.$t,
+                    url: item.gsx$url.$t
+                };
+            });
+        }
+        return rows;
+    });
+}
+var $contactForm = $('#contactForm');
+var serviceID = 'service_yvxcdkg';
+var templateID = 'template_1z4c1oa';
+var userID = 'user_NEvPQoryWpJOh3UHul6iB';
+emailjs_com_1["default"].init(userID);
+$contactForm.on('submit', function (event) {
+    event.preventDefault();
+    emailjs_com_1["default"].sendForm(serviceID, templateID, this).then(function (response) {
+        var name = $contactForm.find("input[name='name']").val();
+        alert("Thanks for your email, " + name + ", I'll do my best to get back to you within 24 hours! \n\nBest, Sam");
+    }, function (error) {
+        alert("FAILED TO SEND EMAIL -- " + error);
+        console.log('FAILED TO SEND EMAIL --', error);
+    });
+});

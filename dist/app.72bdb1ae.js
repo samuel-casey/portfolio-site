@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../ts/contentClasses.js":[function(require,module,exports) {
+})({"../ts/classes.js":[function(require,module,exports) {
 "use strict";
 
 exports.__esModule = true;
@@ -126,11 +126,31 @@ exports.ProjectCard = exports.BlogPost = void 0;
 var BlogPost =
 /** @class */
 function () {
-  function BlogPost(title, tag, url) {
+  function BlogPost(title, tag, url, hide) {
     this.title = title;
     this.tag = tag;
     this.url = url;
+    this.hide = hide;
   }
+
+  BlogPost.prototype.createNewBlogPostElement = function () {
+    // create elements of blog post
+    var $blogPost = $('<a>').addClass('blogPost').attr('target', 'blank');
+    var $blogTitle = $('<p>').addClass('blogTitle');
+    var $blogTag = $('<div>').addClass('blogTag'); // combine elements of new blog post together
+
+    $blogPost.append($blogTitle).append($blogTag); // add data to new blog post
+
+    $blogPost.attr('src', this.url);
+    $blogTitle.text(this.title);
+    $blogTag.text(this.tag).addClass(this.tag); // add a class of hidden if value of 'hide' passed to instance in main.js === true
+
+    this.hide === true ? $blogPost.addClass('hidden') : null; // find blogs container on page
+
+    var $blogsContainer = $('div.blogElements'); // append new blog post to page
+
+    $blogsContainer.append($blogPost);
+  };
 
   return BlogPost;
 }();
@@ -140,112 +160,272 @@ exports.BlogPost = BlogPost;
 var ProjectCard =
 /** @class */
 function () {
-  function ProjectCard(title, image, description, techStack, url) {
+  function ProjectCard(title, image, description, techStack, siteUrl, repoUrl, infoUrl, hide) {
     this.title = title;
     this.image = image;
     this.description = description;
     this.techStack = techStack;
-    this.url = url;
+    this.siteUrl = siteUrl;
+    this.repoUrl = repoUrl;
+    this.infoUrl = infoUrl;
+    this.hide = hide;
   }
+
+  ProjectCard.prototype.createNewProjectCardElement = function () {
+    // create elements of project card
+    var $newCardContainer = $('<div>').addClass('card');
+    var $cardImg = $('<img>').addClass('card-img-top');
+    var $cardBody = $('<div>').addClass('card-body');
+    var $cardTitle = $('<h5>').addClass('card-title');
+    var $cardTechStack = $('<p>').addClass('techStack');
+    var $cardText = $('<p>').addClass('card-text');
+    var $cardBodyBtns = $('<div>').addClass('card-body-btns');
+    var $codeAnchor = $('<a>').addClass('btn btn-primary').text('Code');
+    var $linkAnchor = $('<a>').addClass('btn btn-primary').text('Link');
+    var $infoAnchor = $('<a>').addClass('btn btn-primary').text('Info'); // combine elements of project card together
+
+    $newCardContainer.append($cardImg).append($cardBody);
+    $cardBody.append($cardTitle);
+    $cardBody.append($cardTechStack).append($cardText);
+    $cardBody.append($cardBodyBtns);
+    $cardBodyBtns.append($codeAnchor).append($linkAnchor).append($infoAnchor); // add data to newly created card
+
+    $cardImg.attr('src', this.image);
+    $cardTitle.text(this.title);
+    $cardTechStack.text(this.techStack);
+    $cardText.text(this.description);
+    $codeAnchor.attr('href', this.repoUrl).attr('target', 'blank');
+    $linkAnchor.attr('href', this.siteUrl).attr('target', 'blank');
+    $infoAnchor.attr('href', this.infoUrl).attr('target', 'blank'); // add a class of hidden if value of 'hide' passed to instance in main.js === true
+
+    this.hide === true ? $newCardContainer.addClass('hidden') : null; // find location on page to append newly created card
+
+    var $cardsContainer = $('article#projectsContainer').find('div.cardsContainer'); // append newly created card to proper location
+
+    $cardsContainer.append($newCardContainer);
+  };
 
   return ProjectCard;
 }();
 
 exports.ProjectCard = ProjectCard;
-},{}],"../ts/app.js":[function(require,module,exports) {
-"use strict"; /////////////////////////////////////////////////////////////
-/////////////////////////// DATA ////////////////////////////
-/////////////////////////////////////////////////////////////
+},{}],"../node_modules/emailjs-com/source/models/EmailJSResponseStatus.js":[function(require,module,exports) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EmailJSResponseStatus = void 0;
+var EmailJSResponseStatus = /** @class */ (function () {
+    function EmailJSResponseStatus(httpResponse) {
+        this.status = httpResponse.status;
+        this.text = httpResponse.responseText;
+    }
+    return EmailJSResponseStatus;
+}());
+exports.EmailJSResponseStatus = EmailJSResponseStatus;
 
-exports.__esModule = true;
+},{}],"../node_modules/emailjs-com/source/services/ui/UI.js":[function(require,module,exports) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UI = void 0;
+var UI = /** @class */ (function () {
+    function UI() {
+    }
+    UI.clearAll = function (form) {
+        form.classList.remove(this.PROGRESS);
+        form.classList.remove(this.DONE);
+        form.classList.remove(this.ERROR);
+    };
+    UI.progressState = function (form) {
+        this.clearAll(form);
+        form.classList.add(this.PROGRESS);
+    };
+    UI.successState = function (form) {
+        form.classList.remove(this.PROGRESS);
+        form.classList.add(this.DONE);
+    };
+    UI.errorState = function (form) {
+        form.classList.remove(this.PROGRESS);
+        form.classList.add(this.ERROR);
+    };
+    UI.PROGRESS = 'emailjs-sending';
+    UI.DONE = 'emailjs-success';
+    UI.ERROR = 'emailjs-error';
+    return UI;
+}());
+exports.UI = UI;
 
-var contentClasses_1 = require("./contentClasses");
+},{}],"../node_modules/emailjs-com/source/index.js":[function(require,module,exports) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EmailJSResponseStatus = exports.sendForm = exports.send = exports.init = void 0;
+var EmailJSResponseStatus_1 = require("./models/EmailJSResponseStatus");
+Object.defineProperty(exports, "EmailJSResponseStatus", { enumerable: true, get: function () { return EmailJSResponseStatus_1.EmailJSResponseStatus; } });
+var UI_1 = require("./services/ui/UI");
+var _userID = null;
+var _origin = 'https://api.emailjs.com';
+function sendPost(url, data, headers) {
+    if (headers === void 0) { headers = {}; }
+    return new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener('load', function (event) {
+            var responseStatus = new EmailJSResponseStatus_1.EmailJSResponseStatus(event.target);
+            if (responseStatus.status === 200 || responseStatus.text === 'OK') {
+                resolve(responseStatus);
+            }
+            else {
+                reject(responseStatus);
+            }
+        });
+        xhr.addEventListener('error', function (event) {
+            reject(new EmailJSResponseStatus_1.EmailJSResponseStatus(event.target));
+        });
+        xhr.open('POST', url, true);
+        for (var key in headers) {
+            xhr.setRequestHeader(key, headers[key]);
+        }
+        xhr.send(data);
+    });
+}
+function appendGoogleCaptcha(templatePrams) {
+    var element = document && document.getElementById('g-recaptcha-response');
+    if (element && element.value) {
+        templatePrams['g-recaptcha-response'] = element.value;
+    }
+    element = null;
+    return templatePrams;
+}
+function fixIdSelector(selector) {
+    if (selector[0] !== '#') {
+        return '#' + selector;
+    }
+    return selector;
+}
+/**
+ * Initiation
+ * @param {string} userID - set the EmailJS user ID
+ * @param {string} origin - set the EmailJS origin
+ */
+function init(userID, origin) {
+    _userID = userID;
+    _origin = origin || 'https://api.emailjs.com';
+}
+exports.init = init;
+/**
+ * Send a template to the specific EmailJS service
+ * @param {string} serviceID - the EmailJS service ID
+ * @param {string} templateID - the EmailJS template ID
+ * @param {Object} templatePrams - the template params, what will be set to the EmailJS template
+ * @param {string} userID - the EmailJS user ID
+ * @returns {Promise<EmailJSResponseStatus>}
+ */
+function send(serviceID, templateID, templatePrams, userID) {
+    var params = {
+        lib_version: '2.6.3',
+        user_id: userID || _userID,
+        service_id: serviceID,
+        template_id: templateID,
+        template_params: appendGoogleCaptcha(templatePrams)
+    };
+    return sendPost(_origin + '/api/v1.0/email/send', JSON.stringify(params), {
+        'Content-type': 'application/json'
+    });
+}
+exports.send = send;
+/**
+ * Send a form the specific EmailJS service
+ * @param {string} serviceID - the EmailJS service ID
+ * @param {string} templateID - the EmailJS template ID
+ * @param {string | HTMLFormElement} form - the form element or selector
+ * @param {string} userID - the EmailJS user ID
+ * @returns {Promise<EmailJSResponseStatus>}
+ */
+function sendForm(serviceID, templateID, form, userID) {
+    if (typeof form === 'string') {
+        form = document.querySelector(fixIdSelector(form));
+    }
+    if (!form || form.nodeName !== 'FORM') {
+        throw 'Expected the HTML form element or the style selector of form';
+    }
+    UI_1.UI.progressState(form);
+    var formData = new FormData(form);
+    formData.append('lib_version', '2.6.3');
+    formData.append('service_id', serviceID);
+    formData.append('template_id', templateID);
+    formData.append('user_id', userID || _userID);
+    return sendPost(_origin + '/api/v1.0/email/send-form', formData)
+        .then(function (response) {
+        UI_1.UI.successState(form);
+        return response;
+    }, function (error) {
+        UI_1.UI.errorState(form);
+        return Promise.reject(error);
+    });
+}
+exports.sendForm = sendForm;
+exports.default = {
+    init: init,
+    send: send,
+    sendForm: sendForm
+};
+
+},{"./models/EmailJSResponseStatus":"../node_modules/emailjs-com/source/models/EmailJSResponseStatus.js","./services/ui/UI":"../node_modules/emailjs-com/source/services/ui/UI.js"}],"../ts/app.js":[function(require,module,exports) {
+"use strict";
+
+exports.__esModule = true; // ====== IMPORT CLASSES & INTERFACES ====== //
+
+var classes_1 = require("./classes");
+
+var emailjs_com_1 = require("emailjs-com");
 
 var sheetId = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
 var projectsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/1/public/values?alt=json";
 var blogsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/2/public/values?alt=json";
-var $projectCardsArr = $('.card');
+var NUM_VISIBLE_PROJECTS_ON_LOAD = 2;
+var NUM_VISIBLE_BLOGS_ON_LOAD = 2;
+var $showMoreProjects = $('#moreProjects');
+var $showMoreBlogs = $('#moreBlogs');
+var sheetsURLs = {
+  projects: projectsAsJSON,
+  blogs: blogsAsJSON
+};
 $(document).ready(function () {
-  console.log(contentClasses_1.BlogPost, contentClasses_1.ProjectCard);
-  var sheetsURLs = {
-    projects: projectsAsJSON,
-    blogs: blogsAsJSON
-  }; // const workbookData: { [k: string]: any } = {};
+  ///////// GET PROJECT DATA ///////////
+  getDataFromSheet(sheetsURLs.projects).then(function (projects) {
+    return renderData(projects);
+  }).then(function () {
+    var $hiddenProjects = $('div.card.hidden'); // add click event to 'more projects' button to show hidden projects onClick
 
-  var workbookData = [{}];
-  var testArr = [{}];
-  testArr.push({
-    test: 'test'
-  });
-  console.log('top testARr = ', testArr[1]); ///////// GET PROJECT DATA ///////////
-
-  var projectObjects = [];
-  var blogObjects = [];
-  var contentArraysObj = {};
-  var projCards = [];
-  var blogPosts = []; // let workbookData;
-  // loop through URLS for projects and blogs sheets and do an AJAX request for each
-
-  for (var i in sheetsURLs) {
-    $.ajax({
-      url: sheetsURLs[i]
-    }).then(function (sheetData) {
-      // create a new property for the object workbookData named 'projects' or 'blogs', and assign the current sheet's data to that property
-      workbookData.push({
-        sheetData: sheetData
-      });
-      return workbookData;
-    })["catch"](function (error) {
-      console.log(error);
+    $showMoreProjects.on('click', function () {
+      for (var i = 0; i < $hiddenProjects.length; i++) {
+        var $hiddenProj = $hiddenProjects.eq(i);
+        $hiddenProj.removeClass('hidden').addClass('visible');
+      }
     });
-  }
-
-  console.log('workbookData', workbookData);
-  console.log('wbData.blogs', workbookData[2]); // testArr.push({ c: 'c' });
-  // console.log('testArray', testArr[1]);
-
-  var renderBlogPosts = function renderBlogPosts(blogsToRender) {
-    console.log(blogsToRender);
-    console.log('AAAA');
-
-    for (var _i = 0, blogsToRender_1 = blogsToRender; _i < blogsToRender_1.length; _i++) {
-      var blog = blogsToRender_1[_i];
-      console.log(blog.title);
-    }
-  }; // console.log(projCards, blogPosts);
-  // renderBlogPosts(blogPosts);
-  // const populateContentArrays = function (contentObjects) {
-  // 	console.log(contentObjects);
-  // 	for (let idx = 0; idx < $projectCardsArr.length; idx++) {
-  // 		console.log($projectCardsArr.eq(idx));
-  // 	}
-  // };
-  // populateContentArrays(contentArraysObj);
-
+  });
+  getDataFromSheet(sheetsURLs.blogs).then(function (blogs) {
+    return renderData(blogs);
+  }).then(function () {
+    var $hiddenBlogs = $('a.blogPost.hidden');
+    $showMoreBlogs.on('click', function () {
+      for (var i = 0; i < $hiddenBlogs.length; i++) {
+        var $hiddenBlog = $hiddenBlogs.eq(i);
+        $hiddenBlog.removeClass('hidden').addClass('visible');
+      }
+    });
+  });
 });
-/* renderContent(content) {
-    LOOP THRU contentObjects.projects
-    LOOP THRU contentObjects.blogs
-    LOOP THRU blogsArray
-        FOR EACH blog
-            DECLARE new Blog
-    
-}
-
-*/
-/////////////////////////////////////////////////////////////
-/////////////////// DOM MANIPULATION ////////////////////////
-/////////////////////////////////////////////////////////////
+/*==============
+DOM MANIPULATION
+================*/
 
 var $dropdownMenu = $('header ul#dropdownMenu');
 var $hamburgerButton = $('i.fas.fa-bars');
 $hamburgerButton.on('click', function () {
   $dropdownMenu.slideToggle(500);
-}); //Found this function here: bootstrap-menu.com/detail-smart-hide.html
-// the way it works is by checking for the navbar's height
-// add padding top to show content behind navbar
-
-https: $('body').css('padding-top', $('.navbar').outerHeight() + 'px');
+}); // Found this function here: bootstrap-menu.com/detail-smart-hide.html
+// it works by checking to see if the window's current height is < the window's last height
+//// if current height < last height, user scrolled up --> show navbar
+//// if current height > last height, user scrolled down --> hide navbar
+// detect scroll top or down
 
 var $navbar = $('.smart-scroll'); // detect scroll top or down
 
@@ -253,10 +433,10 @@ if ($navbar.length > 0) {
   // check if element exists
   var last_scroll_top_1 = 0;
   $(window).on('scroll', function () {
-    var scroll_top = $(this).scrollTop();
+    var scroll_top = $(this).scrollTop(); // if the current height is less than the last height, the user scrolled up and the class scrolled-up should be added
 
     if (scroll_top < last_scroll_top_1) {
-      $navbar.removeClass('scrolled-down').addClass('scrolled-up');
+      $navbar.removeClass('scrolled-down').addClass('scrolled-up'); // if the current height is greater than the last height, the user scrolled down and the class scrolled-up should be added
     } else {
       $navbar.removeClass('scrolled-up').addClass('scrolled-down');
     }
@@ -265,19 +445,97 @@ if ($navbar.length > 0) {
   });
 } /// SUBMIT CONTACT FORM
 
+/*==================================================================================================
+FUNCTIONS TO FETCH DATA FROM GOOGLE SHEETS AND RENDER NEW PAGE ELEMENTS BASED ON THE DATA RETRIEVED
+==================================================================================================*/
+// RENDER PAGE ELEMENTS
 
-$('article#contactContainer form').on('click', function (event) {
+
+function renderData(data) {
+  if (data[0].type === 'project') {
+    data.forEach(function (row, index) {
+      var newCard;
+
+      if (index < NUM_VISIBLE_PROJECTS_ON_LOAD) {
+        newCard = new classes_1.ProjectCard(row.title, row.image, row.description, row.techStack, row.siteUrl, row.repoUrl, row.infoUrl, false);
+      } else {
+        newCard = new classes_1.ProjectCard(row.title, row.image, row.description, row.techStack, row.siteUrl, row.repoUrl, row.infoUrl, true);
+      }
+
+      newCard.createNewProjectCardElement();
+      return newCard;
+    });
+  }
+
+  if (data[0].type === 'blog') {
+    data.forEach(function (row, index) {
+      var newBlogPost;
+
+      if (index < NUM_VISIBLE_BLOGS_ON_LOAD) {
+        newBlogPost = new classes_1.BlogPost(row.title, row.tags, row.url, false);
+      } else {
+        newBlogPost = new classes_1.BlogPost(row.title, row.tags, row.url, true);
+      }
+
+      newBlogPost.createNewBlogPostElement();
+      return newBlogPost;
+    });
+  }
+} // make an AJAX call to the google sheets API and return a blog or project object
+
+
+function getDataFromSheet(sheet) {
+  return $.ajax({
+    url: sheet
+  }).then(function (data) {
+    var rows;
+
+    if (data.feed.title.$t === 'Projects') {
+      rows = data.feed.entry.map(function (item) {
+        return {
+          type: item.gsx$contenttype.$t,
+          title: item.gsx$title.$t,
+          image: item.gsx$image.$t,
+          techStack: item.gsx$techstack.$t,
+          description: item.gsx$description.$t,
+          siteUrl: item.gsx$siteurl.$t,
+          repoUrl: item.gsx$repourl.$t,
+          infoUrl: item.gsx$infourl.$t
+        };
+      });
+    }
+
+    if (data.feed.title.$t === 'Blogs') {
+      rows = data.feed.entry.map(function (item) {
+        return {
+          type: item.gsx$contenttype.$t,
+          title: item.gsx$title.$t,
+          tags: item.gsx$tags.$t,
+          url: item.gsx$url.$t
+        };
+      });
+    }
+
+    return rows;
+  });
+}
+
+var $contactForm = $('#contactForm');
+var serviceID = 'service_yvxcdkg';
+var templateID = 'template_1z4c1oa';
+var userID = 'user_NEvPQoryWpJOh3UHul6iB';
+emailjs_com_1["default"].init(userID);
+$contactForm.on('submit', function (event) {
   event.preventDefault();
-}); /// FUNCTIONS
-
-function logData(projects) {
-  console.log('app - projects', projects); // console.log('app - blog', blogs);
-
-  return projects; // the rest of your app goes here
-} // function logBlogs(blogs) {
-// 	return blogs;
-// }
-},{"./contentClasses":"../ts/contentClasses.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+  emailjs_com_1["default"].sendForm(serviceID, templateID, this).then(function (response) {
+    var name = $contactForm.find("input[name='name']").val();
+    alert("Thanks for your email, " + name + ", I'll do my best to get back to you within 24 hours! \n\nBest, Sam");
+  }, function (error) {
+    alert("FAILED TO SEND EMAIL -- " + error);
+    console.log('FAILED TO SEND EMAIL --', error);
+  });
+});
+},{"./classes":"../ts/classes.js","emailjs-com":"../node_modules/emailjs-com/source/index.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -305,7 +563,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60302" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59821" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

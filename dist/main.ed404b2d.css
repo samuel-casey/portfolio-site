@@ -16,6 +16,7 @@ body {
   padding: 0;
   margin: 0;
   justify-content: center;
+  color: #163950;
 }
 
 a,
@@ -31,9 +32,9 @@ a:hover {
 main {
   display: grid;
   grid-template-areas: "about" "projects" "blogs" "contact";
-  margin: 2%;
+  padding: 3%;
+  margin: 1%;
   justify-content: center;
-  word-wrap: break-word;
   justify-self: center;
   overflow: hidden;
 }
@@ -60,7 +61,7 @@ main i#scrollArrow {
 }
 main hr.gray {
   align-self: center;
-  width: 90vw;
+  width: 50vw;
   border-top: 1px dashed #e5e5e5;
   margin: 1rem auto;
 }
@@ -75,13 +76,41 @@ main article#aboutContainer {
   display: flex;
   flex-direction: column;
   line-height: 1.25rem;
-  width: 99%;
+  width: 100%;
+}
+main article#aboutContainer h1 {
+  font-size: 1.75rem;
+  line-height: 2rem;
+  color: #22577a;
+}
+main article#aboutContainer h2 {
+  font-size: 1.35rem;
+  margin-bottom: 1em;
+  line-height: 2rem;
+}
+main article#aboutContainer h2 span.headingLink {
+  color: #77bbb1;
+  font-weight: bold;
+}
+main article#aboutContainer h3 {
+  color: #567d9f;
+  font-style: italic;
+}
+main article#aboutContainer h4 {
+  font-weight: normal;
+  font-size: 1.25rem;
+  grid-area: header;
+  justify-self: center;
+  font-style: normal;
+  margin-bottom: 1rem;
+  line-height: 1.5rem;
+  color: #22577a;
 }
 main article#aboutContainer div#technologies {
   display: grid;
   grid-template-areas: "header header header header" "top top top top" "middle middle middle middle" "bottom bottom bottom bottom";
   align-self: center;
-  width: fit-content;
+  justify-self: center;
   grid-gap: 0.1rem;
 }
 main article#aboutContainer div#technologies h3 {
@@ -92,14 +121,14 @@ main article#aboutContainer div#technologies h3 {
   margin-bottom: 1rem;
 }
 main article#aboutContainer div#technologies img {
-  width: 1.3rem;
+  width: 1.2rem;
 }
 main article#aboutContainer div#technologies svg {
   width: 1.3rem;
   height: 1.3rem;
 }
 main article#aboutContainer div#technologies i {
-  font-size: 1.25rem;
+  font-size: 1.19rem;
 }
 main article#aboutContainer div#technologies div.techLogo.js {
   grid-area: bottom;
@@ -109,6 +138,14 @@ main article#aboutContainer div#technologies div.techLogo.sass {
   grid-area: bottom;
   grid-column: 2;
 }
+main article#aboutContainer div#technologies div.techLogo.figma {
+  grid-area: bottom;
+  grid-column: 4;
+}
+main article#aboutContainer div#technologies div.techLogo.htmlCss {
+  grid-area: bottom;
+  grid-column: 1;
+}
 main article#aboutContainer div#technologies div {
   display: flex;
   flex-direction: column;
@@ -116,46 +153,26 @@ main article#aboutContainer div#technologies div {
   justify-content: center;
 }
 main article#aboutContainer div#technologies div p {
+  font-size: 16px;
   color: #77bbb1;
 }
 main article#aboutContainer div.headshotContainer {
   display: flex;
   align-self: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   margin-top: 1rem;
+  flex-direction: column;
+  align-items: center;
 }
 main article#aboutContainer div.headshotContainer img {
   width: 150px;
   border-radius: 150%;
 }
-main article#aboutContainer h1 {
-  font-size: 1.5rem;
-  color: #22577a;
-}
-main article#aboutContainer h2 {
-  font-weight: normal;
-  font-size: 1.25rem;
-  margin-bottom: 1em;
-}
-main article#aboutContainer h2 span.headingLink {
-  color: #77bbb1;
-  font-weight: bold;
-}
-main article#aboutContainer h3 {
-  font-size: 1rem;
-  color: #567d9f;
-  font-style: italic;
-  font-weight: normal;
-}
-main article#aboutContainer div#moreAboutMe h2 {
-  font-weight: 500;
-  color: #22577a;
-  text-align: center;
-}
 main article#aboutContainer div#socialMediaIcons {
   align-self: center;
   display: flex;
   justify-content: space-evenly;
+  padding: 10px;
   width: 200px;
 }
 main article#aboutContainer div#socialMediaIcons i {
@@ -203,6 +220,7 @@ main article#blogsContainer a.blogPost {
   align-items: center;
   font-size: 1.25rem;
   border-radius: 0.5rem;
+  margin: 0.5rem auto;
 }
 main article#blogsContainer p.blogTitle {
   color: #163950;
