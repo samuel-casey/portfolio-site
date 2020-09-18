@@ -209,7 +209,7 @@ function () {
 }();
 
 exports.ProjectCard = ProjectCard;
-},{}],"../node_modules/emailjs-com/source/models/EmailJSResponseStatus.js":[function(require,module,exports) {
+},{}],"node_modules/emailjs-com/source/models/EmailJSResponseStatus.js":[function(require,module,exports) {
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmailJSResponseStatus = void 0;
@@ -222,7 +222,7 @@ var EmailJSResponseStatus = /** @class */ (function () {
 }());
 exports.EmailJSResponseStatus = EmailJSResponseStatus;
 
-},{}],"../node_modules/emailjs-com/source/services/ui/UI.js":[function(require,module,exports) {
+},{}],"node_modules/emailjs-com/source/services/ui/UI.js":[function(require,module,exports) {
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UI = void 0;
@@ -253,7 +253,7 @@ var UI = /** @class */ (function () {
 }());
 exports.UI = UI;
 
-},{}],"../node_modules/emailjs-com/source/index.js":[function(require,module,exports) {
+},{}],"node_modules/emailjs-com/source/index.js":[function(require,module,exports) {
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmailJSResponseStatus = exports.sendForm = exports.send = exports.init = void 0;
@@ -367,7 +367,7 @@ exports.default = {
     sendForm: sendForm
 };
 
-},{"./models/EmailJSResponseStatus":"../node_modules/emailjs-com/source/models/EmailJSResponseStatus.js","./services/ui/UI":"../node_modules/emailjs-com/source/services/ui/UI.js"}],"ts/app.js":[function(require,module,exports) {
+},{"./models/EmailJSResponseStatus":"node_modules/emailjs-com/source/models/EmailJSResponseStatus.js","./services/ui/UI":"node_modules/emailjs-com/source/services/ui/UI.js"}],"ts/app.js":[function(require,module,exports) {
 "use strict";
 
 exports.__esModule = true; // ====== IMPORT CLASSES & INTERFACES ====== //
@@ -548,7 +548,7 @@ $contactForm.on('submit', function (event) {
     console.log('FAILED TO SEND EMAIL --', error);
   });
 });
-},{"./classes":"ts/classes.js","emailjs-com":"../node_modules/emailjs-com/source/index.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./classes":"ts/classes.js","emailjs-com":"node_modules/emailjs-com/source/index.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -576,7 +576,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56045" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51632" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

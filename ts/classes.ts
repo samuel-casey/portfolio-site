@@ -23,7 +23,7 @@ class BlogPost {
 
 		// add data to new blog post
 
-		$blogPost.attr('src', this.url);
+		$blogPost.attr('href', this.url);
 		$blogTitle.text(this.title);
 		$blogTag.text(this.tag).addClass(this.tag);
 
