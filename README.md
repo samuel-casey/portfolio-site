@@ -1,3 +1,5 @@
-# portfolio-site-v2
+# My Portfolio Site
 
-Portfolio site refresh.
+This repository houses the code for my portfolio site. I built it with HTML, SCSS, TypeScript and JQuery, and it's hosted on Firebase.
+
+Check it out: https://samcasey.life
