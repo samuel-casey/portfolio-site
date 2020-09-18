@@ -50,27 +50,32 @@ $(document).ready(() => {
 				}
 			});
 		});
+
+	// if (menuDown) {
+	// 	$dropdownMenu.slideDown(500);
+	// } else {
+	// 	$dropdownMenu.slideUp(500);
+	// }
 });
 
 /*==============
-DOM MANIPULATION
-================*/
+			DOM MANIPULATION
+			================*/
 
 // add padding top to show content behind navbar
 $('body').css('padding-top', $('.navbar').outerHeight() + 'px');
 
+let menuDown: boolean = false;
 const $dropdownMenu = $('header ul#dropdownMenu');
 const $hamburgerButton = $('i.fas.fa-bars');
-let menuState = 'up';
+
+function menuGoDown() {
+	// console.log('menuDown- ', menuDown);
+	// menuDown = !menuDown;
+}
 
 $hamburgerButton.on('click', () => {
-	console.log(menuState);
-	$dropdownMenu.slideDown(500);
-	if (menuState === 'up') {
-		$dropdownMenu.slideDown(500);
-	} else {
-		$dropdownMenu.slideUp(500);
-	}
+	$dropdownMenu.slideToggle(500);
 });
 
 // Found this function here: bootstrap-menu.com/detail-smart-hide.html
@@ -94,6 +99,8 @@ if ($navbar.length > 0) {
 			// if the current height is greater than the last height, the user scrolled down and the class scrolled-up should be added
 		} else {
 			$navbar.removeClass('scrolled-up').addClass('scrolled-down');
+			// // $dropdownMenu.triggerHandler('click');
+			// console.log('tHandler');
 		}
 		last_scroll_top = scroll_top;
 	});

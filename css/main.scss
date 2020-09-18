@@ -534,9 +534,17 @@ div#dropdownContainer {
 			margin: 0;
 			font-weight: bold;
 
-			a:hover {
-				color: $sudbury-green-light;
+			a {
+				text-decoration: none;
 			}
+
+			a:hover {
+				color: $not-white;
+			}
+		}
+
+		li.hamburgerItem:hover {
+			background-color: $sudbury-green-dark;
 		}
 
 		li.hamburgerItem:last-of-type {

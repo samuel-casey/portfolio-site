@@ -43,24 +43,26 @@ $(document).ready(function () {
             }
         });
     });
+    // if (menuDown) {
+    // 	$dropdownMenu.slideDown(500);
+    // } else {
+    // 	$dropdownMenu.slideUp(500);
+    // }
 });
 /*==============
-DOM MANIPULATION
-================*/
+            DOM MANIPULATION
+            ================*/
 // add padding top to show content behind navbar
 $('body').css('padding-top', $('.navbar').outerHeight() + 'px');
+var menuDown = false;
 var $dropdownMenu = $('header ul#dropdownMenu');
 var $hamburgerButton = $('i.fas.fa-bars');
-var menuState = 'up';
+function menuGoDown() {
+    // console.log('menuDown- ', menuDown);
+    // menuDown = !menuDown;
+}
 $hamburgerButton.on('click', function () {
-    console.log(menuState);
-    $dropdownMenu.slideDown(500);
-    if (menuState === 'up') {
-        $dropdownMenu.slideDown(500);
-    }
-    else {
-        $dropdownMenu.slideUp(500);
-    }
+    $dropdownMenu.slideToggle(500);
 });
 // Found this function here: bootstrap-menu.com/detail-smart-hide.html
 // it works by checking to see if the window's current height is < the window's last height
@@ -81,6 +83,8 @@ if ($navbar.length > 0) {
         }
         else {
             $navbar.removeClass('scrolled-up').addClass('scrolled-down');
+            // // $dropdownMenu.triggerHandler('click');
+            // console.log('tHandler');
         }
         last_scroll_top_1 = scroll_top;
     });

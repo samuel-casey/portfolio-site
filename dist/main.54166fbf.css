@@ -458,8 +458,14 @@ div#dropdownContainer ul#dropdownMenu li.hamburgerItem {
   margin: 0;
   font-weight: bold;
 }
+div#dropdownContainer ul#dropdownMenu li.hamburgerItem a {
+  text-decoration: none;
+}
 div#dropdownContainer ul#dropdownMenu li.hamburgerItem a:hover {
-  color: #77bbb1;
+  color: #f5f5f5;
+}
+div#dropdownContainer ul#dropdownMenu li.hamburgerItem:hover {
+  background-color: #568a82;
 }
 div#dropdownContainer ul#dropdownMenu li.hamburgerItem:last-of-type {
   padding-bottom: 0;

@@ -411,26 +411,28 @@ $(document).ready(function () {
         $hiddenBlog.removeClass('hidden').addClass('visible');
       }
     });
-  });
+  }); // if (menuDown) {
+  // 	$dropdownMenu.slideDown(500);
+  // } else {
+  // 	$dropdownMenu.slideUp(500);
+  // }
 });
 /*==============
-DOM MANIPULATION
-================*/
+            DOM MANIPULATION
+            ================*/
 // add padding top to show content behind navbar
 
 $('body').css('padding-top', $('.navbar').outerHeight() + 'px');
+var menuDown = false;
 var $dropdownMenu = $('header ul#dropdownMenu');
 var $hamburgerButton = $('i.fas.fa-bars');
-var menuState = 'up';
-$hamburgerButton.on('click', function () {
-  console.log(menuState);
-  $dropdownMenu.slideDown(500);
 
-  if (menuState === 'up') {
-    $dropdownMenu.slideDown(500);
-  } else {
-    $dropdownMenu.slideUp(500);
-  }
+function menuGoDown() {// console.log('menuDown- ', menuDown);
+  // menuDown = !menuDown;
+}
+
+$hamburgerButton.on('click', function () {
+  $dropdownMenu.slideToggle(500);
 }); // Found this function here: bootstrap-menu.com/detail-smart-hide.html
 // it works by checking to see if the window's current height is < the window's last height
 //// if current height < last height, user scrolled up --> show navbar
@@ -448,7 +450,8 @@ if ($navbar.length > 0) {
     if (scroll_top < last_scroll_top_1) {
       $navbar.removeClass('scrolled-down').addClass('scrolled-up'); // if the current height is greater than the last height, the user scrolled down and the class scrolled-up should be added
     } else {
-      $navbar.removeClass('scrolled-up').addClass('scrolled-down');
+      $navbar.removeClass('scrolled-up').addClass('scrolled-down'); // // $dropdownMenu.triggerHandler('click');
+      // console.log('tHandler');
     }
 
     last_scroll_top_1 = scroll_top;
@@ -573,7 +576,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53439" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56045" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
