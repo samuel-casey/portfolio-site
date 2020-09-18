@@ -177,8 +177,8 @@ SEND email to my account
 
 ## Additional Libraries
 
-Bootstrap
-Sass
+- Bootstrap
+- Sass
 
 ## Code Snippet
 
