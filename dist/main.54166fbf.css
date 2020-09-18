@@ -112,6 +112,7 @@ main article#aboutContainer div#technologies {
   align-self: center;
   justify-self: center;
   grid-gap: 0.1rem;
+  width: 100%;
 }
 main article#aboutContainer div#technologies h3 {
   font-size: 1.25rem;
