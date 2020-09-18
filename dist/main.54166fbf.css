@@ -78,17 +78,6 @@ main article#aboutContainer {
   line-height: 1.25rem;
   width: 100%;
 }
-main article#aboutContainer .carousel-fade {
-  background-color: red;
-}
-main article#aboutContainer .carousel-fade .carousel-item {
-  opacity: 0;
-  transition-duration: 1500ms;
-  transition-property: opacity;
-}
-main article#aboutContainer .carousel-fade .active .carousel-item-next.carousel-item-left .carousel-item-prev.carousel-item-right {
-  opacity: 1;
-}
 main article#aboutContainer h1 {
   font-size: 1.75rem;
   line-height: 2rem;
