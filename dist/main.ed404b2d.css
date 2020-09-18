@@ -165,8 +165,10 @@ main article#aboutContainer div.headshotContainer {
   align-items: center;
 }
 main article#aboutContainer div.headshotContainer img {
-  width: 150px;
+  width: 100%;
+  max-width: 300px;
   border-radius: 150%;
+  justify-self: center;
 }
 main article#aboutContainer div#socialMediaIcons {
   align-self: center;
