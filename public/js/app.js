@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 // ====== IMPORT CLASSES & INTERFACES ====== //
-var classes_1 = require("./classes");
+var classes_1 = require("../../ts/classes");
 var emailjs_com_1 = require("emailjs-com");
 var sheetId = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
 var projectsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/1/public/values?alt=json";
@@ -47,8 +47,6 @@ $(document).ready(function () {
 /*==============
 DOM MANIPULATION
 ================*/
-// add padding top to show content behind navbar
-$('body').css('padding-top', $('.navbar').outerHeight() + 'px');
 var $dropdownMenu = $('header ul#dropdownMenu');
 var $hamburgerButton = $('i.fas.fa-bars');
 $hamburgerButton.on('click', function () {

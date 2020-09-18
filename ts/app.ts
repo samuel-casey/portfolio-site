@@ -56,6 +56,9 @@ $(document).ready(() => {
 DOM MANIPULATION
 ================*/
 
+// add padding top to show content behind navbar
+$('body').css('padding-top', $('.navbar').outerHeight() + 'px');
+
 const $dropdownMenu = $('header ul#dropdownMenu');
 const $hamburgerButton = $('i.fas.fa-bars');
 
