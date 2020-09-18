@@ -2,6 +2,7 @@
 exports.__esModule = true;
 // ====== IMPORT CLASSES & INTERFACES ====== //
 var classes_1 = require("./classes");
+var emailjs_com_1 = require("emailjs-com");
 var sheetId = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
 var projectsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/1/public/values?alt=json";
 var blogsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/2/public/values?alt=json";
@@ -138,3 +139,18 @@ function getDataFromSheet(sheet) {
         return rows;
     });
 }
+var $contactForm = $('#contactForm');
+var serviceID = 'service_yvxcdkg';
+var templateID = 'template_1z4c1oa';
+var userID = 'user_NEvPQoryWpJOh3UHul6iB';
+emailjs_com_1["default"].init(userID);
+$contactForm.on('submit', function (event) {
+    event.preventDefault();
+    emailjs_com_1["default"].sendForm(serviceID, templateID, this).then(function (response) {
+        var name = $contactForm.find("input[name='name']").val();
+        alert("Thanks for your email, " + name + ", I'll do my best to get back to you within 24 hours! \n\nBest, Sam");
+    }, function (error) {
+        alert("FAILED TO SEND EMAIL -- " + error);
+        console.log('FAILED TO SEND EMAIL --', error);
+    });
+});
