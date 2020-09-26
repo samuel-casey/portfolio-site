@@ -10,6 +10,10 @@ $header-height: auto;
 @media only screen and (min-width: 768px) {
 	header {
 		nav {
+			#navbarDropdown {
+				display: none;
+			}
+
 			div#hamburgerContainer {
 				display: none;
 			}
@@ -38,8 +42,8 @@ $header-height: auto;
 			grid-template-columns: 1fr 2fr;
 			grid-template-rows: 2fr 1fr;
 			grid-template-areas:
-				'headshot heading'
-				'tech tech';
+				"headshot heading"
+				"tech tech";
 			grid-gap: 1rem;
 
 			hr.gray {

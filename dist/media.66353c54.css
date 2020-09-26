@@ -1,4 +1,7 @@
 @media only screen and (min-width: 768px) {
+  header nav #navbarDropdown {
+    display: none;
+  }
   header nav div#hamburgerContainer {
     display: none;
   }
