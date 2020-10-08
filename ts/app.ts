@@ -69,6 +69,8 @@ let menuDown: boolean = false;
 const $dropdownMenu = $('header ul#dropdownMenu');
 const $hamburgerButton = $('i.fas.fa-bars');
 
+
+
 function menuGoDown() {
 	// console.log('menuDown- ', menuDown);
 	// menuDown = !menuDown;

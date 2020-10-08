@@ -11,7 +11,7 @@
 | Day 3 | Fancy CSS (carousel, section expansion btns) | Complete   |
 | Day 4 | Firebase hosting, DB, etc.                   | Complete   |
 | Day 5 | Final Touches                                | Incomplete |
-| Day 6 | Present                                      | Incomplete |
+| Day 6 | Present                                      | Complete |
 
 ---
 
@@ -177,8 +177,8 @@ SEND email to my account
 
 ## Additional Libraries
 
-Bootstrap
-Sass
+- Bootstrap
+- Sass
 
 ## Code Snippet
 
