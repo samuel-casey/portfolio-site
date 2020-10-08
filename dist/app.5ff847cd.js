@@ -418,8 +418,8 @@ $(document).ready(function () {
   // }
 });
 /*==============
-            DOM MANIPULATION
-            ================*/
+DOM MANIPULATION
+================*/
 // add padding top to show content behind navbar
 
 $('body').css('padding-top', $('.navbar').outerHeight() + 'px');
@@ -429,15 +429,12 @@ var $hamburgerButton = $('i.fas.fa-bars');
 
 function menuGoDown() {// console.log('menuDown- ', menuDown);
   // menuDown = !menuDown;
-}
-
-$hamburgerButton.on('click', function () {
-  $dropdownMenu.slideToggle(500);
-}); // Found this function here: bootstrap-menu.com/detail-smart-hide.html
+} // Found this function here: bootstrap-menu.com/detail-smart-hide.html
 // it works by checking to see if the window's current height is < the window's last height
 //// if current height < last height, user scrolled up --> show navbar
 //// if current height > last height, user scrolled down --> hide navbar
 // detect scroll top or down
+
 
 var $navbar = $('.smart-scroll'); // detect scroll top or down
 
@@ -576,7 +573,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52684" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49623" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -76,10 +76,6 @@ function menuGoDown() {
 	// menuDown = !menuDown;
 }
 
-$hamburgerButton.on('click', () => {
-	$dropdownMenu.slideToggle(500);
-});
-
 // Found this function here: bootstrap-menu.com/detail-smart-hide.html
 // it works by checking to see if the window's current height is < the window's last height
 //// if current height < last height, user scrolled up --> show navbar
