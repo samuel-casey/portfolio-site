@@ -47,6 +47,7 @@ class ProjectCard {
 	repoUrl: string;
 	infoUrl: string;
 	hide: boolean;
+	category: string;
 
 	constructor(
 		title: string,
@@ -56,7 +57,8 @@ class ProjectCard {
 		siteUrl: string,
 		repoUrl: string,
 		infoUrl: string,
-		hide: boolean
+		hide: boolean,
+		category: string,
 	) {
 		this.title = title;
 		this.image = image;
@@ -66,6 +68,7 @@ class ProjectCard {
 		this.repoUrl = repoUrl;
 		this.infoUrl = infoUrl;
 		this.hide = hide;
+		this.category = category;
 	}
 
 	createNewProjectCardElement() {
@@ -86,11 +89,14 @@ class ProjectCard {
 		const $infoAnchor: JQuery = $('<a>')
 			.addClass('btn btn-primary')
 			.text('Info');
+		const $cardCategory: JQuery = $('<p>').addClass('projCategory')
 
 		// combine elements of project card together
 		$newCardContainer.append($cardImg).append($cardBody);
 		$cardBody.append($cardTitle);
-		$cardBody.append($cardTechStack).append($cardText);
+		$cardBody.append($cardCategory);
+		$cardBody.append($cardTechStack)
+		$cardBody.append($cardText);
 		$cardBody.append($cardBodyBtns);
 		$cardBodyBtns.append($codeAnchor).append($linkAnchor).append($infoAnchor);
 
@@ -99,6 +105,7 @@ class ProjectCard {
 		$cardTitle.text(this.title);
 		$cardTechStack.text(this.techStack);
 		$cardText.text(this.description);
+		$cardCategory.text(this.category);
 		$codeAnchor.attr('href', this.repoUrl).attr('target', 'blank');
 		$linkAnchor.attr('href', this.siteUrl).attr('target', 'blank');
 		$infoAnchor.attr('href', this.infoUrl).attr('target', 'blank');

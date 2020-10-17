@@ -160,7 +160,7 @@ exports.BlogPost = BlogPost;
 var ProjectCard =
 /** @class */
 function () {
-  function ProjectCard(title, image, description, techStack, siteUrl, repoUrl, infoUrl, hide) {
+  function ProjectCard(title, image, description, techStack, siteUrl, repoUrl, infoUrl, hide, category) {
     this.title = title;
     this.image = image;
     this.description = description;
@@ -169,6 +169,7 @@ function () {
     this.repoUrl = repoUrl;
     this.infoUrl = infoUrl;
     this.hide = hide;
+    this.category = category;
   }
 
   ProjectCard.prototype.createNewProjectCardElement = function () {
@@ -182,11 +183,14 @@ function () {
     var $cardBodyBtns = $('<div>').addClass('card-body-btns');
     var $codeAnchor = $('<a>').addClass('btn btn-primary').text('Code');
     var $linkAnchor = $('<a>').addClass('btn btn-primary').text('Link');
-    var $infoAnchor = $('<a>').addClass('btn btn-primary').text('Info'); // combine elements of project card together
+    var $infoAnchor = $('<a>').addClass('btn btn-primary').text('Info');
+    var $cardCategory = $('<p>').addClass('projCategory'); // combine elements of project card together
 
     $newCardContainer.append($cardImg).append($cardBody);
     $cardBody.append($cardTitle);
-    $cardBody.append($cardTechStack).append($cardText);
+    $cardBody.append($cardCategory);
+    $cardBody.append($cardTechStack);
+    $cardBody.append($cardText);
     $cardBody.append($cardBodyBtns);
     $cardBodyBtns.append($codeAnchor).append($linkAnchor).append($infoAnchor); // add data to newly created card
 
@@ -194,6 +198,7 @@ function () {
     $cardTitle.text(this.title);
     $cardTechStack.text(this.techStack);
     $cardText.text(this.description);
+    $cardCategory.text(this.category);
     $codeAnchor.attr('href', this.repoUrl).attr('target', 'blank');
     $linkAnchor.attr('href', this.siteUrl).attr('target', 'blank');
     $infoAnchor.attr('href', this.infoUrl).attr('target', 'blank'); // add a class of hidden if value of 'hide' passed to instance in main.js === true
@@ -379,7 +384,7 @@ var emailjs_com_1 = require("emailjs-com");
 var sheetId = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
 var projectsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/1/public/values?alt=json";
 var blogsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/2/public/values?alt=json";
-var NUM_VISIBLE_PROJECTS_ON_LOAD = 2;
+var NUM_VISIBLE_PROJECTS_ON_LOAD = 3;
 var NUM_VISIBLE_BLOGS_ON_LOAD = 2;
 var $showMoreProjects = $('#moreProjects');
 var $showMoreBlogs = $('#moreBlogs');
@@ -411,11 +416,7 @@ $(document).ready(function () {
         $hiddenBlog.removeClass('hidden').addClass('visible');
       }
     });
-  }); // if (menuDown) {
-  // 	$dropdownMenu.slideDown(500);
-  // } else {
-  // 	$dropdownMenu.slideUp(500);
-  // }
+  });
 });
 /*==============
 DOM MANIPULATION
@@ -425,16 +426,11 @@ DOM MANIPULATION
 $('body').css('padding-top', $('.navbar').outerHeight() + 'px');
 var menuDown = false;
 var $dropdownMenu = $('header ul#dropdownMenu');
-var $hamburgerButton = $('i.fas.fa-bars');
-
-function menuGoDown() {// console.log('menuDown- ', menuDown);
-  // menuDown = !menuDown;
-} // Found this function here: bootstrap-menu.com/detail-smart-hide.html
+var $hamburgerButton = $('i.fas.fa-bars'); // Found this function here: bootstrap-menu.com/detail-smart-hide.html
 // it works by checking to see if the window's current height is < the window's last height
 //// if current height < last height, user scrolled up --> show navbar
 //// if current height > last height, user scrolled down --> hide navbar
 // detect scroll top or down
-
 
 var $navbar = $('.smart-scroll'); // detect scroll top or down
 
@@ -462,14 +458,16 @@ FUNCTIONS TO FETCH DATA FROM GOOGLE SHEETS AND RENDER NEW PAGE ELEMENTS BASED ON
 
 
 function renderData(data) {
+  console.log(data);
+
   if (data[0].type === 'project') {
     data.forEach(function (row, index) {
       var newCard;
 
       if (index < NUM_VISIBLE_PROJECTS_ON_LOAD) {
-        newCard = new classes_1.ProjectCard(row.title, row.image, row.description, row.techStack, row.siteUrl, row.repoUrl, row.infoUrl, false);
+        newCard = new classes_1.ProjectCard(row.title, row.image, row.description, row.techStack, row.siteUrl, row.repoUrl, row.infoUrl, false, row.projectCategory);
       } else {
-        newCard = new classes_1.ProjectCard(row.title, row.image, row.description, row.techStack, row.siteUrl, row.repoUrl, row.infoUrl, true);
+        newCard = new classes_1.ProjectCard(row.title, row.image, row.description, row.techStack, row.siteUrl, row.repoUrl, row.infoUrl, true, row.projectCategory);
       }
 
       newCard.createNewProjectCardElement();
@@ -499,6 +497,7 @@ function getDataFromSheet(sheet) {
     url: sheet
   }).then(function (data) {
     var rows;
+    console.log(data);
 
     if (data.feed.title.$t === 'Projects') {
       rows = data.feed.entry.map(function (item) {
@@ -510,7 +509,8 @@ function getDataFromSheet(sheet) {
           description: item.gsx$description.$t,
           siteUrl: item.gsx$siteurl.$t,
           repoUrl: item.gsx$repourl.$t,
-          infoUrl: item.gsx$infourl.$t
+          infoUrl: item.gsx$infourl.$t,
+          projectCategory: item.gsx$projectcategory.$t
         };
       });
     }
@@ -573,7 +573,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61217" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52616" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

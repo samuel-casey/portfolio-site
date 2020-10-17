@@ -6,7 +6,7 @@ import emailjs from 'emailjs-com';
 const sheetId: string = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
 const projectsAsJSON: string = `https://spreadsheets.google.com/feeds/list/${sheetId}/1/public/values?alt=json`;
 const blogsAsJSON: string = `https://spreadsheets.google.com/feeds/list/${sheetId}/2/public/values?alt=json`;
-const NUM_VISIBLE_PROJECTS_ON_LOAD: number = 2;
+const NUM_VISIBLE_PROJECTS_ON_LOAD: number = 3;
 const NUM_VISIBLE_BLOGS_ON_LOAD: number = 2;
 const $showMoreProjects: JQuery = $('#moreProjects');
 const $showMoreBlogs: JQuery = $('#moreBlogs');
@@ -51,11 +51,6 @@ $(document).ready(() => {
 			});
 		});
 
-	// if (menuDown) {
-	// 	$dropdownMenu.slideDown(500);
-	// } else {
-	// 	$dropdownMenu.slideUp(500);
-	// }
 });
 
 /*==============
@@ -69,12 +64,6 @@ let menuDown: boolean = false;
 const $dropdownMenu = $('header ul#dropdownMenu');
 const $hamburgerButton = $('i.fas.fa-bars');
 
-
-
-function menuGoDown() {
-	// console.log('menuDown- ', menuDown);
-	// menuDown = !menuDown;
-}
 
 // Found this function here: bootstrap-menu.com/detail-smart-hide.html
 // it works by checking to see if the window's current height is < the window's last height
@@ -112,6 +101,7 @@ FUNCTIONS TO FETCH DATA FROM GOOGLE SHEETS AND RENDER NEW PAGE ELEMENTS BASED ON
 
 // RENDER PAGE ELEMENTS
 function renderData(data: ProjectSheetRow[] | BlogSheetRow[]) {
+	console.log(data)
 	if (data[0].type === 'project') {
 		data.forEach((row, index) => {
 			let newCard;
@@ -124,7 +114,8 @@ function renderData(data: ProjectSheetRow[] | BlogSheetRow[]) {
 					row.siteUrl,
 					row.repoUrl,
 					row.infoUrl,
-					false
+					false,
+					row.projectCategory,
 				);
 			} else {
 				newCard = new ProjectCard(
@@ -135,7 +126,8 @@ function renderData(data: ProjectSheetRow[] | BlogSheetRow[]) {
 					row.siteUrl,
 					row.repoUrl,
 					row.infoUrl,
-					true
+					true,
+					row.projectCategory
 				);
 			}
 
@@ -162,8 +154,11 @@ function renderData(data: ProjectSheetRow[] | BlogSheetRow[]) {
 
 // make an AJAX call to the google sheets API and return a blog or project object
 function getDataFromSheet(sheet: string) {
+
 	return $.ajax({ url: sheet }).then((data) => {
 		let rows;
+
+		console.log(data)
 
 		if (data.feed.title.$t === 'Projects') {
 			rows = data.feed.entry.map(function (item) {
@@ -176,6 +171,7 @@ function getDataFromSheet(sheet: string) {
 					siteUrl: item.gsx$siteurl.$t,
 					repoUrl: item.gsx$repourl.$t,
 					infoUrl: item.gsx$infourl.$t,
+					projectCategory: item.gsx$projectcategory.$t
 				} as ProjectSheetRow;
 			});
 		}

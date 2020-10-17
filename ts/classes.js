@@ -32,7 +32,7 @@ var BlogPost = /** @class */ (function () {
 }());
 exports.BlogPost = BlogPost;
 var ProjectCard = /** @class */ (function () {
-    function ProjectCard(title, image, description, techStack, siteUrl, repoUrl, infoUrl, hide) {
+    function ProjectCard(title, image, description, techStack, siteUrl, repoUrl, infoUrl, hide, category) {
         this.title = title;
         this.image = image;
         this.description = description;
@@ -41,6 +41,7 @@ var ProjectCard = /** @class */ (function () {
         this.repoUrl = repoUrl;
         this.infoUrl = infoUrl;
         this.hide = hide;
+        this.category = category;
     }
     ProjectCard.prototype.createNewProjectCardElement = function () {
         // create elements of project card
@@ -60,10 +61,13 @@ var ProjectCard = /** @class */ (function () {
         var $infoAnchor = $('<a>')
             .addClass('btn btn-primary')
             .text('Info');
+        var $cardCategory = $('<p>').addClass('projCategory');
         // combine elements of project card together
         $newCardContainer.append($cardImg).append($cardBody);
         $cardBody.append($cardTitle);
-        $cardBody.append($cardTechStack).append($cardText);
+        $cardBody.append($cardCategory);
+        $cardBody.append($cardTechStack);
+        $cardBody.append($cardText);
         $cardBody.append($cardBodyBtns);
         $cardBodyBtns.append($codeAnchor).append($linkAnchor).append($infoAnchor);
         // add data to newly created card
@@ -71,6 +75,7 @@ var ProjectCard = /** @class */ (function () {
         $cardTitle.text(this.title);
         $cardTechStack.text(this.techStack);
         $cardText.text(this.description);
+        $cardCategory.text(this.category);
         $codeAnchor.attr('href', this.repoUrl).attr('target', 'blank');
         $linkAnchor.attr('href', this.siteUrl).attr('target', 'blank');
         $infoAnchor.attr('href', this.infoUrl).attr('target', 'blank');
