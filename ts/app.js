@@ -52,10 +52,6 @@ $('body').css('padding-top', $('.navbar').outerHeight() + 'px');
 var menuDown = false;
 var $dropdownMenu = $('header ul#dropdownMenu');
 var $hamburgerButton = $('i.fas.fa-bars');
-// Found this function here: bootstrap-menu.com/detail-smart-hide.html
-// it works by checking to see if the window's current height is < the window's last height
-//// if current height < last height, user scrolled up --> show navbar
-//// if current height > last height, user scrolled down --> hide navbar
 // detect scroll top or down
 var $navbar = $('.smart-scroll');
 // detect scroll top or down
@@ -71,8 +67,6 @@ if ($navbar.length > 0) {
         }
         else {
             $navbar.removeClass('scrolled-up').addClass('scrolled-down');
-            // // $dropdownMenu.triggerHandler('click');
-            // console.log('tHandler');
         }
         last_scroll_top_1 = scroll_top;
     });
@@ -83,7 +77,6 @@ FUNCTIONS TO FETCH DATA FROM GOOGLE SHEETS AND RENDER NEW PAGE ELEMENTS BASED ON
 ==================================================================================================*/
 // RENDER PAGE ELEMENTS
 function renderData(data) {
-    console.log(data);
     if (data[0].type === 'project') {
         data.forEach(function (row, index) {
             var newCard;
@@ -115,7 +108,6 @@ function renderData(data) {
 function getDataFromSheet(sheet) {
     return $.ajax({ url: sheet }).then(function (data) {
         var rows;
-        console.log(data);
         if (data.feed.title.$t === 'Projects') {
             rows = data.feed.entry.map(function (item) {
                 return {

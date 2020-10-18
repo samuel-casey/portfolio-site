@@ -426,11 +426,7 @@ DOM MANIPULATION
 $('body').css('padding-top', $('.navbar').outerHeight() + 'px');
 var menuDown = false;
 var $dropdownMenu = $('header ul#dropdownMenu');
-var $hamburgerButton = $('i.fas.fa-bars'); // Found this function here: bootstrap-menu.com/detail-smart-hide.html
-// it works by checking to see if the window's current height is < the window's last height
-//// if current height < last height, user scrolled up --> show navbar
-//// if current height > last height, user scrolled down --> hide navbar
-// detect scroll top or down
+var $hamburgerButton = $('i.fas.fa-bars'); // detect scroll top or down
 
 var $navbar = $('.smart-scroll'); // detect scroll top or down
 
@@ -443,8 +439,7 @@ if ($navbar.length > 0) {
     if (scroll_top < last_scroll_top_1) {
       $navbar.removeClass('scrolled-down').addClass('scrolled-up'); // if the current height is greater than the last height, the user scrolled down and the class scrolled-up should be added
     } else {
-      $navbar.removeClass('scrolled-up').addClass('scrolled-down'); // // $dropdownMenu.triggerHandler('click');
-      // console.log('tHandler');
+      $navbar.removeClass('scrolled-up').addClass('scrolled-down');
     }
 
     last_scroll_top_1 = scroll_top;
@@ -458,8 +453,6 @@ FUNCTIONS TO FETCH DATA FROM GOOGLE SHEETS AND RENDER NEW PAGE ELEMENTS BASED ON
 
 
 function renderData(data) {
-  console.log(data);
-
   if (data[0].type === 'project') {
     data.forEach(function (row, index) {
       var newCard;
@@ -497,7 +490,6 @@ function getDataFromSheet(sheet) {
     url: sheet
   }).then(function (data) {
     var rows;
-    console.log(data);
 
     if (data.feed.title.$t === 'Projects') {
       rows = data.feed.entry.map(function (item) {
@@ -573,7 +565,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51160" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58020" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
