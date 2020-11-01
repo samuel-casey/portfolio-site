@@ -21,7 +21,7 @@ header nav ul#dropdownMenu {
   }
   main article#aboutContainer {
     width: 100%;
-    display: grid;
+    display: flex;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 2fr 1fr;
     grid-template-areas: "headshot heading" "tech tech";

@@ -66,21 +66,25 @@ main {
 	}
 
 	.sectionDescription {
-		width: 90%;
-		max-width: 500px;
+		width: 80%;
+
 		margin: 1rem auto;
 		text-align: center;
-		background-color: $not-white;
 		color: $navy;
 		border-radius: 0.5rem;
 		padding: 0.5rem;
-		font-size: 1.1rem;
+		font-size: 1.35rem;
 	}
 
 	span.headingLink {
 		color: $sudbury-green-dark;
 		font-weight: 500;
 	}
+
+	h5 span#headingResumeLink a {
+		align-self: center;
+	}
+	
 
 	h2.sectionHeading {
 		color: $newton-blue;
@@ -122,6 +126,7 @@ main {
 		flex-direction: column;
 		line-height: 1.25rem;
 		width: 100%;
+		text-align: justify;
 
 		h1 {
 			font-size: 1.75rem;
@@ -130,7 +135,7 @@ main {
 		}
 
 		h2 {
-			font-size: 1.35rem;
+			font-size: 1.5rem;
 			margin-bottom: 1em;
 			line-height: 2rem;
 
@@ -151,6 +156,7 @@ main {
 			line-height: 1.5rem;
 			color: $navy;
 		}
+
 
 		div#technologies {
 			display: grid;
@@ -360,7 +366,8 @@ main {
 			padding-top: 0;
 			padding-bottom: 0;
 			border-radius: 0.5rem;
-			margin-top: 0;
+			margin: 0 auto;
+			max-width: 600px;
 
 			.form-group {
 				margin: 0;
