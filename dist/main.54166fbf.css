@@ -95,11 +95,14 @@ main hr.green {
 }
 main article#aboutContainer {
   grid-area: about;
-  display: flex;
+  display: grid;
   flex-direction: column;
   line-height: 1.25rem;
   width: 100%;
   text-align: justify;
+}
+main article#aboutContainer #welcome {
+  color: #7ba5c9;
 }
 main article#aboutContainer h1 {
   font-size: 1.75rem;
@@ -198,6 +201,117 @@ main article#aboutContainer div#socialMediaIcons {
   width: 200px;
 }
 main article#aboutContainer div#socialMediaIcons i {
+  color: #567d9f;
+  font-size: 2rem;
+}
+main article#aboutPage {
+  grid-area: about;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25rem;
+  width: 100%;
+  text-align: justify;
+}
+main article#aboutPage h1 {
+  font-size: 1.75rem;
+  line-height: 2rem;
+  color: #22577a;
+}
+main article#aboutPage h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1em;
+  line-height: 2rem;
+}
+main article#aboutPage h3 {
+  color: #567d9f;
+  font-style: italic;
+}
+main article#aboutPage h4 {
+  font-weight: normal;
+  font-size: 1.25rem;
+  grid-area: header;
+  justify-self: center;
+  font-style: normal;
+  margin-bottom: 1rem;
+  line-height: 1.5rem;
+  color: #22577a;
+}
+main article#aboutPage p {
+  font-size: 1.25rem;
+}
+main article#aboutPage div#technologies {
+  display: grid;
+  grid-template-areas: "header header header header" "top top top top" "middle middle middle middle" "bottom bottom bottom bottom";
+  align-self: center;
+  justify-self: center;
+  grid-gap: 0.1rem;
+  width: 100%;
+}
+main article#aboutPage div#technologies h3 {
+  font-size: 1.25rem;
+  grid-area: header;
+  justify-self: center;
+  font-style: normal;
+  margin-bottom: 1rem;
+}
+main article#aboutPage div#technologies img {
+  width: 1.2rem;
+}
+main article#aboutPage div#technologies svg {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+main article#aboutPage div#technologies i {
+  font-size: 1.19rem;
+}
+main article#aboutPage div#technologies div.techLogo.js {
+  grid-area: bottom;
+  grid-column: 3;
+}
+main article#aboutPage div#technologies div.techLogo.sass {
+  grid-area: bottom;
+  grid-column: 2;
+}
+main article#aboutPage div#technologies div.techLogo.figma {
+  grid-area: bottom;
+  grid-column: 4;
+}
+main article#aboutPage div#technologies div.techLogo.htmlCss {
+  grid-area: bottom;
+  grid-column: 1;
+}
+main article#aboutPage div#technologies div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+main article#aboutPage div#technologies div p {
+  font-size: 1rem;
+  color: #568a82;
+}
+main article#aboutPage div.headshotContainer {
+  display: flex;
+  align-self: center;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  flex-direction: column;
+  align-items: center;
+}
+main article#aboutPage div.headshotContainer img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 150%;
+  justify-self: center;
+}
+main article#aboutPage div#socialMediaIcons {
+  align-self: center;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+  width: 200px;
+}
+main article#aboutPage div#socialMediaIcons i {
   color: #567d9f;
   font-size: 2rem;
 }
