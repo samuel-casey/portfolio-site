@@ -31,6 +31,9 @@ $header-height: auto;
 	}
 
 	main {
+		width: 90%;
+		margin: 0 auto;
+
 		div.moreContent {
 			align-self: flex-end;
 			grid-column: 1 / -1;
