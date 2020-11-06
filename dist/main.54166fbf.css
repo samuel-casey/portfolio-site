@@ -63,6 +63,7 @@ main span.headingLink {
 }
 main h5 span#headingResumeLink a {
   align-self: center;
+  color: #7ba5c9;
 }
 main h2.sectionHeading {
   color: #567d9f;
@@ -312,7 +313,7 @@ main article#aboutPage div#socialMediaIcons {
   width: 200px;
 }
 main article#aboutPage div#socialMediaIcons i {
-  color: #567d9f;
+  color: #77bbb1;
   font-size: 2rem;
 }
 main article#projectsContainer {
