@@ -482,6 +482,9 @@ header nav {
   top: 0;
   margin-bottom: 1em;
 }
+header .logo-link {
+  text-decoration: none;
+}
 
 nav.smart-scroll {
   position: fixed;
