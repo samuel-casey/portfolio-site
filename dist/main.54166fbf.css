@@ -8,7 +8,7 @@
 }
 
 html {
-  width: 100vw;
+  width: 100%;
 }
 
 body {
@@ -33,7 +33,7 @@ main {
   display: grid;
   grid-template-areas: "about" "projects" "blogs" "contact";
   padding: 3%;
-  margin: 1%;
+  margin: 0 auto;
   justify-content: center;
   justify-self: center;
   overflow: hidden;
@@ -100,7 +100,8 @@ main article#aboutContainer {
   flex-direction: column;
   line-height: 1.25rem;
   width: 100%;
-  text-align: justify;
+  margin: 0 auto;
+  text-align: center;
 }
 main article#aboutContainer #welcome {
   color: #7ba5c9;
@@ -135,7 +136,8 @@ main article#aboutContainer div#technologies {
   align-self: center;
   justify-self: center;
   grid-gap: 0.1rem;
-  width: 100%;
+  width: 95%;
+  margin: 0 auto;
 }
 main article#aboutContainer div#technologies h3 {
   font-size: 1.25rem;
@@ -202,7 +204,7 @@ main article#aboutContainer div#socialMediaIcons {
   width: 200px;
 }
 main article#aboutContainer div#socialMediaIcons i {
-  color: #77bbb1;
+  color: #567d9f;
   font-size: 2rem;
 }
 main article#aboutPage {
@@ -210,8 +212,8 @@ main article#aboutPage {
   display: flex;
   flex-direction: column;
   line-height: 1.25rem;
-  width: 100%;
-  text-align: justify;
+  width: 95%;
+  text-align: center;
 }
 main article#aboutPage h1 {
   font-size: 1.75rem;
@@ -246,7 +248,8 @@ main article#aboutPage div#technologies {
   align-self: center;
   justify-self: center;
   grid-gap: 0.1rem;
-  width: 100%;
+  width: 95%;
+  margin: 0 auto;
 }
 main article#aboutPage div#technologies h3 {
   font-size: 1.25rem;
@@ -288,7 +291,7 @@ main article#aboutPage div#technologies div {
   justify-content: center;
 }
 main article#aboutPage div#technologies div p {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #568a82;
 }
 main article#aboutPage div.headshotContainer {
@@ -313,17 +316,17 @@ main article#aboutPage div#socialMediaIcons {
   width: 200px;
 }
 main article#aboutPage div#socialMediaIcons i {
-  color: #77bbb1;
+  color: #567d9f;
   font-size: 2rem;
 }
 main article#projectsContainer {
   grid-area: projects;
 }
 main article#projectsContainer div.cardsContainer {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(315px, 1fr));
   grid-row: 2;
-  flex-wrap: wrap;
-  justify-content: center;
+  justify-items: center;
 }
 main article#projectsContainer #moreProjects {
   display: flex;
@@ -348,6 +351,7 @@ main article#blogsContainer {
   flex-direction: column;
   margin-bottom: 0.5rem;
   grid-gap: 0.5rem;
+  width: 95%;
 }
 main article#blogsContainer a.blogPost {
   background-color: #f5f5f5;

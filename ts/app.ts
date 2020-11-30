@@ -6,7 +6,7 @@ import emailjs from 'emailjs-com';
 const sheetId: string = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
 const projectsAsJSON: string = `https://spreadsheets.google.com/feeds/list/${sheetId}/1/public/values?alt=json`;
 const blogsAsJSON: string = `https://spreadsheets.google.com/feeds/list/${sheetId}/2/public/values?alt=json`;
-const NUM_VISIBLE_PROJECTS_ON_LOAD: number = 3;
+const NUM_VISIBLE_PROJECTS_ON_LOAD: number = 6;
 const NUM_VISIBLE_BLOGS_ON_LOAD: number = 2;
 const $showMoreProjects: JQuery = $('#moreProjects');
 const $showMoreBlogs: JQuery = $('#moreBlogs');

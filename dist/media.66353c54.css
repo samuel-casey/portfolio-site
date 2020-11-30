@@ -101,17 +101,16 @@ main article#aboutContainer #aboutMe h2 {
     justify-content: space-around;
   }
   main article#projectsContainer .cardsContainer {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
     grid-row: 3;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
   }
   main article#projectsContainer h2 {
     width: fit-content;
     justify-self: flex-start;
   }
   main article#projectsContainer div.card {
-    max-width: 400px;
+    max-width: 360px;
   }
   main article#projectsContainer #moreProjects {
     grid-row: 3;
@@ -126,7 +125,16 @@ main article#aboutContainer #aboutMe h2 {
   }
 
   div.card {
+    max-width: 550px;
+  }
+
+  article#projectsContainer div.card {
     max-width: 450px;
+  }
+  article#projectsContainer .cardsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(750px, 1fr));
+    grid-row: 3;
   }
 }
 
