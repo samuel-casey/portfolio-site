@@ -135,10 +135,9 @@ $header-height: auto;
 			justify-content: space-around;
 
 			.cardsContainer {
-				display: flex;
+				display: grid;
+    			grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
 				grid-row: 3;
-				flex-wrap: wrap;
-				justify-content: space-evenly;
 			}
 
 			h2 {
@@ -147,7 +146,7 @@ $header-height: auto;
 			}
 
 			div.card {
-				max-width: 400px;
+				max-width: 360px;
 			}
 
 			#moreProjects {
@@ -167,6 +166,19 @@ $header-height: auto;
 	}
 
 	div.card {
-		max-width: 450px;
+		max-width: 550px;
+	}
+
+	article#projectsContainer {
+
+			div.card {
+				max-width: 450px;
+			}
+
+		.cardsContainer {
+				display: grid;
+    			grid-template-columns: repeat(auto-fit, minmax(750px, 1fr));
+				grid-row: 3;
+			}
 	}
 }

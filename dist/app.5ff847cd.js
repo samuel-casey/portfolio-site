@@ -384,7 +384,7 @@ var emailjs_com_1 = require("emailjs-com");
 var sheetId = '11ABDt_dPctf9vJJI9LXObufyE9YsFU5nBC0Q-ul1SDs';
 var projectsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/1/public/values?alt=json";
 var blogsAsJSON = "https://spreadsheets.google.com/feeds/list/" + sheetId + "/2/public/values?alt=json";
-var NUM_VISIBLE_PROJECTS_ON_LOAD = 3;
+var NUM_VISIBLE_PROJECTS_ON_LOAD = 6;
 var NUM_VISIBLE_BLOGS_ON_LOAD = 2;
 var $showMoreProjects = $('#moreProjects');
 var $showMoreBlogs = $('#moreBlogs');
@@ -565,7 +565,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60400" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62828" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

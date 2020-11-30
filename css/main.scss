@@ -19,7 +19,7 @@ $sudbury-green-light: rgba(119, 187, 177, 1);
 $header-height: auto;
 
 html {
-	width: 100vw;
+	width: 100%;
 }
 
 body {
@@ -48,7 +48,7 @@ main {
 		"blogs"
 		"contact";
 	padding: 3%;
-	margin: 1%;
+	margin: 0 auto;
 	justify-content: center;
 	justify-self: center;
 	overflow: hidden;
@@ -127,7 +127,8 @@ main {
 		flex-direction: column;
 		line-height: 1.25rem;
 		width: 100%;
-		text-align: justify;
+		margin: 0 auto;
+		text-align: center;
 
 		#welcome {
 			color: $newton-blue-light;
@@ -173,7 +174,8 @@ main {
 			align-self: center;
 			justify-self: center;
 			grid-gap: 0.1rem;
-			width: 100%;
+			width: 95%;
+			margin: 0 auto;
 
 			h3 {
 				font-size: 1.25rem;
@@ -252,7 +254,7 @@ main {
 			padding: 10px;
 			width: 200px;
 			i {
-				color: $sudbury-green-light;
+				color: $newton-blue;
 				font-size: 2rem;
 			}
 		}
@@ -263,8 +265,8 @@ main {
 		display: flex;
 		flex-direction: column;
 		line-height: 1.25rem;
-		width: 100%;
-		text-align: justify;
+		width: 95%;
+		text-align: center;
 
 		h1 {
 			font-size: 1.75rem;
@@ -309,7 +311,8 @@ main {
 			align-self: center;
 			justify-self: center;
 			grid-gap: 0.1rem;
-			width: 100%;
+			width: 95%;
+			margin: 0 auto;
 
 			h3 {
 				font-size: 1.25rem;
@@ -359,7 +362,7 @@ main {
 				justify-content: center;
 				
 				p {
-					font-size: 1rem;
+					font-size: 0.9rem;
 					color: $sudbury-green-dark;
 				}
 			}
@@ -388,7 +391,7 @@ main {
 			padding: 10px;
 			width: 200px;
 			i {
-				color: $sudbury-green-light;
+				color: $newton-blue;
 				font-size: 2rem;
 			}
 		}
@@ -398,10 +401,10 @@ main {
 		grid-area: projects;
 
 		div.cardsContainer {
-			display: flex;
+			display: grid;
+    		grid-template-columns: repeat(auto-fit, minmax(315px, 1fr));
 			grid-row: 2;
-			flex-wrap: wrap;
-			justify-content: center;
+			justify-items: center;
 		}
 
 		#moreProjects {
@@ -420,10 +423,6 @@ main {
 		}
 
 		.cardsContainer {
-
-			// #projectsContainer > div.cardsContainer > div:nth-child(1) > img {
-			// 	width: 10px;
-			// }
 			
 			.card-img-top {
 				object-fit: cover;
@@ -432,14 +431,13 @@ main {
 		}
 	}
 
-
-
 	article#blogsContainer {
 		grid-area: blogs;
 		display: grid;
 		flex-direction: column;
 		margin-bottom: 0.5rem;
 		grid-gap: 0.5rem;
+		width: 95%;
 
 		a.blogPost {
 			background-color: $not-white;
