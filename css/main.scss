@@ -554,8 +554,9 @@ div#headerLogoContainer {
 
 div.card {
 	color: $font-primary;
-	background-color: $not-white;
+	background-color: rgba(0,0,0,0);
 	margin: 10px;
+	border: none;
 	max-width: 300px;
 }
 
