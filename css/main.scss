@@ -401,20 +401,13 @@ main {
 	article#projectsContainer {
 		grid-area: projects;
 
-		div.cardsContainer {
-			display: grid;
-    		grid-template-columns: repeat(auto-fit, minmax(315px, 1fr));
-			grid-row: 2;
-			justify-items: center;
-		}
-
 		#moreProjects {
 			display: flex;
 			justify-content: center;
 			align-self: flex-end;
 			grid-row: 3;
 		}
-
+		
 		.projCategory {
 			color: $newton-blue-light;
 			width: fit-content; 
@@ -422,15 +415,31 @@ main {
 			padding: 0 0 0.2rem 0;
 			margin: 0.25rem 0;
 		}
-
+		
 		.cardsContainer {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(315px, 1fr));
+			grid-row: 2;
+			justify-items: center;
 			
 			.card-img-top {
 				object-fit: cover;
 				max-height: 300px;
 			}
+			
+			.card-text-hidden {
+				opacity: 0;
+				height: 0;	
+			}
+		
+			.card-text-hovered {
+				opacity: 1;
+				height: fit-content;	
+			}
 		}
 	}
+
+
 
 	article#blogsContainer {
 		grid-area: blogs;

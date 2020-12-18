@@ -324,12 +324,6 @@ main article#aboutPage div#socialMediaIcons i {
 main article#projectsContainer {
   grid-area: projects;
 }
-main article#projectsContainer div.cardsContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(315px, 1fr));
-  grid-row: 2;
-  justify-items: center;
-}
 main article#projectsContainer #moreProjects {
   display: flex;
   justify-content: center;
@@ -343,9 +337,23 @@ main article#projectsContainer .projCategory {
   padding: 0 0 0.2rem 0;
   margin: 0.25rem 0;
 }
+main article#projectsContainer .cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(315px, 1fr));
+  grid-row: 2;
+  justify-items: center;
+}
 main article#projectsContainer .cardsContainer .card-img-top {
   object-fit: cover;
   max-height: 300px;
+}
+main article#projectsContainer .cardsContainer .card-text-hidden {
+  opacity: 0;
+  height: 0;
+}
+main article#projectsContainer .cardsContainer .card-text-hovered {
+  opacity: 1;
+  height: fit-content;
 }
 main article#blogsContainer {
   grid-area: blogs;

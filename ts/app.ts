@@ -87,7 +87,8 @@ if ($navbar.length > 0) {
 	});
 }
 
-/// SUBMIT CONTACT FORM
+const $card = $('div.card')
+console.log($card)
 
 /*==================================================================================================
 FUNCTIONS TO FETCH DATA FROM GOOGLE SHEETS AND RENDER NEW PAGE ELEMENTS BASED ON THE DATA RETRIEVED 

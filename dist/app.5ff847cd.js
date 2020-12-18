@@ -444,13 +444,14 @@ if ($navbar.length > 0) {
 
     last_scroll_top_1 = scroll_top;
   });
-} /// SUBMIT CONTACT FORM
+}
 
+var $card = $('div.card');
+console.log($card);
 /*==================================================================================================
 FUNCTIONS TO FETCH DATA FROM GOOGLE SHEETS AND RENDER NEW PAGE ELEMENTS BASED ON THE DATA RETRIEVED
 ==================================================================================================*/
 // RENDER PAGE ELEMENTS
-
 
 function renderData(data) {
   if (data[0].type === 'project') {
@@ -565,7 +566,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59555" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50781" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

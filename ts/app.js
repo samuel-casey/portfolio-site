@@ -71,7 +71,8 @@ if ($navbar.length > 0) {
         last_scroll_top_1 = scroll_top;
     });
 }
-/// SUBMIT CONTACT FORM
+var $card = $('div.card');
+console.log($card);
 /*==================================================================================================
 FUNCTIONS TO FETCH DATA FROM GOOGLE SHEETS AND RENDER NEW PAGE ELEMENTS BASED ON THE DATA RETRIEVED
 ==================================================================================================*/
